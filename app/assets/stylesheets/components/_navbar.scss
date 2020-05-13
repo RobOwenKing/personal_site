@@ -1,3 +1,30 @@
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Poppins', sans-serif;
+}
+
+nav h2 {
+  margin: 0px 8px;
+}
+
+nav a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navbar-right a {
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+nav a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+
 .navbar-lewagon {
   justify-content: space-between;
   background: white;

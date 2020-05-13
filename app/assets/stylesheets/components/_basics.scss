@@ -1,0 +1,50 @@
+.container {
+  width: 60%;
+  margin: 8px auto;
+}
+
+body {
+  background-image: linear-gradient($light-gray, white);
+  font-family: $body-font;
+  margin: 0px;
+  /*font-size: 14px;*/
+}
+
+div {
+  text-align: center;
+}
+
+h1{
+  margin-top: 0;
+  margin-bottom: 0;
+  /*font-size: 32px;*/
+  color: $dark-blue;
+  font-family: $headers-font;
+}
+
+h2 {
+  /*font-size: 20px;*/
+  color: $dark-blue;
+}
+
+h3 {
+  /*font-size: 16px;*/
+}
+
+.no-dec {
+  text-decoration: none;
+}
+
+.link-dec {
+  color: $dark-blue;
+}
+
+ul {
+  padding: 0px;
+  margin-top: 0;
+}
+
+li {
+  display: inline;
+}
+

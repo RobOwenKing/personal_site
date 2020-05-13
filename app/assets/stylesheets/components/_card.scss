@@ -1,0 +1,56 @@
+.card {
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.card:hover {
+  opacity: 1;
+}
+
+.card-img-txt {
+  display: flex;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+  text-decoration: none;
+  color: inherit
+}
+
+.card-img-txt:hover {
+  opacity: 1;
+}
+
+.card-img-txt:hover h2 {
+  text-decoration: underline;
+}
+
+.card-img-txt div {
+  text-align: left;
+  margin-left: 16px;
+}
+
+.card-img-txt a {
+  text-decoration: none;
+}
+
+.card-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: left;
+}
+
+.card-1-2 h4 {
+  text-align: right;
+  margin-top: 14px;
+  margin-right: 8px;
+}
+
+.line-break {
+  margin: 30px auto 20px auto;
+  height: 1px;
+  width: 80%;
+  background-image: linear-gradient(to right, transparent, rgb(48,49,51), transparent);
+}
+
+.navbar-line {
+  margin-top: 10px;
+}
