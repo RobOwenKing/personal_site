@@ -3,7 +3,7 @@ const ctx = canvas.getContext('2d');
 
 canvas.width = 240;
 canvas.height = 480;
-const res = 24;
+const unit = 24;
 
 let delay = 1000;
 let lastIteration = 0;
@@ -12,20 +12,19 @@ let deltaTime = 0;
 const grid = [];
 
 const buildGrid = () => {
-  const row = [];
-  for (let i = 0; i < canvas.width / res; i += 1) {
-    row.push('.');
-  }
-  for (let j = 0; j < canvas.height / res; j += 1) {
+  for (let j = 0; j < canvas.height / unit; j += 1) {
+    const row = [];
+    for (let i = 0; i < canvas.width / unit; i += 1) {
+      row.push('.');
+    }
     grid.push(row);
   }
-  console.log(grid);
 };
 
 buildGrid();
 
 const mod = (num) => {
-  limit = canvas.width / res
+  limit = canvas.width / unit
   if (num < 0) {
     num = limit + num;
   } else if (num > (limit - 1)) {
@@ -41,9 +40,9 @@ const player = {
 
 const tPiece = {
   piece: [
-    [0, 0, 0],
+    ['.', '.', '.'],
     [1, 1, 1],
-    [0, 1, 0]
+    ['.', 1, '.']
   ],
   colour: 'red',
   yMargin: 1,
@@ -72,11 +71,11 @@ const newPiece = () => {
 const drawPiece = (piece, x, y) => {
   for (let j = 0; j < piece.piece.length; j += 1) {
     for (let i = 0; i < piece.piece[j].length; i += 1) {
-      if (piece.piece[j][i] !== 0) {
+      if (piece.piece[j][i] !== '.') {
         ctx.fillStyle = piece.colour;
-        ctx.fillRect(mod(i + x) * res,
-                     (j + y) * res,
-                     res, res);
+        ctx.fillRect(mod(i + x) * unit,
+                     (j + y) * unit,
+                     unit, unit);
       }
     }
   }
@@ -87,16 +86,27 @@ const draw = () => {
     for (let i = 0; i < grid[j].length; i += 1) {
       if (grid[j][i] === '.') {
         ctx.fillStyle = 'black';
+      } else {
+        ctx.fillStyle = 'red';
       }
-      ctx.fillRect(i * res, j * res, res, res);
+      ctx.fillRect(i * unit, j * unit, unit, unit);
     }
   }
 
   drawPiece(player.piece, player.x, player.y);
 };
 
+const addPieceToGrid = (piece, x, y) => {
+  for (let j = 0; j < piece.length; j += 1) {
+    for (let i = 0; i < piece[j].length; i += 1) {
+      grid[(y + j)][mod(x + i)] = piece[j][i];
+    }
+  }
+};
+
 const pieceLanding = () => {
-  if (player.y + player.piece.length > canvas.height / res) {
+  if ((player.y + player.piece.piece.length) === (canvas.height / unit)) {
+    addPieceToGrid(player.piece.piece, player.x, player.y);
     newPiece();
   }
 };
