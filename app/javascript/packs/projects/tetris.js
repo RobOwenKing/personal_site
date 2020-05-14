@@ -83,10 +83,22 @@ const drawPiece = (piece, x, y) => {
 };
 
 const draw = () => {
-  ctx.fillStyle = '#000';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  for (let j = 0; j < grid.length; j += 1) {
+    for (let i = 0; i < grid[j].length; i += 1) {
+      if (grid[j][i] === '.') {
+        ctx.fillStyle = 'black';
+      }
+      ctx.fillRect(i * res, j * res, res, res);
+    }
+  }
 
   drawPiece(player.piece, player.x, player.y);
+};
+
+const pieceLanding = () => {
+  if (player.y + player.piece.length > canvas.height / res) {
+    newPiece();
+  }
 };
 
 const update = (time = 0) => {
@@ -96,6 +108,7 @@ const update = (time = 0) => {
     player.y += 1;
     deltaTime = 0;
     lastIteration = time;
+    pieceLanding();
   }
   requestAnimationFrame(update);
 };
@@ -112,7 +125,3 @@ document.addEventListener('keydown', (event) => {
   }
   player.x = mod(player.x);
 });
-
-// Movement code
-// Piece array of objects
-// Piece centre offsets
