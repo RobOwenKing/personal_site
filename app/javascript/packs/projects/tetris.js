@@ -1,3 +1,36 @@
+// From https://medium.com/@ziyoshams/deep-copying-javascript-arrays-4d5fc45a6e3e
+const deepCopy = (arr) => {
+  let copy = [];
+  arr.forEach(elem => {
+    if(Array.isArray(elem)){
+      copy.push(deepCopy(elem))
+    }else{
+      if (typeof elem === 'object') {
+        copy.push(deepCopyObject(elem))
+    } else {
+        copy.push(elem)
+      }
+    }
+  })
+  return copy;
+}
+
+const deepCopyObject = (obj) => {
+  let tempObj = {};
+  for (let [key, value] of Object.entries(obj)) {
+    if (Array.isArray(value)) {
+      tempObj[key] = deepCopy(value);
+    } else {
+      if (typeof value === 'object') {
+        tempObj[key] = deepCopyObject(value);
+      } else {
+        tempObj[key] = value
+      }
+    }
+  }
+  return tempObj;
+}
+
 const canvas = document.getElementById('tetris');
 const ctx = canvas.getContext('2d');
 
@@ -67,16 +100,16 @@ const pieces = [tPiece, oPiece];
 
 const newPiece = () => {
   const newPiece = pieces[Math.floor(Math.random() * pieces.length)]
-  player.piece = newPiece;
+  player.piece = deepCopyObject(newPiece);
   player.x = 4 - newPiece.xOffset;
-  player.y = 0 - newPiece.yMargin;
+  player.y = 0 - newPiece.piece.length;
 };
 
 const drawPiece = (piece, x, y) => {
   for (let j = 0; j < piece.piece.length; j += 1) {
     for (let i = 0; i < piece.piece[j].length; i += 1) {
       if (piece.piece[j][i] !== '.') {
-        ctx.fillStyle = mode === "dark" ? `hsl(${piece.colour},100%,50%)` : `hsl(${piece.colour},75%,75%)`;
+        ctx.fillStyle = mode === "dark" ? `hsl(${piece.piece[j][i]},100%,50%)` : `hsl(${piece.piece[j][i]},75%,75%)`;
         ctx.fillRect(mod(i + x) * unit,
                      (j + y) * unit,
                      unit, unit);
@@ -108,7 +141,7 @@ const pieceCollision = () => {
   const piece = player.piece.piece;
   for (let j = 0; j < piece.length; j += 1) {
     for (let i = 0; i < piece[j].length; i += 1) {
-      if (piece[j][i] !== '.') {
+      if ((player.y + j + 1) >= 0 && piece[j][i] !== '.') {
         if (grid[(player.y + j + 1)][mod(player.x + i)] !== '.') {
           // console.log(grid[(player.y + j + 1)][mod(player.x + i)]);
           return true;
@@ -129,9 +162,14 @@ const addPieceToGrid = (piece, x, y) => {
   }
 };
 
+const deleteFullRows = () => {
+  // To do!
+};
+
 const pieceLanding = () => {
   if (pieceAtBottom() || pieceCollision()) {
     addPieceToGrid(player.piece.piece, player.x, player.y);
+    deleteFullRows();
     newPiece();
   }
 };
@@ -140,10 +178,10 @@ const update = (time = 0) => {
   draw();
   deltaTime = time - lastIteration;
   if (deltaTime > delay) {
+    pieceLanding();
     player.y += 1;
     deltaTime = 0;
     lastIteration = time;
-    pieceLanding();
   }
   requestAnimationFrame(update);
 };
@@ -151,12 +189,29 @@ const update = (time = 0) => {
 newPiece();
 update();
 
+const rotatePiece = (dir) => {
+  const piece = player.piece.piece;
+  const rotatedPiece = [];
+  // All pieces are square so can do piece.length everywhere
+  for (let j = 0; j < piece.length; j += 1) {
+    const row = [];
+    for (let i = 0; i < piece.length; i += 1) {
+      row.push(piece[2 - i][j]);
+    }
+    rotatedPiece.push(row);
+  }
+  return rotatedPiece;
+}
+
 document.addEventListener('keydown', (event) => {
   if (event.key === 'a') {
     player.x -= 1;
   }
   if (event.key === 'd') {
     player.x += 1;
+  }
+  if (event.key === 'l') {
+    player.piece.piece = rotatePiece('cwise');
   }
   player.x = mod(player.x);
 });
