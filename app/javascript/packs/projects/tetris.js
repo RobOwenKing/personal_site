@@ -94,9 +94,60 @@ const oPiece = {
   xOffset: 0
 };
 
+const sPiece = {
+  piece: [
+    ['.', 60, 60],
+    [60, 60, '.'],
+    ['.', '.', '.']
+  ],
+  yMargin: 0,
+  xOffset: 1
+};
+
+const zPiece = {
+  piece: [
+    [120, 120, '.'],
+    ['.', 120, 120],
+    ['.', '.', '.']
+  ],
+  yMargin: 0,
+  xOffset: 1
+};
+
+const lPiece = {
+  piece: [
+    [240, '.', '.'],
+    [240, '.', '.'],
+    [240, 240, '.']
+  ],
+  yMargin: 0,
+  xOffset: 1
+};
+
+const jPiece = {
+  piece: [
+    ['.', '.', 260],
+    ['.', '.', 260],
+    ['.', 260, 260]
+  ],
+  yMargin: 0,
+  xOffset: 1
+};
+
+const iPiece = {
+  piece: [
+    ['.', 285, '.', '.'],
+    ['.', 285, '.', '.'],
+    ['.', 285, '.', '.'],
+    ['.', 285, '.', '.']
+  ],
+  yMargin: 0,
+  xOffset: 1
+};
+
 // 60, 120, 240, 280, 320
 
-const pieces = [tPiece, oPiece];
+const pieces = [tPiece, oPiece, sPiece, oPiece, lPiece, jPiece, iPiece];
 
 const newPiece = () => {
   const newPiece = pieces[Math.floor(Math.random() * pieces.length)]
@@ -203,7 +254,7 @@ const rotatePiece = (dir) => {
     for (let j = 0; j < piece.length; j += 1) {
       const row = [];
       for (let i = 0; i < piece.length; i += 1) {
-        row.push(piece[2 - i][j]);
+        row.push(piece[piece.length - i][j]);
       }
       rotatedPiece.push(row);
     }
@@ -211,7 +262,7 @@ const rotatePiece = (dir) => {
     for (let j = 0; j < piece.length; j += 1) {
       const row = [];
       for (let i = 0; i < piece.length; i += 1) {
-        row.push(piece[i][2 - j]);
+        row.push(piece[i][piece.length - j]);
       }
       rotatedPiece.push(row);
     }
