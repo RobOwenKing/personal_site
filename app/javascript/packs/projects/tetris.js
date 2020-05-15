@@ -137,7 +137,7 @@ const pieceAtBottom = () => {
   const piece = player.piece.piece;
   for (let j = 0; j < piece.length; j += 1) {
     for (let i = 0; i < piece[j].length; i += 1) {
-      if ((player.y + j) === 19 >  && piece[j][i] !== '.') {
+      if ((player.y + j) === 19 && piece[j][i] !== '.') {
         // console.log(grid[(player.y + j + 1)][mod(player.x + i)]);
         return true;
       }
@@ -199,12 +199,22 @@ const rotatePiece = (dir) => {
   const piece = player.piece.piece;
   const rotatedPiece = [];
   // All pieces are square so can do piece.length everywhere
-  for (let j = 0; j < piece.length; j += 1) {
-    const row = [];
-    for (let i = 0; i < piece.length; i += 1) {
-      row.push(piece[2 - i][j]);
+  if (dir === 'cwise') {
+    for (let j = 0; j < piece.length; j += 1) {
+      const row = [];
+      for (let i = 0; i < piece.length; i += 1) {
+        row.push(piece[2 - i][j]);
+      }
+      rotatedPiece.push(row);
     }
-    rotatedPiece.push(row);
+  } else {
+    for (let j = 0; j < piece.length; j += 1) {
+      const row = [];
+      for (let i = 0; i < piece.length; i += 1) {
+        row.push(piece[i][2 - j]);
+      }
+      rotatedPiece.push(row);
+    }
   }
   return rotatedPiece;
 }
