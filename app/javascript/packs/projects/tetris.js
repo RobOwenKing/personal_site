@@ -38,7 +38,7 @@ canvas.width = 240;
 canvas.height = 480;
 const unit = 24;
 
-let delay = 1000;
+let delay = 200;
 let lastIteration = 0;
 let deltaTime = 0;
 
@@ -248,21 +248,26 @@ update();
 
 const rotatePiece = (dir) => {
   const piece = player.piece.piece;
+  const l = piece.length;
   const rotatedPiece = [];
+  console.log(piece);
   // All pieces are square so can do piece.length everywhere
   if (dir === 'cwise') {
-    for (let j = 0; j < piece.length; j += 1) {
+    for (let j = 0; j < l; j += 1) {
       const row = [];
-      for (let i = 0; i < piece.length; i += 1) {
-        row.push(piece[piece.length - i][j]);
+      for (let i = 0; i < l; i += 1) {
+        row.push(piece[l - 1 - i][j]);
+        console.log(i);
+        console.log(j);
       }
       rotatedPiece.push(row);
+      console.log(rotatedPiece);
     }
   } else {
     for (let j = 0; j < piece.length; j += 1) {
       const row = [];
       for (let i = 0; i < piece.length; i += 1) {
-        row.push(piece[i][piece.length - j]);
+        row.push(piece[i][l - 1 - j]);
       }
       rotatedPiece.push(row);
     }
