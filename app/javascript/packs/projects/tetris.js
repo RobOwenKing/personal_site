@@ -81,7 +81,6 @@ const tPiece = {
     [0, 0, 0],
     ['.', 0, '.']
   ],
-  colour: 'red',
   yMargin: 1,
   xOffset: 1
 };
@@ -91,10 +90,11 @@ const oPiece = {
     [30, 30],
     [30, 30]
   ],
-  colour: 'blue',
   yMargin: 0,
   xOffset: 0
 };
+
+// 60, 120, 240, 280, 320
 
 const pieces = [tPiece, oPiece];
 
@@ -134,7 +134,16 @@ const draw = () => {
 };
 
 const pieceAtBottom = () => {
-  return (player.y + player.piece.piece.length) === (canvas.height / unit);
+  const piece = player.piece.piece;
+  for (let j = 0; j < piece.length; j += 1) {
+    for (let i = 0; i < piece[j].length; i += 1) {
+      if ((player.y + j) === 19 >  && piece[j][i] !== '.') {
+        // console.log(grid[(player.y + j + 1)][mod(player.x + i)]);
+        return true;
+      }
+    }
+  }
+  return false;
 };
 
 const pieceCollision = () => {
@@ -166,20 +175,17 @@ const deleteFullRows = () => {
   // To do!
 };
 
-const pieceLanding = () => {
-  if (pieceAtBottom() || pieceCollision()) {
-    addPieceToGrid(player.piece.piece, player.x, player.y);
-    deleteFullRows();
-    newPiece();
-  }
-};
-
 const update = (time = 0) => {
   draw();
   deltaTime = time - lastIteration;
   if (deltaTime > delay) {
-    pieceLanding();
-    player.y += 1;
+    if (pieceAtBottom() || pieceCollision()) {
+      addPieceToGrid(player.piece.piece, player.x, player.y);
+      deleteFullRows();
+      newPiece();
+    } else {
+      player.y += 1;
+    }
     deltaTime = 0;
     lastIteration = time;
   }
@@ -212,6 +218,9 @@ document.addEventListener('keydown', (event) => {
   }
   if (event.key === 'l') {
     player.piece.piece = rotatePiece('cwise');
+  }
+  if (event.key === 'j') {
+    player.piece.piece = rotatePiece('acwise');
   }
   player.x = mod(player.x);
 });
