@@ -38,13 +38,17 @@ canvas.width = 240;
 canvas.height = 480;
 const unit = 24;
 
-let delay = 200;
+let delay = 500;
 let lastIteration = 0;
 let deltaTime = 0;
 
 const dark = document.getElementById('dark');
 const light = document.getElementById('light');
 let mode = "dark";
+
+const scoreText = document.getElementById('score');
+let score = 0;
+let lastScoreTime = Date.now();
 
 const grid = [];
 
@@ -147,13 +151,14 @@ const iPiece = {
 
 // 60, 120, 240, 280, 320
 
-const pieces = [tPiece, oPiece, sPiece, oPiece, lPiece, jPiece, iPiece];
+const pieces = [tPiece, oPiece, sPiece, zPiece, lPiece, jPiece, iPiece];
 
 const newPiece = () => {
   const newPiece = pieces[Math.floor(Math.random() * pieces.length)]
   player.piece = deepCopyObject(newPiece);
   player.x = 4 - newPiece.xOffset;
   player.y = 0 - newPiece.piece.length;
+  delay -= Math.ceil(delay / 100);
 };
 
 const drawPiece = (piece, x, y) => {
@@ -222,8 +227,30 @@ const addPieceToGrid = (piece, x, y) => {
   }
 };
 
+const addToScore = () => {
+  score += 100;
+  const diff = Date.now() - lastScoreTime;
+  if (diff <= 10000) {
+    score += Math.ceil(100 - (diff / 100));
+  }
+  console.log(diff);
+  lastScoreTime = Date.now();
+  scoreText.innerText = score;
+};
+
 const deleteFullRows = () => {
-  // To do!
+  for (let i = 0; i < grid.length; i += 1) {
+    if (grid[i].every(element => element != '.')) {
+      grid.splice(i, 1);
+      const newRow = [];
+      for (let i = 0; i < canvas.width / unit; i += 1) {
+        newRow.push('.');
+      }
+      grid.unshift(newRow);
+      addToScore();
+      draw();
+    }
+  }
 };
 
 const update = (time = 0) => {
@@ -250,18 +277,14 @@ const rotatePiece = (dir) => {
   const piece = player.piece.piece;
   const l = piece.length;
   const rotatedPiece = [];
-  console.log(piece);
   // All pieces are square so can do piece.length everywhere
   if (dir === 'cwise') {
     for (let j = 0; j < l; j += 1) {
       const row = [];
       for (let i = 0; i < l; i += 1) {
         row.push(piece[l - 1 - i][j]);
-        console.log(i);
-        console.log(j);
       }
       rotatedPiece.push(row);
-      console.log(rotatedPiece);
     }
   } else {
     for (let j = 0; j < piece.length; j += 1) {
