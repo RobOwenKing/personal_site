@@ -1,35 +1,6 @@
-// From https://medium.com/@ziyoshams/deep-copying-javascript-arrays-4d5fc45a6e3e
-const deepCopy = (arr) => {
-  let copy = [];
-  arr.forEach(elem => {
-    if(Array.isArray(elem)){
-      copy.push(deepCopy(elem))
-    }else{
-      if (typeof elem === 'object') {
-        copy.push(deepCopyObject(elem))
-    } else {
-        copy.push(elem)
-      }
-    }
-  })
-  return copy;
-}
-
-const deepCopyObject = (obj) => {
-  let tempObj = {};
-  for (let [key, value] of Object.entries(obj)) {
-    if (Array.isArray(value)) {
-      tempObj[key] = deepCopy(value);
-    } else {
-      if (typeof value === 'object') {
-        tempObj[key] = deepCopyObject(value);
-      } else {
-        tempObj[key] = value
-      }
-    }
-  }
-  return tempObj;
-}
+import { pieces } from './tetris_pieces.js';
+import { deepCopy, deepCopyObject } from '../shared/copy.js';
+import { mode } from '../shared/modes.js';
 
 const canvas = document.getElementById('tetris');
 const ctx = canvas.getContext('2d');
@@ -42,15 +13,14 @@ let delay = 500;
 let lastIteration = 0;
 let deltaTime = 0;
 
-const dark = document.getElementById('dark');
-const light = document.getElementById('light');
-let mode = "dark";
-
 const scoreText = document.getElementById('score');
 let score = 0;
 let lastScoreTime = Date.now();
 
 const grid = [];
+
+const play = document.getElementById('play');
+let playing = false;
 
 const buildGrid = () => {
   for (let j = 0; j < canvas.height / unit; j += 1) {
@@ -65,7 +35,7 @@ const buildGrid = () => {
 buildGrid();
 
 const mod = (num) => {
-  limit = canvas.width / unit
+  const limit = canvas.width / unit
   if (num < 0) {
     num = limit + num;
   } else if (num > (limit - 1)) {
@@ -78,80 +48,6 @@ const player = {
   x: 5,
   y: 0
 };
-
-const tPiece = {
-  piece: [
-    ['.', '.', '.'],
-    [0, 0, 0],
-    ['.', 0, '.']
-  ],
-  yMargin: 1,
-  xOffset: 1
-};
-
-const oPiece = {
-  piece: [
-    [30, 30],
-    [30, 30]
-  ],
-  yMargin: 0,
-  xOffset: 0
-};
-
-const sPiece = {
-  piece: [
-    ['.', 60, 60],
-    [60, 60, '.'],
-    ['.', '.', '.']
-  ],
-  yMargin: 0,
-  xOffset: 1
-};
-
-const zPiece = {
-  piece: [
-    [120, 120, '.'],
-    ['.', 120, 120],
-    ['.', '.', '.']
-  ],
-  yMargin: 0,
-  xOffset: 1
-};
-
-const lPiece = {
-  piece: [
-    [240, '.', '.'],
-    [240, '.', '.'],
-    [240, 240, '.']
-  ],
-  yMargin: 0,
-  xOffset: 1
-};
-
-const jPiece = {
-  piece: [
-    ['.', '.', 260],
-    ['.', '.', 260],
-    ['.', 260, 260]
-  ],
-  yMargin: 0,
-  xOffset: 1
-};
-
-const iPiece = {
-  piece: [
-    ['.', 285, '.', '.'],
-    ['.', 285, '.', '.'],
-    ['.', 285, '.', '.'],
-    ['.', 285, '.', '.']
-  ],
-  yMargin: 0,
-  xOffset: 1
-};
-
-// 60, 120, 240, 280, 320
-
-const pieces = [tPiece, oPiece, sPiece, zPiece, lPiece, jPiece, iPiece];
 
 const newPiece = () => {
   const newPiece = pieces[Math.floor(Math.random() * pieces.length)]
@@ -185,9 +81,12 @@ const draw = () => {
       ctx.fillRect(i * unit, j * unit, unit, unit);
     }
   }
-
-  drawPiece(player.piece, player.x, player.y);
+  if (playing === true) {
+    drawPiece(player.piece, player.x, player.y);
+  }
 };
+
+draw();
 
 const pieceAtBottom = () => {
   const piece = player.piece.piece;
@@ -270,9 +169,6 @@ const update = (time = 0) => {
   requestAnimationFrame(update);
 };
 
-newPiece();
-update();
-
 const rotatePiece = (dir) => {
   const piece = player.piece.piece;
   const l = piece.length;
@@ -314,20 +210,17 @@ document.addEventListener('keydown', (event) => {
   player.x = mod(player.x);
 });
 
-light.addEventListener('click', (event) => {
-  if (mode === "dark") {
-    mode = "light";
-    dark.classList.remove('btn-active');
-    light.classList.add('btn-active');
-    draw(grid);
+play.addEventListener('click', (event) => {
+  if (playing === false) {
+    newPiece();
+    update();
   }
+  playing = true;
+  play.classList.add('btn-active');
 });
 
-dark.addEventListener('click', (event) => {
-  if (mode === "light") {
-    mode = "dark";
-    dark.classList.add('btn-active');
-    light.classList.remove('btn-active');
-    draw(grid);
-  }
-});
+// TO DO
+// - Death
+// - Check move legal
+// - Dropping
+// - Submit score
