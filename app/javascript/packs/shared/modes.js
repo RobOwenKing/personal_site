@@ -1,3 +1,5 @@
+import {draw} from '../projects/tetris.js';
+
 const dark = document.getElementById('dark');
 const light = document.getElementById('light');
 let mode = "dark";

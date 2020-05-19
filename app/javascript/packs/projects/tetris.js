@@ -119,7 +119,13 @@ const pieceCollision = () => {
 const addPieceToGrid = (piece, x, y) => {
   for (let j = 0; j < piece.length; j += 1) {
     for (let i = 0; i < piece[j].length; i += 1) {
-      if (piece[j][i] !== '.') {
+      if (y < 0) {
+        playing = false;
+        play.classList.remove('btn-active');
+        ctx.fillStyle = mode === 'dark' ? 'white' : '#042D43';
+        ctx.font = '42px "Open Sans", "Helvetica", "sans-serif"';
+        ctx.fillText('Game over', 10, 80);
+      } else if (piece[j][i] !== '.') {
         grid[(y + j)][mod(x + i)] = piece[j][i];
       }
     }
@@ -132,7 +138,6 @@ const addToScore = () => {
   if (diff <= 10000) {
     score += Math.ceil(100 - (diff / 100));
   }
-  console.log(diff);
   lastScoreTime = Date.now();
   scoreText.innerText = score;
 };
@@ -152,21 +157,27 @@ const deleteFullRows = () => {
   }
 };
 
+const movePlayerDown = () => {
+  if (pieceAtBottom() || pieceCollision()) {
+    addPieceToGrid(player.piece.piece, player.x, player.y);
+    deleteFullRows();
+    newPiece();
+  } else {
+    player.y += 1;
+  }
+};
+
 const update = (time = 0) => {
   draw();
   deltaTime = time - lastIteration;
   if (deltaTime > delay) {
-    if (pieceAtBottom() || pieceCollision()) {
-      addPieceToGrid(player.piece.piece, player.x, player.y);
-      deleteFullRows();
-      newPiece();
-    } else {
-      player.y += 1;
-    }
+    movePlayerDown();
     deltaTime = 0;
     lastIteration = time;
   }
-  requestAnimationFrame(update);
+  if (playing === true) {
+    requestAnimationFrame(update);
+  }
 };
 
 const rotatePiece = (dir) => {
@@ -201,6 +212,11 @@ document.addEventListener('keydown', (event) => {
   if (event.key === 'd') {
     player.x += 1;
   }
+  if (event.key === 's') {
+    while (!pieceAtBottom() && !pieceCollision()) {
+      movePlayerDown();
+    }
+  }
   if (event.key === 'l') {
     player.piece.piece = rotatePiece('cwise');
   }
@@ -212,13 +228,14 @@ document.addEventListener('keydown', (event) => {
 
 play.addEventListener('click', (event) => {
   if (playing === false) {
+    playing = true;
     newPiece();
     update();
   }
-  playing = true;
   play.classList.add('btn-active');
 });
 
+export { draw };
 // TO DO
 // - Death
 // - Check move legal
