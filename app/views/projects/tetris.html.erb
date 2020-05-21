@@ -14,7 +14,7 @@
 
   <%= simple_form_for @tetris_score do |f| %>
     <%= f.input :name, label: "Name:  " %>
-    <%= f.input :score %>
+    <%= f.input :score, as: :hidden %>
     <%= f.submit "Submit score", class: "btn btn-orange" %>
   <% end %>
 

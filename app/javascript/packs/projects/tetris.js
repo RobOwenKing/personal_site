@@ -14,6 +14,7 @@ let lastIteration = 0;
 let deltaTime = 0;
 
 const scoreText = document.getElementById('score');
+const scoreInput = document.getElementById('tetris_score_score');
 let score = 0;
 let scoreTimes = [Date.now(), Date.now(), Date.now()];
 
@@ -148,6 +149,7 @@ const addToScore = () => {
   }
   scoreTimes.push(Date.now());
   scoreText.innerText = score;
+  scoreInput.value = score;
 };
 
 const deleteFullRows = () => {
@@ -178,6 +180,7 @@ const movePlayerDown = () => {
   if (drop === true && playing === true) {
     score += 5;
     scoreText.innerText = score;
+    scoreInput.value = score;
     setTimeout(movePlayerDown, 50);
   }
 };
@@ -255,6 +258,7 @@ play.addEventListener('click', (event) => {
   lastIteration = 0;
   score = 0;
   scoreText.innerText = score;
+  scoreInput.value = score;
   scoreTimes = [Date.now(), Date.now(), Date.now()]
   console.log(scoreTimes);
 
