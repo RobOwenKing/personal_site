@@ -1,6 +1,11 @@
 .btn {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+
   padding: 8px 16px;
-  /*background-color: #F57E2A;*/
   color: white;
   display: inline-block;
   border-radius: 3px;

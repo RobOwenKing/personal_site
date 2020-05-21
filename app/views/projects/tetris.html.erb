@@ -1,7 +1,7 @@
 <div class="container">
   <h1>Tetris</h1>
-
-  <ul>
+  <br>
+  <ul class="list-inline">
     <li id="dark" class="btn btn-blue btn-active">Dark mode</li>
     <li id="light" class="btn btn-orange">Light mode</li>
   </ul>
@@ -12,7 +12,14 @@
 
   <canvas id="tetris"></canvas>
 
-  <%= render 'tetris_scores/form', tetris_score: @tetris_score %>
+  <%= simple_form_for @tetris_score do |f| %>
+    <%= f.input :name, label: "Name:  " %>
+    <%= f.input :score %>
+    <%= f.submit "Submit score", class: "btn btn-orange" %>
+  <% end %>
+
+
+  <%= link_to "See highscores", tetris_scores_path, class: "btn btn-blue" %>
 
   <%= javascript_pack_tag 'projects/tetris' %>
 </div>

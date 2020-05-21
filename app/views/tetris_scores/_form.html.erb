@@ -1,5 +1,5 @@
 <%= simple_form_for @tetris_score do |f| %>
-  <%= f.input :name %>
+  <%= f.input :name, label: "Name:  " %>
   <%= f.input :score %>
-  <%= f.button :submit, class: "btn btn-orange" %>
+  <%= f.submit "Submit score", class: "btn btn-orange" %>
 <% end %>

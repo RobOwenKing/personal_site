@@ -1,9 +1,17 @@
 <div class="container">
   <h1>Tetris Highscores</h1>
-
-  <ol>
+  <br>
+  <%= link_to "Return to game", tetris_path, class: "btn btn-orange" %>
+  <h3>All time</h3>
+  <ul class="list-no-bullets">
     <% @scores.each do |score| %>
+      <li><%= score.score %> - <%= score.name %> (<%= score.created_at.strftime("%e %b '%y") %>)</li>
+    <% end %>
+  </ul>
+  <h3>Last 24 hours</h3>
+  <ul class="list-no-bullets">
+    <% @scores_today.each do |score| %>
       <li><%= score.score %> - <%= score.name %></li>
     <% end %>
-  </ol>
+  </ul>
 </div>

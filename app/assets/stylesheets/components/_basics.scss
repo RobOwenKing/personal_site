@@ -44,7 +44,14 @@ ul {
   margin-top: 0;
 }
 
-ul li {
+.list-inline li {
   display: inline;
 }
 
+.list-no-bullets {
+  list-style-type: none;
+}
+
+input {
+  font: inherit;
+}
