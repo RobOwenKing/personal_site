@@ -169,13 +169,14 @@ const movePlayerDown = () => {
   if (pieceAtBottom() || pieceCollision(player.piece.piece, player.x, player.y + 1)) {
     addPieceToGrid(player.piece.piece, player.x, player.y);
     deleteFullRows();
+    score += 500 - delay;
     newPiece();
     drop = false;
   } else {
     player.y += 1;
   }
   if (drop === true && playing === true) {
-    score += Math.ceil((500 - delay) / 5);
+    score += 5;
     scoreText.innerText = score;
     setTimeout(movePlayerDown, 50);
   }
