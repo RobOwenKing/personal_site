@@ -15,14 +15,17 @@ let deltaTime = 0;
 
 const scoreText = document.getElementById('score');
 let score = 0;
-let lastScoreTime = Date.now();
+let scoreTimes = [Date.now(), Date.now(), Date.now()];
 
 const grid = [];
 
 const play = document.getElementById('play');
 let playing = false;
 
+let drop = false;
+
 const buildGrid = () => {
+  grid.splice(0, grid.length);
   for (let j = 0; j < canvas.height / unit; j += 1) {
     const row = [];
     for (let i = 0; i < canvas.width / unit; i += 1) {
@@ -101,12 +104,11 @@ const pieceAtBottom = () => {
   return false;
 };
 
-const pieceCollision = () => {
-  const piece = player.piece.piece;
+const pieceCollision = (piece, x, y) => {
   for (let j = 0; j < piece.length; j += 1) {
     for (let i = 0; i < piece[j].length; i += 1) {
-      if ((player.y + j + 1) >= 0 && piece[j][i] !== '.') {
-        if (grid[(player.y + j + 1)][mod(player.x + i)] !== '.') {
+      if ((y + j) >= 0 && piece[j][i] !== '.') {
+        if (grid[(y +j)][mod(x + i)] !== '.') {
           // console.log(grid[(player.y + j + 1)][mod(player.x + i)]);
           return true;
         }
@@ -116,15 +118,19 @@ const pieceCollision = () => {
   return false;
 };
 
+const gameOver = () => {
+  playing = false;
+  play.classList.remove('btn-active');
+  ctx.fillStyle = mode === 'dark' ? 'white' : '#042D43';
+  ctx.font = '42px "Open Sans", "Helvetica", "sans-serif"';
+  ctx.fillText('Game over', 10, 80);
+}
+
 const addPieceToGrid = (piece, x, y) => {
   for (let j = 0; j < piece.length; j += 1) {
     for (let i = 0; i < piece[j].length; i += 1) {
       if (y < 0) {
-        playing = false;
-        play.classList.remove('btn-active');
-        ctx.fillStyle = mode === 'dark' ? 'white' : '#042D43';
-        ctx.font = '42px "Open Sans", "Helvetica", "sans-serif"';
-        ctx.fillText('Game over', 10, 80);
+        gameOver();
       } else if (piece[j][i] !== '.') {
         grid[(y + j)][mod(x + i)] = piece[j][i];
       }
@@ -133,12 +139,14 @@ const addPieceToGrid = (piece, x, y) => {
 };
 
 const addToScore = () => {
-  score += 100;
-  const diff = Date.now() - lastScoreTime;
-  if (diff <= 10000) {
-    score += Math.ceil(100 - (diff / 100));
+  score += 250;
+  for (let i = 1; i < 4; i += 1) {
+    const diff = Date.now() - scoreTimes[scoreTimes.length - i];
+    if (diff <= 10000) {
+      score += Math.ceil(250 - (diff / 40));
+    }
   }
-  lastScoreTime = Date.now();
+  scoreTimes.push(Date.now());
   scoreText.innerText = score;
 };
 
@@ -158,12 +166,18 @@ const deleteFullRows = () => {
 };
 
 const movePlayerDown = () => {
-  if (pieceAtBottom() || pieceCollision()) {
+  if (pieceAtBottom() || pieceCollision(player.piece.piece, player.x, player.y + 1)) {
     addPieceToGrid(player.piece.piece, player.x, player.y);
     deleteFullRows();
     newPiece();
+    drop = false;
   } else {
     player.y += 1;
+  }
+  if (drop === true && playing === true) {
+    score += Math.ceil((500 - delay) / 5);
+    scoreText.innerText = score;
+    setTimeout(movePlayerDown, 50);
   }
 };
 
@@ -202,20 +216,25 @@ const rotatePiece = (dir) => {
       rotatedPiece.push(row);
     }
   }
-  return rotatedPiece;
+  return pieceCollision(rotatedPiece, player.x, player.y) ? piece : rotatedPiece;
 }
 
 document.addEventListener('keydown', (event) => {
   if (event.key === 'a') {
-    player.x -= 1;
+    if (!pieceCollision(player.piece.piece, player.x - 1, player.y)) {
+      player.x -= 1;
+    }
   }
   if (event.key === 'd') {
-    player.x += 1;
+    if (!pieceCollision(player.piece.piece, player.x + 1, player.y)) {
+      player.x += 1;
+    }
   }
   if (event.key === 's') {
-    while (!pieceAtBottom() && !pieceCollision()) {
-      movePlayerDown();
-    }
+    drop = true;
+    movePlayerDown();
+  } else {
+    drop = false;
   }
   if (event.key === 'l') {
     player.piece.piece = rotatePiece('cwise');
@@ -227,17 +246,22 @@ document.addEventListener('keydown', (event) => {
 });
 
 play.addEventListener('click', (event) => {
-  if (playing === false) {
-    playing = true;
-    newPiece();
-    update();
-  }
-  play.classList.add('btn-active');
+  playing = true;
+  buildGrid();
+  newPiece();
+
+  delay = 500;
+  lastIteration = 0;
+  score = 0;
+  scoreText.innerText = score;
+  scoreTimes = [Date.now(), Date.now(), Date.now()]
+  console.log(scoreTimes);
+
+  update();
 });
 
 export { draw };
 // TO DO
-// - Death
 // - Check move legal
 // - Dropping
 // - Submit score

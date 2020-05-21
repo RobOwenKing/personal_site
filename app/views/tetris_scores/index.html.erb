@@ -1,0 +1,9 @@
+<div class="container">
+  <h1>Tetris</h1>
+
+  <ol>
+    <% @scores.each do |score| %>
+      <li><%= score.score %> - <%= score.name %></li>
+    <% end %>
+  </ol>
+</div>

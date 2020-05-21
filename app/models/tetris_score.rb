@@ -1,0 +1,2 @@
+class TetrisScore < ApplicationRecord
+end
