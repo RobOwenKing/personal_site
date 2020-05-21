@@ -6,13 +6,13 @@
     <li id="light" class="btn btn-orange">Light mode</li>
   </ul>
 
+  <p id="play" class="btn btn-orange">Start new game</p>
+
   <p>Score: <span id="score">0</span></p>
 
   <canvas id="tetris"></canvas>
 
-  <ul>
-    <li id="play" class="btn btn-orange">Start new game</li>
-  </ul>
+  <%= render 'tetris_scores/form', tetris_score: @tetris_score %>
 
   <%= javascript_pack_tag 'projects/tetris' %>
 </div>
