@@ -6,13 +6,11 @@
 body {
   background-image: linear-gradient($light-gray, white);
   background-size: 100vw 100vh;
+  background-attachment: fixed;
   font-family: $body-font;
   margin: 0px;
-  /*font-size: 14px;*/
-}
-
-div {
   text-align: center;
+  /*font-size: 14px;*/
 }
 
 h1{

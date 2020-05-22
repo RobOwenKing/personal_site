@@ -21,5 +21,20 @@
 
   <%= link_to "See highscores", tetris_scores_path, class: "btn btn-blue" %>
 
-  <%= javascript_pack_tag 'projects/tetris' %>
+  <div class="card-1-2">
+    <h4>Controls</h4>
+    <div>
+      <p><kbd>A</kbd> and <kbd>D</kbd> - Move tile left and right</p>
+      <p><kbd>S</kbd> - Drop tile (cancel by pressing any other key)</p>
+      <p><kbd>J</kbd> and <kbd>L</kbd> - Rotate tile</p>
+    </div>
+  </div>
 </div>
+
+<div class="line-break"></div>
+
+<footer>
+  <p>Rob Owen King, 2020</a></p>
+</footer>
+
+<%= javascript_pack_tag 'projects/tetris' %>
