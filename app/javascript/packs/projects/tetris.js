@@ -224,26 +224,27 @@ const rotatePiece = (dir) => {
 }
 
 document.addEventListener('keydown', (event) => {
-  if (event.key === 'a') {
+  console.log(event);
+  if (event.keyCode === 65 || event.keyCode === 37) {
     if (!pieceCollision(player.piece.piece, player.x - 1, player.y)) {
       player.x -= 1;
     }
   }
-  if (event.key === 'd') {
+  if (event.keyCode === 68 || event.keyCode === 39) {
     if (!pieceCollision(player.piece.piece, player.x + 1, player.y)) {
       player.x += 1;
     }
   }
-  if (event.key === 's') {
+  if (event.keyCode === 83 || event.keyCode === 32) {
     drop = true;
     movePlayerDown();
   } else {
     drop = false;
   }
-  if (event.key === 'l') {
+  if (event.keyCode === 76 || event.keyCode === 38) {
     player.piece.piece = rotatePiece('cwise');
   }
-  if (event.key === 'j') {
+  if (event.keyCode === 74 || event.keyCode === 40) {
     player.piece.piece = rotatePiece('acwise');
   }
   player.x = mod(player.x);
