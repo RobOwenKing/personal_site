@@ -2,7 +2,7 @@ class TetrisScoresController < ApplicationController
   def index
     @scores = TetrisScore.order(score: :desc).limit(25)
     @scores_today = TetrisScore.order(score: :desc)
-                               .limit(25)
+                               .limit(10)
                                .where(updated_at: (Time.now - 24.hours)..Time.now)
   end
 

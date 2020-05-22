@@ -251,6 +251,7 @@ document.addEventListener('keydown', (event) => {
 
 play.addEventListener('click', (event) => {
   playing = true;
+  drop = false;
   buildGrid();
   newPiece();
 
