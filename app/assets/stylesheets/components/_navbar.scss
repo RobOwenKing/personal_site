@@ -6,7 +6,11 @@ nav {
 }
 
 nav h2 {
-  margin: 0px 8px;
+  margin: 0px 0px;
+}
+
+nav div {
+  margin: 12px 16px 0px 16px;
 }
 
 nav a {
@@ -23,7 +27,6 @@ nav a:hover {
   opacity: 1;
   text-decoration: underline;
 }
-
 
 .navbar-lewagon {
   justify-content: space-between;
