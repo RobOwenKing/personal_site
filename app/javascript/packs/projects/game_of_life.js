@@ -1,9 +1,7 @@
+import { light, dark, mode, lightToDark, darkToLight } from '../shared/modes.js';
+
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
-
-const dark = document.getElementById('dark');
-const light = document.getElementById('light');
-let mode = "dark";
 
 let speedButton = document.getElementById('speed');
 let speed = 101 - speedButton.value;
@@ -78,7 +76,7 @@ const buildGrid = () => {
 
 let grid = buildGrid();
 
-const renderCell = (col, row, value) => {
+const drawCell = (col, row, value) => {
   if (mode === "dark") {
     ctx.fillStyle = value === '.' ? `hsl(0,0%,0%)` : `hsl(${value},100%,50%)`;
   } else if (mode === "light") {
@@ -87,16 +85,16 @@ const renderCell = (col, row, value) => {
   ctx.fillRect(col * resolution, row * resolution, resolution, resolution);
 };
 
-const renderGrid = (grid) => {
+const draw = () => {
   for (let col = 0; col < grid.length; col++) {
     for (let row = 0; row < grid[col].length; row++) {
       const value = grid[col][row];
-      renderCell(col, row, value);
+      drawCell(col, row, value);
     }
   }
 };
 
-renderGrid(grid);
+draw();
 
 canvas.addEventListener('click', (event) => {
   const col = Math.floor((event.offsetX - 3) / resolution);
@@ -113,7 +111,7 @@ canvas.addEventListener('click', (event) => {
     }
   }
 
-  renderGrid(grid);
+  draw();
 });
 
 const countLivingNeighbours = (x, y) => {
@@ -153,7 +151,7 @@ const nextGeneration = (grid) => {
 const iteration = () => {
   if (iterate === true || counter === speed) {
     grid = nextGeneration(grid);
-    renderGrid(grid);
+    draw();
     iterate = false;
   }
 
@@ -192,30 +190,12 @@ random.addEventListener('click', (event) => {
       grid[col][row] = Math.random() < 0.5 ? '.' : '0';
     }
   }
-  renderGrid(grid);
+  draw();
 });
 
 clear.addEventListener('click', (event) => {
   grid = buildGrid();
-  renderGrid(grid);
-});
-
-light.addEventListener('click', (event) => {
-  if (mode === "dark") {
-    mode = "light";
-    dark.classList.remove('btn-active');
-    light.classList.add('btn-active');
-    renderGrid(grid);
-  }
-});
-
-dark.addEventListener('click', (event) => {
-  if (mode === "light") {
-    mode = "dark";
-    dark.classList.add('btn-active');
-    light.classList.remove('btn-active');
-    renderGrid(grid);
-  }
+  draw();
 });
 
 for (let i = 0; i < patternButtons.length; i++) {
@@ -232,3 +212,13 @@ for (let i = 0; i < patternButtons.length; i++) {
     }
   });
 };
+
+light.addEventListener('click', (event) => {
+  darkToLight();
+  draw();
+});
+
+dark.addEventListener('click', (event) => {
+  lightToDark();
+  draw();
+});

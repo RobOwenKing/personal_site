@@ -1,6 +1,6 @@
 import { pieces } from './tetris_pieces.js';
 import { deepCopy, deepCopyObject } from '../shared/copy.js';
-import { mode } from '../shared/modes.js';
+import { light, dark, mode, lightToDark, darkToLight } from '../shared/modes.js';
 
 const canvas = document.getElementById('tetris');
 const ctx = canvas.getContext('2d');
@@ -267,8 +267,12 @@ play.addEventListener('click', (event) => {
   update();
 });
 
-export { draw };
-// TO DO
-// - Check move legal
-// - Dropping
-// - Submit score
+light.addEventListener('click', (event) => {
+  darkToLight();
+  draw();
+});
+
+dark.addEventListener('click', (event) => {
+  lightToDark();
+  draw();
+});
