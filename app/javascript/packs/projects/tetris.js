@@ -20,6 +20,9 @@ let scoreTimes = [Date.now(), Date.now(), Date.now()];
 
 const grid = [];
 
+const submit = document.querySelector('[type="submit"]');
+const nameInput = document.querySelector('.form-control.string');
+
 const play = document.getElementById('play');
 let playing = false;
 
@@ -224,7 +227,6 @@ const rotatePiece = (dir) => {
 }
 
 document.addEventListener('keydown', (event) => {
-  console.log(event);
   if (event.keyCode === 65 || event.keyCode === 37) {
     if (!pieceCollision(player.piece.piece, player.x - 1, player.y)) {
       player.x -= 1;
@@ -262,7 +264,6 @@ play.addEventListener('click', (event) => {
   scoreText.innerText = score;
   scoreInput.value = score;
   scoreTimes = [Date.now(), Date.now(), Date.now()]
-  console.log(scoreTimes);
 
   update();
 });
@@ -275,4 +276,10 @@ light.addEventListener('click', (event) => {
 dark.addEventListener('click', (event) => {
   lightToDark();
   draw();
+});
+
+submit.addEventListener('click', (event) => {
+  if (nameInput.value === '') {
+    window.alert("Please give a name to save your score");
+  }
 });

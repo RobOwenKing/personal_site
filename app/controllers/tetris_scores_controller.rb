@@ -8,8 +8,9 @@ class TetrisScoresController < ApplicationController
 
   def create
     @tetris_score = TetrisScore.new(score_params)
-    @tetris_score.save
-    redirect_to tetris_path
+    if @tetris_score.save
+      redirect_to tetris_path
+    end
   end
 
   private

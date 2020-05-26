@@ -15,10 +15,11 @@
   <%= simple_form_for @tetris_score do |f| %>
     <%= f.input :name, label: "Name:  " %>
     <%= f.input :score, as: :hidden %>
-    <%= f.submit "Submit score", class: "btn btn-orange" %>
+    <ul>
+      <%= f.submit "Submit score", class: "btn btn-orange" %>
+      <%= link_to "See highscores", tetris_scores_path, class: "btn btn-blue" %>
+    </ul>
   <% end %>
-
-  <%= link_to "See highscores", tetris_scores_path, class: "btn btn-blue" %>
 
   <div class="card-1-2">
     <h4>Controls</h4>
