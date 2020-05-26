@@ -123,6 +123,7 @@ const pieceCollision = (piece, x, y) => {
 };
 
 const gameOver = () => {
+  drop = false;
   playing = false;
   play.classList.remove('btn-active');
   ctx.fillStyle = mode === 'dark' ? 'white' : '#042D43';
@@ -133,7 +134,7 @@ const gameOver = () => {
 const addPieceToGrid = (piece, x, y) => {
   for (let j = 0; j < piece.length; j += 1) {
     for (let i = 0; i < piece[j].length; i += 1) {
-      if (y < 0) {
+      if (y <= 0) {
         gameOver();
       } else if (piece[j][i] !== '.') {
         grid[(y + j)][mod(x + i)] = piece[j][i];
@@ -191,10 +192,12 @@ const movePlayerDown = () => {
   if (pieceAtBottom() || pieceCollision(player.piece.piece, player.x, player.y + 1)) {
     addPieceToGrid(player.piece.piece, player.x, player.y);
     deleteFullRows();
-    score += (505 - delay);
-    updateScore();
-    newPiece();
-    drop = false;
+    if (playing === true) {
+      score += (505 - delay);
+      updateScore();
+      drop = false;
+      newPiece();
+    }
   } else {
     player.y += 1;
   }
