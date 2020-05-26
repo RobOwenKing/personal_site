@@ -142,6 +142,24 @@ const addPieceToGrid = (piece, x, y) => {
   }
 };
 
+const digitSum = (num) => {
+  let sum = 0;
+  // Below code from https://stackoverflow.com/questions/38334652/sum-all-the-digits-of-a-number-javascript
+  while (num) {
+    sum += num % 10;
+    num = Math.floor(num / 10);
+  }
+  return sum;
+}
+
+const updateScore = () => {
+  scoreText.innerText = score;
+  const codedScore = 999999999 - (score * 13);
+  let num = score * 17;
+  while (num > 9) { num = digitSum(num) };
+  scoreInput.value = `${codedScore}.${num}`;
+}
+
 const addToScore = () => {
   score += 250;
   for (let i = 1; i < 4; i += 1) {
@@ -151,8 +169,7 @@ const addToScore = () => {
     }
   }
   scoreTimes.push(Date.now());
-  scoreText.innerText = score;
-  scoreInput.value = score;
+  updateScore();
 };
 
 const deleteFullRows = () => {
@@ -174,7 +191,8 @@ const movePlayerDown = () => {
   if (pieceAtBottom() || pieceCollision(player.piece.piece, player.x, player.y + 1)) {
     addPieceToGrid(player.piece.piece, player.x, player.y);
     deleteFullRows();
-    score += 500 - delay;
+    score += (505 - delay);
+    updateScore();
     newPiece();
     drop = false;
   } else {
@@ -182,8 +200,7 @@ const movePlayerDown = () => {
   }
   if (drop === true && playing === true) {
     score += 5;
-    scoreText.innerText = score;
-    scoreInput.value = score;
+    updateScore();
     setTimeout(movePlayerDown, 50);
   }
 };
@@ -261,8 +278,7 @@ play.addEventListener('click', (event) => {
   delay = 500;
   lastIteration = 0;
   score = 0;
-  scoreText.innerText = score;
-  scoreInput.value = score;
+  updateScore();
   scoreTimes = [Date.now(), Date.now(), Date.now()]
 
   update();
