@@ -13,7 +13,7 @@
   <canvas id="tetris" class="canvas-border"></canvas>
 
   <%= simple_form_for @tetris_score do |f| %>
-    <%= f.input :name, label: "Name:  " %>
+    <%= f.input :name, label: "Name:" %>
     <%= f.input :score, as: :hidden %>
     <ul>
       <%= f.submit "Submit score", class: "btn btn-orange" %>
