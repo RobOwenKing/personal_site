@@ -22,7 +22,13 @@
       <%= render 'shared/navbar' %>
     <% end %>
 
-    <%= yield %>
+    <% if current_page?(roman_calculator_path) %>
+      <%= yield %>
+    <% else %>
+      <div class="container">
+        <%= yield %>
+      </div>
+    <% end %>
 
     <%= render 'shared/footer' %>
 

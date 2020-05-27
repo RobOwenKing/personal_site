@@ -1,37 +1,35 @@
-<div class="container">
-  <h1>Euler Spiral</h1>
+<h1>Euler Spiral</h1>
 
-  <ul>
-    <li id="dark" class="btn btn-blue">Dark mode</li>
-    <li id="light" class="btn btn-orange">Light mode</li>
-  </ul>
+<ul>
+  <li id="dark" class="btn btn-blue">Dark mode</li>
+  <li id="light" class="btn btn-orange">Light mode</li>
+</ul>
 
-  <canvas></canvas>
+<canvas></canvas>
 
-  <br>
+<br>
 
-  <div id="animate" class="btn btn-orange">Animate</div>
+<div id="animate" class="btn btn-orange">Animate</div>
 
-  <br>
-  <br>
+<br>
+<br>
 
-  <label for="startAngle">Starting Angle: </label>
-  <input type="range" min="0" max="360" value="0" id="startAngle" class="slider">
+<label for="startAngle">Starting Angle: </label>
+<input type="range" min="0" max="360" value="0" id="startAngle" class="slider">
 
-  <br>
+<br>
 
-  <label for="angleIncrement">Angle Increment: </label>
-  <input type="range" min="0" max="10" step = "0.001" value="1" id="angleIncrement" class="slider">
+<label for="angleIncrement">Angle Increment: </label>
+<input type="range" min="0" max="10" step = "0.001" value="1" id="angleIncrement" class="slider">
 
-  <br>
+<br>
 
-  <label for="segmentLength">Segment Length: </label>
-  <input type="range" min="1" max="20" value="10" id="segmentLength" class="slider">
+<label for="segmentLength">Segment Length: </label>
+<input type="range" min="1" max="20" value="10" id="segmentLength" class="slider">
 
-  <br>
+<br>
 
-  <label for="numberOfSegments">Number of Segments: </label>
-  <input type="range" min="1" max="1000" value="500" id="numberOfSegments" class="slider">
-</div>
+<label for="numberOfSegments">Number of Segments: </label>
+<input type="range" min="1" max="1000" value="500" id="numberOfSegments" class="slider">
 
 <%= javascript_pack_tag 'projects/euler_spiral' %>

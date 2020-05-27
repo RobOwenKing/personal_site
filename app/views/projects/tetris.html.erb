@@ -1,48 +1,44 @@
-<div class="container">
-  <h1>Tetris</h1>
-  <br>
-  <ul class="list-inline">
-    <li id="dark" class="btn btn-blue btn-active">Dark mode</li>
-    <li id="light" class="btn btn-orange">Light mode</li>
+<h1>Tetris</h1>
+<br>
+<ul class="list-inline">
+  <li id="dark" class="btn btn-blue btn-active">Dark mode</li>
+  <li id="light" class="btn btn-orange">Light mode</li>
+</ul>
+
+<p id="play" class="btn btn-orange">Start new game</p>
+
+<p>Score: <span id="score">0</span></p>
+
+<canvas id="tetris" class="canvas-border"></canvas>
+
+<%= simple_form_for @tetris_score do |f| %>
+  <%= f.input :name, label: "Name:" %>
+  <%= f.input :score, as: :hidden %>
+  <ul>
+    <%= f.submit "Submit score", class: "btn btn-orange" %>
+    <%= link_to "See highscores", tetris_scores_path, class: "btn btn-blue" %>
   </ul>
+<% end %>
 
-  <p id="play" class="btn btn-orange">Start new game</p>
-
-  <p>Score: <span id="score">0</span></p>
-
-  <canvas id="tetris" class="canvas-border"></canvas>
-
-  <%= simple_form_for @tetris_score do |f| %>
-    <%= f.input :name, label: "Name:" %>
-    <%= f.input :score, as: :hidden %>
-    <ul>
-      <%= f.submit "Submit score", class: "btn btn-orange" %>
-      <%= link_to "See highscores", tetris_scores_path, class: "btn btn-blue" %>
-    </ul>
-  <% end %>
-
-  <div class="card-1-2">
-    <h4>Controls</h4>
-    <div>
-      <p><kbd>A</kbd> and <kbd>D</kbd> - Move tile left and right</p>
-      <p><kbd>S</kbd> - Drop tile (cancel by pressing any other key)</p>
-      <p><kbd>J</kbd> and <kbd>L</kbd> - Rotate tile</p>
-    </div>
-  </div>
-
-  <div class="card-1-2">
-    <h4>Scoring</h4>
-    <div>
-      <p>You score points for:</p>
-      <ul>
-        <li>Every row you fill and clear from the board. Bonus points for clearances in quick succession, inversely proportional to the time between them.</li>
-        <li>Every tile that lands on the board.</li>
-        <li>Every square a tile moves downwards whilst you are pressing <kbd>S</kbd>.</li>
-      </ul>
-    </div>
+<div class="card-1-2">
+  <h4>Controls</h4>
+  <div>
+    <p><kbd>A</kbd> and <kbd>D</kbd> - Move tile left and right</p>
+    <p><kbd>S</kbd> - Drop tile (cancel by pressing any other key)</p>
+    <p><kbd>J</kbd> and <kbd>L</kbd> - Rotate tile</p>
   </div>
 </div>
 
-<div class="line-break"></div>
+<div class="card-1-2">
+  <h4>Scoring</h4>
+  <div>
+    <p>You score points for:</p>
+    <ul>
+      <li>Every row you fill and clear from the board. Bonus points for clearances in quick succession, inversely proportional to the time between them.</li>
+      <li>Every tile that lands on the board.</li>
+      <li>Every square a tile moves downwards whilst you are pressing <kbd>S</kbd>.</li>
+    </ul>
+  </div>
+</div>
 
 <%= javascript_pack_tag 'projects/tetris' %>
