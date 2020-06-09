@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'snake', to: 'projects#snake'
   get 'sudoku', to: 'projects#sudoku'
   get 'tetris', to: 'projects#tetris'
+  get 'wahnu', to: 'projects#wahnu'
   resources :tetris_scores, only: [ :index, :new, :create ]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

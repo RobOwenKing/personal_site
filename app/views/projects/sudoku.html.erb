@@ -1,0 +1,47 @@
+<h1>Sudoku Creator and Solver</h1>
+
+<ul>
+  <li id="btn-enter" class="btn btn-blue btn-active">Enter mode</li>
+  <li id="btn-solve" class="btn btn-blue">Solve mode</li>
+</ul>
+
+<div class="enter-mode">
+  <table id="sudoku">
+    <tbody>
+    </tbody>
+  </table>
+  <br>
+  <div>
+    <ul>
+      <li id="clear-grid" class="btn btn-orange">Clear grid</li>
+      <li id="brute-force" class="btn btn-orange">Brute force</li>
+    </ul>
+    <div>
+      <h4>Extra constraints</h4>
+      <div>
+        <input type="checkbox" id="x-sudoku" name="x-sudoku">
+        <label for="x-sudoku">X-Sudoku (each number appears once on each main diagonal)</label>
+      </div>
+      <div>
+        <input type="checkbox" id="horns" name="horns">
+        <label for="horns">Horns</label>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="solve-mode" hidden>
+  <table id="solution">
+    <tbody>
+    </tbody>
+  </table>
+  <br>
+  <div>
+    <ul>
+      <li id="valid" class="btn btn-orange">Check answer valid</li>
+      <!--li id="candidates">Generate candidates</li-->
+    </ul>
+  </div>
+</div>
+
+<%= javascript_pack_tag 'projects/sudoku' %>
