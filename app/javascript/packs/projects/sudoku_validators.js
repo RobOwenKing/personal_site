@@ -23,7 +23,6 @@ const validInCol = (num, col) => {
 
 // Check whether a number already appears in a block
 const validInBlock = (num, x, y) => {
-  let valid = true;
   // Is our block No 0, 1 or 2 horizontally and vertically?
   const blockCol = Math.floor(x / 3);
   const blockRow = Math.floor(y / 3);
@@ -31,60 +30,49 @@ const validInBlock = (num, x, y) => {
   for (let i = 0; i < 3; i += 1) {
     for (let j = 0; j < 3; j += 1) {
       if (solutionArray[(blockRow * 3) + i][(blockCol * 3) + j] === num) {
-        valid = false;
+        return false;
       }
     }
   }
-  return valid;
+  return true;
 };
 
 // Validators for X-Sudoku
 const validXLtoR = (num) => {
-  let valid = true;
   for (let i = 0; i < 9; i += 1) {
     if (solutionArray[i][i] === num) {
-      valid = false;
+      return false;
     }
   }
-  return valid;
+  return true;
 };
 
 const validXRtoL = (num) => {
-  let valid = true;
   for (let i = 0; i < 9; i += 1) {
     if (solutionArray[i][8 - i] === num) {
-      valid = false;
+      return false;
     }
   }
-  return valid;
+  return true;
 };
 
 // Validators for Chess Sudoku
 const validAntiKing = (num, x, y) => {
-  let valid = true;
-  // if (((x === 2 || x === 5) && (y > 0)) || ((x < 8) && (y === 3 || y === 6)))
-  // Below easier to write + maintain, plus the above needs a lot more comparisons
-  if ((y > 0) && (x < 8)) {
-    if (num === solutionArray[y - 1][x + 1]) {
-      valid = false;
+  if (solutionArray[y-1]) {
+    if (solutionArray[y-1][x-1] === num) {
+      return false;
+    } else if (solutionArray[y-1][x+1] === num) {
+      return false;
     }
   }
-  if ((y > 0) && (x > 0)) {
-    if (num === solutionArray[y - 1][x - 1]) {
-      valid = false;
+  if (solutionArray[y+1]) {
+    if (solutionArray[y+1][x-1] === num) {
+      return false;
+    } else if (solutionArray[y+1][x+1] === num) {
+      return false;
     }
   }
-  if ((y < 8) && (x < 8)) {
-    if (num === solutionArray[y + 1][x + 1]) {
-      valid = false;
-    }
-  }
-  if ((y < 8) && (x > 0)) {
-    if (num === solutionArray[y + 1][x - 1]) {
-      valid = false;
-    }
-  }
-  return valid;
+  return true;
 };
 
 // Checks whether a number can go in a cell (x,y) based on the others in its row, column and block
@@ -112,3 +100,31 @@ const checkValid = (num, x, y) => {
 };
 
 export { checkValid };
+
+// Old version of Anti-King code
+/*const validAntiKing = (num, x, y) => {
+  let valid = true;
+  // if (((x === 2 || x === 5) && (y > 0)) || ((x < 8) && (y === 3 || y === 6)))
+  // Below easier to write + maintain, plus the above needs a lot more comparisons
+  if ((y > 0) && (x < 8)) {
+    if (num === solutionArray[y - 1][x + 1]) {
+      valid = false;
+    }
+  }
+  if ((y > 0) && (x > 0)) {
+    if (num === solutionArray[y - 1][x - 1]) {
+      valid = false;
+    }
+  }
+  if ((y < 8) && (x < 8)) {
+    if (num === solutionArray[y + 1][x + 1]) {
+      valid = false;
+    }
+  }
+  if ((y < 8) && (x > 0)) {
+    if (num === solutionArray[y + 1][x - 1]) {
+      valid = false;
+    }
+  }
+  return valid;
+};*/
