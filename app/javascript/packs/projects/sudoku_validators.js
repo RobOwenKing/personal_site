@@ -2,6 +2,7 @@ import { solutionArray } from './sudoku.js';
 
 const xSudoku = document.getElementById('x-sudoku');
 const antiKing = document.getElementById('anti-king');
+const antiKnight = document.getElementById('anti-knight');
 
 // Check whether a number already appears in a row
 const validInRow = (num, row) => {
@@ -75,6 +76,38 @@ const validAntiKing = (num, x, y) => {
   return true;
 };
 
+const validAntiKnight = (num, x, y) => {
+  if (solutionArray[y-2]) {
+    if (solutionArray[y-2][x-1] === num) {
+      return false;
+    } else if (solutionArray[y-2][x+1] === num) {
+      return false;
+    }
+  }
+  if (solutionArray[y-1]) {
+    if (solutionArray[y-1][x-2] === num) {
+      return false;
+    } else if (solutionArray[y-1][x+2] === num) {
+      return false;
+    }
+  }
+  if (solutionArray[y+1]) {
+    if (solutionArray[y+1][x-2] === num) {
+      return false;
+    } else if (solutionArray[y+1][x+2] === num) {
+      return false;
+    }
+  }
+  if (solutionArray[y+2]) {
+    if (solutionArray[y+2][x-1] === num) {
+      return false;
+    } else if (solutionArray[y+2][x+1] === num) {
+      return false;
+    }
+  }
+  return true;
+};
+
 // Checks whether a number can go in a cell (x,y) based on the others in its row, column and block
 const checkValid = (num, x, y) => {
   if (!validInRow(num, y)) {
@@ -88,6 +121,8 @@ const checkValid = (num, x, y) => {
   } else if ((xSudoku.checked) && (x === 8 - y) && (!validXRtoL(num))) {
     return false;
   } else if ((antiKing.checked) && (!validAntiKing(num, x, y))) {
+    return false;
+  } else if ((antiKnight.checked) && (!validAntiKnight(num, x, y))) {
     return false;
   } else {
     return true;
