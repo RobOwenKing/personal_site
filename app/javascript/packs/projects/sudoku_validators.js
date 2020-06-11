@@ -3,6 +3,7 @@ import { solutionArray } from './sudoku.js';
 const xSudoku = document.getElementById('x-sudoku');
 const antiKing = document.getElementById('anti-king');
 const antiKnight = document.getElementById('anti-knight');
+const antiQueen = document.getElementById('anti-queen');
 
 // Check whether a number already appears in a row
 const validInRow = (num, row) => {
@@ -108,6 +109,18 @@ const validAntiKnight = (num, x, y) => {
   return true;
 };
 
+const validAntiQueen = (num, x, y) => {
+  let valid = true;
+  for (let i = 0; i < 9; i+= 1) {
+    if (solutionArray[i][x + y - i] === num) {
+      valid = false;
+    } else if (solutionArray[i][x - y + i] === num) {
+      valid = false;
+    }
+  }
+  return valid;
+};
+
 // Checks whether a number can go in a cell (x,y) based on the others in its row, column and block
 const checkValid = (num, x, y) => {
   if (!validInRow(num, y)) {
@@ -124,19 +137,17 @@ const checkValid = (num, x, y) => {
     return false;
   } else if ((antiKnight.checked) && (!validAntiKnight(num, x, y))) {
     return false;
+  } else if ((antiQueen.checked) && (num === 9) && (!validAntiQueen(num, x, y))) {
+    return false;
   } else {
     return true;
   }
-  // if (validInRow(num, y) && validInCol(num, x) && validInBlock(num, x, y)) {
-  //   return true;
-  // } else {
-  //   return false;
-  // }
 };
 
 export { checkValid };
 
 // Old version of Anti-King code
+
 /*const validAntiKing = (num, x, y) => {
   let valid = true;
   // if (((x === 2 || x === 5) && (y > 0)) || ((x < 8) && (y === 3 || y === 6)))
