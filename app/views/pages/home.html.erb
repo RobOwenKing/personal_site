@@ -1,6 +1,7 @@
 <div>
   <%= image_tag("profile_pic_jamesnic_cropped.jpg", class: "img-circle", alt: "Rob Owen King profile picture") %>
-  <h1>Rob Owen King</h1>
+  <h1 id="greeting">Hi!</h1>
+  <h1>I'm Rob Owen King</h1>
 
   <ul class="list-inline">
     <li>
@@ -55,3 +56,5 @@
   <i class="fas fa-hiking i-img"></i>
   <p>Born in the UK, I grew up in the town of Walsall before studying Maths at Oxford University. Since graduating in 2014, I've lived abroad in Spain, another young person fascinated by travel and exploring different cultures. Beyond that I can get overly excited about the guitar, comedy, history, puzzles and current affairs.</p>
 </div>
+
+<%= javascript_pack_tag 'pages/home' %>
