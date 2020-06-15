@@ -1,0 +1,18 @@
+.card-project {
+  padding: 0px 8px;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+  width: 240px;
+}
+
+.card-project:hover {
+  opacity: 1;
+}
+
+.card-project h3 {
+  margin-top: 4px;
+}
+
+.card-project:hover h3 {
+  text-decoration: underline;
+}

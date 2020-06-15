@@ -9,10 +9,10 @@
 <h2>Full-stack web apps</h2>
 
 <div class="flex">
-  <div class="card-project">
-  <%= image_tag("screenshots/movida.jpg", class: "img-circle", alt: "Screenshot of list of Nearby Posts on Movida-19") %>
-  <h3>Movida-19</h3>
-  </div>
+  <%= link_to(movida_path, class: "card-project") do %>
+    <%= image_tag("screenshots/movida.jpg", class: "img-circle", alt: "Screenshot of list of Nearby Posts on Movida-19") %>
+    <h3>Movida-19</h3>
+  <% end %>
 
   <%= link_to(quedem_path, class: "card-project") do %>
     <%= image_tag("screenshots/quedem_2.jpg", class: "img-circle", alt: "Screenshot of page to add location poll options on Quedem") %>

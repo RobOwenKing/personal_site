@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get 'portfolio', to: 'pages#portfolio'
 
-  get 'quedem', to: 'projects#quedem'
+  get 'movida', to: 'pages#movida'
+  get 'quedem', to: 'pages#quedem'
 
   get 'colour_translator', to: 'projects#colour_translator'
   get 'euler_spiral', to: 'projects#euler_spiral'

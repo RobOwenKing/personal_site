@@ -1,0 +1,23 @@
+.card-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: left;
+}
+
+.card-1-2 h4 {
+  text-align: right;
+  margin-top: 16px;
+  margin-right: 8px;
+}
+
+.card-1-2 p {
+  margin-bottom: 8px;
+}
+
+.card-1-2 ul {
+  margin-left: 20px;
+}
+
+.margin-top-16 {
+  margin-top: 16px;
+}

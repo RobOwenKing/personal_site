@@ -1,0 +1,24 @@
+.card-img-txt {
+  display: flex;
+  opacity: 0.9;
+  transition: opacity 0.2s;
+  text-decoration: none;
+  color: inherit
+}
+
+.card-img-txt:hover {
+  opacity: 1;
+}
+
+.card-img-txt:hover h2 {
+  text-decoration: underline;
+}
+
+.card-img-txt div {
+  text-align: left;
+  margin-left: 16px;
+}
+
+.card-img-txt a {
+  text-decoration: none;
+}
