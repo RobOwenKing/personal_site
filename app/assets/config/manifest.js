@@ -3,6 +3,5 @@
 //= link_directory ../stylesheets .css
 
 //= link pages/colour_translator.css
-//= link pages/harki.css
 //= link pages/roman_calculator.css
 //= link pages/sudoku.css
