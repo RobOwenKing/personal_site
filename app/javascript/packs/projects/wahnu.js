@@ -1,10 +1,19 @@
+import { check } from './wahnu_check.js';
+
 const board = document.getElementById('board');
+// const puzzle = [
+//   [ 3 ,'.','.','.','.'],
+//   ['.','.','.','.','.'],
+//   ['.','.','.','.', 3 ],
+//   ['.','.','.','.','.'],
+//   ['.','.','.','.','.']
+// ];
 const puzzle = [
-  [ 3 ,'.','.','.','.'],
   ['.','.','.','.','.'],
-  ['.','.','.','.', 3 ],
+  ['.', 6 ,'.','.','.'],
+  ['.','.', 3 ,'.','.'],
   ['.','.','.','.','.'],
-  ['.','.','.','.','.']
+  [ 1 ,'.','.','.','.']
 ];
 const boardState = [];
 
@@ -44,11 +53,16 @@ const activateBoard = () => {
         if (boardState[j][i] === 0) {
           cell.classList.remove('white');
           cell.classList.add('black');
-        } else {
+          boardState[j][i] = 1;
+        } else if (boardState[j][i] === 1) {
           cell.classList.remove('black');
+          cell.classList.add('red');
+          boardState[j][i] = 2;
+        } else {
+          cell.classList.remove('red');
           cell.classList.add('white');
+          boardState[j][i] = 0;
         }
-        boardState[j][i] = 1 - boardState[j][i];
       }
     })
   })
@@ -61,3 +75,5 @@ const createBoard = () => {
 };
 
 createBoard();
+
+export { puzzle, boardState };
