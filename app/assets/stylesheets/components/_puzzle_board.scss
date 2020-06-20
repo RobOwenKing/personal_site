@@ -9,8 +9,16 @@
   border: 1px solid #CCCCCC;
 }
 
-#puzzle-grid td {
-  background-color: black;
-  opacity: 1;
+.clickable {
   cursor: pointer;
+}
+
+.black {
+  background-color: black;
+  color: white;
+}
+
+.white {
+  background-color: white;
+  color: black;
 }
