@@ -1,27 +1,37 @@
-import { check } from './wahnu_check.js';
-
 const board = document.getElementById('board');
 const boardState = [];
 
+const enterButton = document.getElementById('btn-enter');
+const solveButton = document.getElementById('btn-solve');
+let mode = 'enter';
+
+solveButton.addEventListener('click', (event) => {
+  mode = 'solve';
+  solveButton.classList.add('btn-active');
+  enterButton.classList.remove('btn-active');
+});
+
+enterButton.addEventListener('click', (event) => {
+  mode = 'enter';
+  enterButton.classList.add('btn-active');
+  solveButton.classList.remove('btn-active');
+});
+
 const fillBoard = () => {
-  for (let j = 0; j < puzzle.length; j += 1) {
+  for (let j = 0; j < 6; j += 1) {
     board.insertAdjacentHTML('beforeend', `<tr>`);
     const latestRow = document.querySelector('#board > tr:last-child');
-    for (let i = 0; i < puzzle[0].length; i += 1) {
-      if (puzzle[j][i] === '.') {
-        latestRow.insertAdjacentHTML('beforeend', `<td data-x="${i}" data-y="${j}" class="white clickable"></td>`);
-      } else {
-        latestRow.insertAdjacentHTML('beforeend', `<td data-x="${i}" data-y="${j}" class="white">${puzzle[j][i]}</td>`);
-      }
+    for (let i = 0; i < 8; i += 1) {
+      latestRow.insertAdjacentHTML('beforeend', `<td data-x="${i}" data-y="${j}" class="white clickable"></td>`);
     }
     board.insertAdjacentHTML('beforeend', '</tr>');
   }
 };
 
 const createBoardState = () => {
-  for (let j = 0; j < puzzle.length; j += 1) {
+  for (let j = 0; j < 6; j += 1) {
     const latestRow = [];
-    for (let i = 0; i < puzzle[0].length; i += 1) {
+    for (let i = 0; i < 8; i += 1) {
       latestRow.push(0);
     }
     boardState.push(latestRow);
@@ -34,22 +44,6 @@ const activateBoard = () => {
     cell.addEventListener('click', (event) => {
       const j = cell.dataset.y;
       const i = cell.dataset.x;
-
-      if (puzzle[j][i] === '.') {
-        if (boardState[j][i] === 0) {
-          cell.classList.remove('white');
-          cell.classList.add('black');
-          boardState[j][i] = 1;
-        } else if (boardState[j][i] === 1) {
-          cell.classList.remove('black');
-          cell.classList.add('red');
-          boardState[j][i] = 2;
-        } else {
-          cell.classList.remove('red');
-          cell.classList.add('white');
-          boardState[j][i] = 0;
-        }
-      }
     })
   })
 };
@@ -61,5 +55,3 @@ const createBoard = () => {
 };
 
 createBoard();
-
-export { puzzle, boardState };
