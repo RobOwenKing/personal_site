@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'sudoku', to: 'projects#sudoku'
 
   get 'harki', to: 'puzzles#harki'
+  get 'star_battle', to: 'puzzles#star_battle'
   get 'wahnu', to: 'puzzles#wahnu'
 
   get 'tetris', to: 'projects#tetris'
