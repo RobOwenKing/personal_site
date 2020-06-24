@@ -41,3 +41,15 @@
 .form-control.string {
   margin: 8px 0px 8px 4px;
 }
+
+.list-input {
+  display: inline;
+  list-style-type: none;
+}
+
+.list-input input {
+  margin-left: 4px;
+  margin-right: 4px;
+  width: 40px;
+  text-align: right;
+}

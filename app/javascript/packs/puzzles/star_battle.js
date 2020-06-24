@@ -2,8 +2,8 @@ import { deepCopy } from '../shared/copy.js';
 
 const board = document.getElementById('board');
 let cells;
-const cagesBoard = [];
-const answerBoard = [];
+let cagesBoard = [];
+let answerBoard = [];
 
 let creatingCages = false;
 let nextCageNumber = 0;
@@ -11,6 +11,13 @@ let nextCageNumber = 0;
 const enterButton = document.getElementById('btn-enter');
 const solveButton = document.getElementById('btn-solve');
 let mode = 'enter';
+
+const clearGrid = document.getElementById('clear-grid');
+const bruteForce = document.getElementById('brute-force');
+
+let rows = document.getElementById('rows');
+let cols = document.getElementById('cols');
+let stars = document.getElementById('stars');
 
 solveButton.addEventListener('click', (event) => {
   mode = 'solve';
@@ -25,10 +32,11 @@ enterButton.addEventListener('click', (event) => {
 });
 
 const fillBoard = () => {
-  for (let j = 0; j < 6; j += 1) {
+  board.innerHTML = '';
+  for (let j = 0; j < rows.value; j += 1) {
     board.insertAdjacentHTML('beforeend', `<tr>`);
     const latestRow = document.querySelector('#board > tr:last-child');
-    for (let i = 0; i < 8; i += 1) {
+    for (let i = 0; i < cols.value; i += 1) {
       latestRow.insertAdjacentHTML('beforeend', `<td data-x="${i}" data-y="${j}" class="white clickable" draggable="false"></td>`);
     }
     board.insertAdjacentHTML('beforeend', '</tr>');
@@ -36,9 +44,11 @@ const fillBoard = () => {
 };
 
 const createBoards = () => {
-  for (let j = 0; j < 6; j += 1) {
+  cagesBoard = [];
+  answerBoard = [];
+  for (let j = 0; j < rows.value; j += 1) {
     const latestRow = [];
-    for (let i = 0; i < 8; i += 1) {
+    for (let i = 0; i < cols.value; i += 1) {
       latestRow.push(0);
     }
     answerBoard.push(deepCopy(latestRow));
@@ -169,7 +179,7 @@ document.addEventListener('mouseup', (event) => {
   creatingCages = false;
 })
 
-const createBoard = () => {
+const init = () => {
   fillBoard();
   createBoards();
   cells = document.querySelectorAll('#board td');
@@ -177,4 +187,16 @@ const createBoard = () => {
   activateBoard();
 };
 
-createBoard();
+init();
+
+clearGrid.addEventListener('click', (event) => {
+  init();
+})
+
+rows.addEventListener('input', (event) => {
+  init();
+})
+
+cols.addEventListener('input', (event) => {
+  init();
+})

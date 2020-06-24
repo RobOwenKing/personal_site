@@ -7,6 +7,18 @@
   <li id="btn-solve" class="btn btn-blue">Solve mode</li>
 </ul>
 
+<ul>
+  <li class="list-input"><label for="rows">Rows:</label><input id="rows" type="number" min="4" value="6"></li>
+  <li class="list-input"><label for="cols">Cols:</label><input id="cols" type="number" min="4" value="8"></li>
+</ul>
+
+<ul>
+  <li class="list-input">
+    <label for="stars">Stars per row/col/cage:</label>
+    <input id="stars" type="number" min="1" value="2">
+  </li>
+</ul>
+
 <table id="puzzle-grid">
   <tbody id="board"></tbody>
 </table>
@@ -14,6 +26,7 @@
 <br>
 
 <ul>
+  <li id="clear-grid" class="btn btn-orange">Clear grid</li>
   <li id="brute-force" class="btn btn-orange">Brute force</li>
 </ul>
 
