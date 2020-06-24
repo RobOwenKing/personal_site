@@ -6,7 +6,7 @@
 #puzzle-grid th, td {
   height: 40px;
   width: 40px;
-  border: 1px solid #CCCCCC;
+  border: 2px solid #CCCCCC;
 }
 
 .clickable {
@@ -26,4 +26,32 @@
 .red {
   background-color: red;
   color: white;
+}
+
+.yellow-txt {
+  color: yellow;
+}
+
+.red-txt {
+  color: red;
+}
+
+.blue-txt {
+  color: blue;
+}
+
+.border-top {
+  border-top-color: black;
+}
+
+.border-right {
+  border-right-color: black;
+}
+
+.border-bottom {
+  border-bottom-color: black;
+}
+
+.border-left {
+  border-left-color: black;
 }
