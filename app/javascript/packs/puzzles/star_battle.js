@@ -207,19 +207,8 @@ const starPossibleInRow = (i, j) => {
       starsInRow += 1;
     }
   }
-  if (i + 1 == size.value) {
-    if (starsInRow != stars.value) {
-      return false;
-    } else {
-      return true;
-    }
-  } else {
-    if (starsInRow + 1 > stars.value) {
-      return false;
-    } else {
-      return true;
-    }
-  }
+  const answer = starsInRow < stars.value ? true : false;
+  return answer;
 };
 
 const starPossibleInCol = (i, j) => {
@@ -248,13 +237,28 @@ const starPossibleInNeighbourhood = (i, j) => {
   return true;
 };
 
+const starPossibleInCage = (i, j) => {
+  const cageNumber = cagesBoard[j][i];
+  let starsInCage = 0;
+  for (let l = 0; l < size.value; l += 1) {
+    for (let k = 0; k < size.value; k += 1) {
+      if (cagesBoard[l][k] === cageNumber && answerBoard[l][k] != 0) { starsInCage += 1; }
+    }
+  }
+  const answer = starsInCage < stars.value ? true : false;
+  return answer;
+}
+
 const starPossible = (i, j) => {
   // console.log(starPossibleInRow(i, j));
-  if (!starPossibleInCol(i, j)) {
+/*  if (!starPossibleInCol(i, j)) {
     return false;
   } else if (!starPossibleInRow(i,j)) {
     return false;
   } else if (!starPossibleInNeighbourhood(i, j)) {
+    return false;
+  } else*/
+  if (!starPossibleInCage(i, j)) {
     return false;
   } else {
     return true;
