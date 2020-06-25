@@ -8,8 +8,7 @@
 </ul>
 
 <ul>
-  <li class="list-input"><label for="rows">Rows:</label><input id="rows" type="number" min="4" value="6"></li>
-  <li class="list-input"><label for="cols">Cols:</label><input id="cols" type="number" min="4" value="8"></li>
+  <li class="list-input"><label for="size">Rows/Cols:</label><input id="size" type="number" min="4" value="8"></li>
 </ul>
 
 <ul>
@@ -19,8 +18,8 @@
   </li>
 </ul>
 
-<table id="puzzle-grid">
-  <tbody id="board"></tbody>
+<table id="puzzle-grid" draggable="false">
+  <tbody id="board" draggable="false"></tbody>
 </table>
 
 <br>
