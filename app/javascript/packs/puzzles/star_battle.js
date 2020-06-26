@@ -16,6 +16,7 @@ const clearGrid = document.getElementById('clear-grid');
 const bruteForce = document.getElementById('brute-force');
 
 const size = document.getElementById('size');
+let sizeValue = parseInt(size.value);
 const stars = document.getElementById('stars');
 
 solveButton.addEventListener('click', (event) => {
@@ -32,10 +33,10 @@ enterButton.addEventListener('click', (event) => {
 
 const fillBoard = () => {
   board.innerHTML = '';
-  for (let j = 0; j < size.value; j += 1) {
+  for (let j = 0; j < sizeValue; j += 1) {
     board.insertAdjacentHTML('beforeend', `<tr draggable="false">`);
     const latestRow = document.querySelector('#board > tr:last-child');
-    for (let i = 0; i < size.value; i += 1) {
+    for (let i = 0; i < sizeValue; i += 1) {
       latestRow.insertAdjacentHTML('beforeend', `<td data-x="${i}" data-y="${j}" class="white clickable" draggable="false"></td>`);
     }
     board.insertAdjacentHTML('beforeend', '</tr>');
@@ -45,9 +46,9 @@ const fillBoard = () => {
 const createBoards = () => {
   cagesBoard = [];
   answerBoard = [];
-  for (let j = 0; j < size.value; j += 1) {
+  for (let j = 0; j < sizeValue; j += 1) {
     const latestRow = [];
-    for (let i = 0; i < size.value; i += 1) {
+    for (let i = 0; i < sizeValue; i += 1) {
       latestRow.push(0);
     }
     answerBoard.push(deepCopy(latestRow));
@@ -78,8 +79,8 @@ const solveModeClick = (cell, i, j) => {
 };
 
 const createTableBorders = () => {
-  const height = size.value;
-  const width = size.value;
+  const height = sizeValue;
+  const width = sizeValue;
   for (let i = 0; i < width; i += 1) {
     board.childNodes[0].childNodes[i].classList.add('border-top');
     board.childNodes[height - 1].childNodes[i].classList.add('border-bottom');
@@ -193,6 +194,7 @@ clearGrid.addEventListener('click', (event) => {
 })
 
 size.addEventListener('input', (event) => {
+  sizeValue = size.value;
   init();
 })
 
@@ -240,8 +242,8 @@ const starPossibleInNeighbourhood = (i, j) => {
 const starPossibleInCage = (i, j) => {
   const cageNumber = cagesBoard[j][i];
   let starsInCage = 0;
-  for (let l = 0; l < size.value; l += 1) {
-    for (let k = 0; k < size.value; k += 1) {
+  for (let l = 0; l < sizeValue; l += 1) {
+    for (let k = 0; k < sizeValue; k += 1) {
       if (cagesBoard[l][k] === cageNumber && answerBoard[l][k] != 0) { starsInCage += 1; }
     }
   }
@@ -250,51 +252,89 @@ const starPossibleInCage = (i, j) => {
 }
 
 const starPossible = (i, j) => {
-  // console.log(starPossibleInRow(i, j));
-/*  if (!starPossibleInCol(i, j)) {
+  if (!starPossibleInCol(i, j)) {
     return false;
   } else if (!starPossibleInRow(i,j)) {
     return false;
   } else if (!starPossibleInNeighbourhood(i, j)) {
     return false;
-  } else*/
-  if (!starPossibleInCage(i, j)) {
+  } else if (!starPossibleInCage(i, j)) {
     return false;
   } else {
     return true;
   }
-  // return true;
 };
 
-const solveBruteForce = () => {
-  for (let i = 0; i < size.value; i += 1) {
-    for (let j = 0; j < size.value; j += 1) {
-      if (answerBoard[j][i] === 0) {
-        if (starPossible(i, j)) {
-          answerBoard[j][i] = 1;
-          // updateCellInSolution(i, j);
-          if (solveBruteForce()) {
-            return true;
-          } else {
-            answerBoard[j][i] = 0;
-            return false;
-          }
-        }
-      }
-    }
-  }
-  return true;
-};
 
 const drawSolution = () => {
-  for (let i = 0; i < size.value; i += 1) {
-    for (let j = 0; j < size.value; j += 1) {
+  for (let i = 0; i < sizeValue; i += 1) {
+    for (let j = 0; j < sizeValue; j += 1) {
       solveModeClick(board.childNodes[j].childNodes[i], i, j);
     }
   }
 };
 
+const numStarsInRow = (j) => {
+  const reducer = (accumulator, currentValue) => accumulator + currentValue;
+  return answerBoard[j].reduce(reducer);
+};
+
+const solve = (i, j) => {
+  if (starPossible(i, j)) {
+    answerBoard[j][i] = 1;
+    if (i == sizeValue - 1) {
+      if (numStarsInRow(j) == stars.value) {
+        if (j == sizeValue - 1) {
+          drawSolution();
+          // console.log("1");
+          return true;
+        } else {
+          if (solve(0, j + 1)) {
+            // console.log("2");
+            return true;
+          }
+        }
+      } else {
+        // console.log("3");
+        answerBoard[j][i] = 0;
+        return false;
+      }
+    } else {
+      if (solve(i + 1, j)) {
+        // console.log("4");
+        return true;
+      };
+    }
+    answerBoard[j][i] = 0;
+  }
+  if (i == sizeValue - 1) {
+    if (numStarsInRow(j) == stars.value) {
+      if (j == sizeValue - 1) {
+        drawSolution();
+        // console.log("5");
+        return true;
+      } else {
+        if (solve(0, j + 1)) {
+          // console.log("6");
+          return true;
+        }
+      }
+    } else {
+      // console.log("7");
+      return false;
+    }
+  } else {
+    if (solve(i + 1, j)) {
+      // console.log("8");
+      return true;
+    };
+  }
+};
+
 bruteForce.addEventListener('click', (event) => {
-  solveBruteForce();
-  drawSolution();
+  // solveBruteForce();
+  console.log(cagesBoard);
+  solve(0, 0);
+  console.log(answerBoard);
+  // drawSolution();
 })
