@@ -32,6 +32,40 @@ const solve = (i, j) => {
 };
 
 const solve = (i, j) => {
+  //console.log(`${i}, ${j}`);
+  for (let k = i; k < sizeValue; k += 1) {
+    if (starPossible(k, j)) {
+      answerBoard[j][k] = 1;
+      if (numStarsInRow(j) == stars.value) {
+        if ((j == sizeValue - 1)) {
+          drawSolution();
+          return true;
+        } else if (solve(0, j + 1)) {
+          return true;
+        }
+      } else if (k < sizeValue - 1) {
+        if (solve(k + 1, j)) {
+          return true;
+        }
+      } else { return false; }
+      answerBoard[j][k] = 0;
+    }
+    if (numStarsInRow(j) == stars.value) {
+      if ((k == sizeValue - 1) && (j == sizeValue - 1)) {
+        drawSolution();
+        return true;
+      } else if (solve(0, j + 1)) {
+        return true;
+      }
+    } else if (k < sizeValue - 1) {
+      if (solve(k + 1, j)) {
+        return true;
+      }
+    } else { return false; }
+  }
+};
+
+const solve = (i, j) => {
   console.log(`${i}, ${j}`);
   if (starPossible(i, j)) {
     answerBoard[j][i] = 1;
