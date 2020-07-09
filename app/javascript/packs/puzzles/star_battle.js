@@ -338,3 +338,7 @@ bruteForce.addEventListener('click', (event) => {
   console.log(answerBoard);
   // drawSolution();
 })
+
+const arr = "[[1,1,2],[1,3,2],[1,3,3]]";
+
+console.log(JSON.parse(arr));

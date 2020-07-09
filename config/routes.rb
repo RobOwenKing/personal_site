@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'star_battles/index'
+  get 'star_battles/show'
+  get 'star_battles/new'
+  get 'star_battles/create'
   root to: 'pages#home'
   get 'portfolio', to: 'pages#portfolio'
 
