@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'star_battles/index'
-  get 'star_battles/show'
-  get 'star_battles/new'
-  get 'star_battles/create'
   root to: 'pages#home'
   get 'portfolio', to: 'pages#portfolio'
 
@@ -17,10 +13,12 @@ Rails.application.routes.draw do
   get 'sudoku', to: 'projects#sudoku'
 
   get 'harki', to: 'puzzles#harki'
-  get 'star_battle', to: 'puzzles#star_battle'
   get 'wahnu', to: 'puzzles#wahnu'
 
   get 'tetris', to: 'projects#tetris'
   resources :tetris_scores, only: [ :index, :new, :create ]
+
+  get 'star_battle', to: 'puzzles#star_battle'
+  resources :star_battles, only: [ :index, :show, :new, :create ]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
