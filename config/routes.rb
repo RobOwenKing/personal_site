@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'tetris', to: 'projects#tetris'
   resources :tetris_scores, only: [ :index, :new, :create ]
 
-  get 'star_battle', to: 'puzzles#star_battle'
   resources :star_battles, only: [ :index, :show, :new, :create ]
+  get 'star_battle', to: 'puzzles#star_battle'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
