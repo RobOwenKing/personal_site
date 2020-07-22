@@ -1,2 +1,51 @@
 <h1>StarBattles#new</h1>
-<p>Find me in app/views/star_battles/new.html.erb</p>
+
+<%= simple_form_for @star_battle do |f| %>
+  <%= f.input :name %>
+  <%= f.input_field :lesson,
+      as: :radio_buttons,
+      collection: [['true', 'Lesson'], ['false', 'Puzzle']],
+      label_method: :second,
+      value_method: :first
+  %>
+  <%= f.input :intro, as: :text %>
+  <%= f.input :hint, as: :text %>
+  <%= f.input :board, as: :string %>
+
+  <%= f.submit "Submit", class: "btn btn-orange" %>
+
+<% end %>
+
+<br>
+
+<ul>
+  <li id="btn-enter" class="btn btn-blue btn-active">Enter mode</li>
+  <li id="btn-solve" class="btn btn-blue">Solve mode</li>
+</ul>
+
+<ul>
+  <li class="list-input">
+    <label for="size">Rows/Cols:</label>
+    <input id="size" type="number" min="4" value="6">
+  </li>
+</ul>
+
+<ul>
+  <li class="list-input">
+    <label for="stars">Stars per row/col/cage:</label>
+    <input id="stars" type="number" min="1" value="1">
+  </li>
+</ul>
+
+<table id="puzzle-grid" draggable="false">
+  <tbody id="board" draggable="false"></tbody>
+</table>
+
+<br>
+
+<ul>
+  <li id="clear-grid" class="btn btn-orange">Clear grid</li>
+  <li id="brute-force" class="btn btn-orange">Brute force</li>
+</ul>
+
+<%= javascript_pack_tag 'puzzles/star_battle' %>

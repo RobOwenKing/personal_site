@@ -1,7 +1,7 @@
 class StarBattlesController < ApplicationController
   def index
     @puzzles = StarBattle.where(lesson: false)
-    @lessons = StarBattle.where(lesson: true).order(name:)
+    @lessons = StarBattle.where(lesson: true).order(:name)
   end
 
   def show
