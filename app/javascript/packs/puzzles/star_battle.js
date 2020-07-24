@@ -19,6 +19,9 @@ const size = document.getElementById('size');
 let sizeValue = parseInt(size.value);
 const stars = document.getElementById('stars');
 
+const formStars = document.getElementById('star_battle_stars');
+const formBoard = document.getElementById('star_battle_board');
+
 solveButton.addEventListener('click', (event) => {
   mode = 'solve';
   solveButton.classList.add('btn-active');
@@ -170,6 +173,10 @@ const activateBoard = () => {
       if (creatingCages === true) {
         cagesBoard[j][i] = nextCageNumber;
         editCellBorders(cell, i, j);
+
+        if (formBoard) {
+          formBoard.value = JSON.stringify(cagesBoard);
+        }
       }
     })
   })
@@ -185,6 +192,10 @@ const init = () => {
   cells = document.querySelectorAll('#board td');
   createTableBorders();
   activateBoard();
+
+  if (formStars) {
+    formStars.value = stars.value;
+  }
 };
 
 init();
@@ -198,8 +209,10 @@ size.addEventListener('input', (event) => {
   init();
 })
 
-size.addEventListener('input', (event) => {
-  init();
+stars.addEventListener('input', (event) => {
+  if (formStars) {
+    formStars.value = stars.value;
+  }
 })
 
 const starPossibleInRow = (i, j) => {

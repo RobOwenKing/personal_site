@@ -15,6 +15,8 @@ class StarBattlesController < ApplicationController
   def create
     @star_battle = StarBattle.new(star_battle_params)
 
+    raise
+
     if @star_battle.save
       redirect_to star_battle_path(@star_battle)
     else
@@ -25,6 +27,6 @@ class StarBattlesController < ApplicationController
   private
 
   def star_battle_params
-    params.require(:name, :lesson, :board).permit(:next_id, :hint, :intro)
+    params.require(:star_battle).permit(:name, :hint, :intro, :lesson, :board, :stars)
   end
 end
