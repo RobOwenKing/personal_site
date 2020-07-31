@@ -1,3 +1,4 @@
+/*
 const solve = (i, j) => {
   for (let k = i; k < size.value; k += 1) {
     if (starPossible(k, j)) {
@@ -156,3 +157,4 @@ const solve = (i, j) => {
     };
   }
 };
+*/
