@@ -1,40 +1,16 @@
 import { deepCopy } from '../shared/copy.js';
-// import { createVars } from './star_battle/shared_vars.js';
-import { editCellBorders } from './star_battle/edit_borders.js';
 
 const board = document.getElementById('board');
-let cagesBoard = [];
-let answerBoard = [];
 let cells;
+let cagesBoard = JSON.parse(board.parentElement.dataset.board);
+let answerBoard = [];
 
-let creatingCages = false;
-let nextCageNumber = 0;
+console.log(cagesBoard);
 
-const enterButton = document.getElementById('btn-enter');
-const solveButton = document.getElementById('btn-solve');
-let mode = 'enter';
-
+const checkGrid = document.getElementById('check-grid');
 const clearGrid = document.getElementById('clear-grid');
-const bruteForce = document.getElementById('brute-force');
 
-const size = document.getElementById('size');
-let sizeValue = parseInt(size.value);
 const stars = document.getElementById('stars');
-
-const formStars = document.getElementById('star_battle_stars');
-const formBoard = document.getElementById('star_battle_board');
-
-solveButton.addEventListener('click', (event) => {
-  mode = 'solve';
-  solveButton.classList.add('btn-active');
-  enterButton.classList.remove('btn-active');
-});
-
-enterButton.addEventListener('click', (event) => {
-  mode = 'enter';
-  enterButton.classList.add('btn-active');
-  solveButton.classList.remove('btn-active');
-});
 
 const fillBoard = () => {
   board.innerHTML = '';
@@ -96,7 +72,7 @@ const createTableBorders = () => {
   }
 };
 
-/*const editBorderTop = (cell, i, j) => {
+const editBorderTop = (cell, i, j) => {
   if (cagesBoard[j - 1]) {
     if (cagesBoard[j - 1][i] !== cagesBoard[j][i]) {
       cell.classList.add('border-top');
@@ -149,7 +125,7 @@ const editCellBorders = (cell, i ,j) => {
   editBorderBottom(cell, i, j);
   editBorderLeft(cell, i, j);
   editBorderRight(cell, i, j);
-};*/
+};
 
 const enterModeClick = (cell, i, j) => {
   creatingCages = true;
@@ -266,84 +242,9 @@ const starPossibleInCage = (i, j) => {
   return answer;
 }
 
-const starPossible = (i, j) => {
-  if (!starPossibleInCol(i, j)) {
-    return false;
-  } else if (!starPossibleInRow(i,j)) {
-    return false;
-  } else if (!starPossibleInNeighbourhood(i, j)) {
-    return false;
-  } else if (!starPossibleInCage(i, j)) {
-    return false;
-  } else {
-    return true;
-  }
-};
-
-
-const drawSolution = () => {
-  for (let i = 0; i < sizeValue; i += 1) {
-    for (let j = 0; j < sizeValue; j += 1) {
-      solveModeClick(board.childNodes[j].childNodes[i], i, j);
-    }
-  }
-};
-
 const numStarsInRow = (j) => {
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   return answerBoard[j].reduce(reducer);
-};
-
-const solve = (i, j) => {
-  if (starPossible(i, j)) {
-    answerBoard[j][i] = 1;
-    if (i == sizeValue - 1) {
-      if (numStarsInRow(j) == stars.value) {
-        if (j == sizeValue - 1) {
-          drawSolution();
-          // console.log("1");
-          return true;
-        } else {
-          if (solve(0, j + 1)) {
-            // console.log("2");
-            return true;
-          }
-        }
-      } else {
-        // console.log("3");
-        answerBoard[j][i] = 0;
-        return false;
-      }
-    } else {
-      if (solve(i + 1, j)) {
-        // console.log("4");
-        return true;
-      };
-    }
-    answerBoard[j][i] = 0;
-  }
-  if (i == sizeValue - 1) {
-    if (numStarsInRow(j) == stars.value) {
-      if (j == sizeValue - 1) {
-        drawSolution();
-        // console.log("5");
-        return true;
-      } else {
-        if (solve(0, j + 1)) {
-          // console.log("6");
-          return true;
-        }
-      }
-    } else {
-      // console.log("7");
-      return false;
-    }
-  } else {
-    if (solve(i + 1, j)) {
-      // console.log("8");
-      return true;
-    };
-  }
 };
 
 bruteForce.addEventListener('click', (event) => {
@@ -354,4 +255,6 @@ bruteForce.addEventListener('click', (event) => {
   // drawSolution();
 })
 
-export { board, cagesBoard };
+const arr = "[[1,1,2],[1,3,2],[1,3,3]]";
+
+console.log(JSON.parse(arr));
