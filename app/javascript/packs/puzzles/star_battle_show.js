@@ -2,10 +2,9 @@ import { deepCopy } from '../shared/copy.js';
 
 const board = document.getElementById('board');
 let cells;
-let cagesBoard = JSON.parse(board.parentElement.dataset.board);
-let answerBoard = [];
-
-console.log(cagesBoard);
+const cagesBoard = JSON.parse(JSON.parse(board.parentElement.dataset.board));
+const sizeValue = cagesBoard.length;
+const answerBoard = [];
 
 const checkGrid = document.getElementById('check-grid');
 const clearGrid = document.getElementById('clear-grid');
@@ -25,15 +24,12 @@ const fillBoard = () => {
 };
 
 const createBoards = () => {
-  cagesBoard = [];
-  answerBoard = [];
   for (let j = 0; j < sizeValue; j += 1) {
     const latestRow = [];
     for (let i = 0; i < sizeValue; i += 1) {
       latestRow.push(0);
     }
     answerBoard.push(deepCopy(latestRow));
-    cagesBoard.push(deepCopy(latestRow));
   }
 };
 
@@ -70,6 +66,15 @@ const createTableBorders = () => {
     board.childNodes[j].childNodes[0].classList.add('border-left');
     board.childNodes[j].childNodes[width - 1].classList.add('border-right');
   }
+};
+
+const createCageBorders = () => {
+  cells.forEach((cell) => {
+    const j = parseInt(cell.dataset.y);
+    const i = parseInt(cell.dataset.x);
+
+    editCellBorders(cell, i, j);
+  })
 };
 
 const editBorderTop = (cell, i, j) => {
@@ -127,70 +132,30 @@ const editCellBorders = (cell, i ,j) => {
   editBorderRight(cell, i, j);
 };
 
-const enterModeClick = (cell, i, j) => {
-  creatingCages = true;
-  nextCageNumber += 1;
-  cagesBoard[j][i] = nextCageNumber;
-  editCellBorders(cell, i, j);
-};
-
 const activateBoard = () => {
   cells.forEach((cell) => {
     const j = parseInt(cell.dataset.y);
     const i = parseInt(cell.dataset.x);
 
     cell.addEventListener('mousedown', (event) => {
-      if (mode === 'solve') {
-        solveModeClick(cell, i, j);
-      } else {
-        enterModeClick(cell, i, j);
-      }
-    })
-
-    cell.addEventListener('mouseenter', (event) => {
-      if (creatingCages === true) {
-        cagesBoard[j][i] = nextCageNumber;
-        editCellBorders(cell, i, j);
-
-        if (formBoard) {
-          formBoard.value = JSON.stringify(cagesBoard);
-        }
-      }
+      solveModeClick(cell, i, j);
     })
   })
 };
-
-document.addEventListener('mouseup', (event) => {
-  creatingCages = false;
-})
 
 const init = () => {
   fillBoard();
   createBoards();
   cells = document.querySelectorAll('#board td');
   createTableBorders();
+  createCageBorders();
   activateBoard();
-
-  if (formStars) {
-    formStars.value = stars.value;
-  }
 };
 
 init();
 
 clearGrid.addEventListener('click', (event) => {
   init();
-})
-
-size.addEventListener('input', (event) => {
-  sizeValue = size.value;
-  init();
-})
-
-stars.addEventListener('input', (event) => {
-  if (formStars) {
-    formStars.value = stars.value;
-  }
 })
 
 const starPossibleInRow = (i, j) => {
@@ -246,15 +211,3 @@ const numStarsInRow = (j) => {
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   return answerBoard[j].reduce(reducer);
 };
-
-bruteForce.addEventListener('click', (event) => {
-  // solveBruteForce();
-  console.log(cagesBoard);
-  solve(0, 0);
-  console.log(answerBoard);
-  // drawSolution();
-})
-
-const arr = "[[1,1,2],[1,3,2],[1,3,3]]";
-
-console.log(JSON.parse(arr));
