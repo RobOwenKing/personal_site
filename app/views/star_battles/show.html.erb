@@ -5,7 +5,9 @@
 <%= @star_battle.intro %>
 <p>Stars per row/col/cage: <% @star_battle.stars.times do %><i class="fas fa-star yellow-txt"></i><% end %></p>
 
-<table id="puzzle-grid" draggable="false" <%= "data-board=\"#{@star_battle.board}\"" %>>
+<table id="puzzle-grid" draggable="false"
+  <%= "data-board=\"#{@star_battle.board}\" data-stars=\"#{@star_battle.stars}\"" %>
+>
   <tbody id="board" draggable="false"></tbody>
 </table>
 

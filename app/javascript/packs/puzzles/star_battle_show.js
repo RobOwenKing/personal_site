@@ -9,7 +9,7 @@ const answerBoard = [];
 const checkGrid = document.getElementById('check-grid');
 const clearGrid = document.getElementById('clear-grid');
 
-const stars = document.getElementById('stars');
+const stars = parseInt(JSON.parse(board.parentElement.dataset.stars));
 
 const fillBoard = () => {
   board.innerHTML = '';
@@ -139,6 +139,7 @@ const activateBoard = () => {
 
     cell.addEventListener('mousedown', (event) => {
       solveModeClick(cell, i, j);
+      countStarsInCol(i);
     })
   })
 };
@@ -158,42 +159,76 @@ clearGrid.addEventListener('click', (event) => {
   init();
 })
 
-const starPossibleInRow = (i, j) => {
-  let starsInRow = 0;
-  for (let k = 0; k < i; k += 1) {
-    if (answerBoard[j][k] != 0) {
-      starsInRow += 1;
+const countStarsInRow = (j) => {
+  let count = 0;
+  for (let i = 0; i < sizeValue; i += 1) {
+    if (answerBoard[j][i] == 2) {
+      count += 1;
     }
   }
-  const answer = starsInRow < stars.value ? true : false;
-  return answer;
+  return count;
 };
 
-const starPossibleInCol = (i, j) => {
-  let starsInCol = 0;
-  for (let k = 0; k < j; k += 1) {
-    if (answerBoard[k][i] != 0) {
-      starsInCol += 1;
+const countStarsInCol = (i) => {
+  let count = 0;
+  for (let j = 0; j < sizeValue; j += 1) {
+    if (answerBoard[j][i] == 2) {
+      count += 1;
     }
   }
-  const answer = starsInCol < stars.value ? true : false;
-  return answer;
+  return count;
 };
 
-const starPossibleInNeighbourhood = (i, j) => {
+const countStarsInCage = (cage) => {
+  let count = 0;
+  for (let i = 0; i < sizeValue; i += 1) {
+    for (let j = 0; j < sizeValue; j += 1) {
+      if (cagesBoard[j][i] == cage && answerBoard[j][i] == 2) {
+        count += 1;
+      }
+    }
+  }
+  return count;
+};
+
+const checkNeighbourhoodEmpty = (i, j) => {
   if (j > 0) {
-    if (answerBoard[j-1][i-1] && answerBoard[j-1][i-1] != 0) { return false; }
-    if (answerBoard[j-1][i] != 0) { return false; }
-    if (answerBoard[j-1][i+1] && answerBoard[j-1][i+1] != 0) { return false; }
+    if (answerBoard[j-1][i-1] == 2) { return false; }
+    if (answerBoard[j-1][i] == 2) { return false; }
+    if (answerBoard[j-1][i+1] == 2) { return false; }
   }
-
-  if (i > 0) {
-    if (answerBoard[j][i-1] != 0) { return false; }
-    if (answerBoard[j+1] && answerBoard[j+1][i-1] != 0) { return false; }
-  }
+  if (answerBoard[j][i-1] == 2) { return false; }
 
   return true;
 };
+
+checkGrid.addEventListener('click', (event) => {
+  let correct = true;
+  const checkedCages = [];
+  for (let i = 0; i < sizeValue; i += 1) {
+    if (countStarsInRow(i) != stars || countStarsInCol(i) != stars) {
+      correct = false;
+    }
+  }
+  for (let i = 0; i < sizeValue; i += 1) {
+    for (let j = 0; j < sizeValue; j += 1) {
+      if (answerBoard[j][i] == 2 && !checkNeighbourhoodEmpty(i, j)) {
+        correct = false;
+      }
+      const currentCage = cagesBoard[j][i]
+      if (checkedCages.indexOf(currentCage) == -1) {
+        if (countStarsInCage(currentCage) != stars) {
+          correct = false;
+        } else {
+          checkedCages.push(currentCage);
+        }
+      }
+    }
+  }
+  console.log(correct);
+})
+
+/*
 
 const starPossibleInCage = (i, j) => {
   const cageNumber = cagesBoard[j][i];
@@ -210,4 +245,4 @@ const starPossibleInCage = (i, j) => {
 const numStarsInRow = (j) => {
   const reducer = (accumulator, currentValue) => accumulator + currentValue;
   return answerBoard[j].reduce(reducer);
-};
+};*/
