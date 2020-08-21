@@ -1,5 +1,7 @@
 import { check } from './wahnu_check.js';
 
+const checkButton = document.getElementById('check');
+
 const board = document.getElementById('board');
 // const puzzle = [
 //   [ 3 ,'.','.','.','.'],
@@ -75,5 +77,9 @@ const createBoard = () => {
 };
 
 createBoard();
+
+checkButton.addEventListener('click', (event) => {
+  check();
+})
 
 export { puzzle, boardState };
