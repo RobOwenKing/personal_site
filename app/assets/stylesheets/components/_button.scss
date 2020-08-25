@@ -41,3 +41,24 @@ a.btn {
 .btn-home {
   margin-bottom: 8px;
 }
+
+.transition p {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+
+  padding: 8px 16px;
+  margin: 8px auto;
+  width: 150px;
+  color: white;
+  background-color: $orange;
+  border-radius: 3px;
+  opacity: 0.8;
+}
+
+.transition:hover p {
+  width: 250px;
+  background-color: $dark-blue;
+}
