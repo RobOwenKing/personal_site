@@ -26,12 +26,12 @@
 
 <div class="flex">
   <%= link_to(game_of_life_path, class: "card-project") do %>
-    <%= image_tag("screenshots/game_of_life.jpg", class: "img-circle", alt: "Screenshot of a game of Conway's Game of Life in progress with its sprawling, colourful patterns") %>
+    <%= image_tag("screenshots/game_of_life.jpg", class: "img-circle", alt: "Screenshot of a game of Conway's Game of Life in progress with its sprawling, colourful patterns.") %>
     <h3>Conway's Game of Life</h3>
   <% end %>
 
   <%= link_to(tetris_path, class: "card-project") do %>
-    <%= image_tag("screenshots/tetris.jpg", class: "img-circle", alt: "Screenshot of the Roman Numerals Calculator displaying answer MDCCXXIX") %>
+    <%= image_tag("screenshots/tetris.jpg", class: "img-circle", alt: "Screenshot of my version of Tetris with a game in progress (it's going okay).") %>
     <h3>Tetr-ish</h3>
   <% end %>
 
@@ -40,18 +40,29 @@
     <h3>Sudoku Solver</h3>
   <% end %>
 
-  <%= link_to(colour_translator_path, class: "card-project") do %>
-    <%= image_tag("screenshots/colour_translator.jpg", class: "img-circle", alt: "Screenshot of the Colour Translator with the RGB and HSL values for a shade of orange") %>
-    <h3>Colour Translator</h3>
-  <% end %>
-
   <%= link_to(roman_calculator_path, class: "card-project") do %>
-    <%= image_tag("screenshots/roman_calculator.jpg", class: "img-circle", alt: "Screenshot of the Roman Numerals Calculator displaying answer MDCCXXIX") %>
+    <%= image_tag("screenshots/roman_calculator.jpg", class: "img-circle", alt: "Screenshot of the Roman Numerals Calculator displaying answer MDCCXXIX.") %>
     <h3>Roman Numerals Calculator</h3>
   <% end %>
 
   <%= link_to(euler_spiral_path, class: "card-project") do %>
-    <%= image_tag("screenshots/euler_spiral.jpg", class: "img-circle", alt: "Screenshot of the Roman Numerals Calculator displaying answer MDCCXXIX") %>
+    <%= image_tag("screenshots/euler_spiral.jpg", class: "img-circle", alt: "Screenshot of the Euler Spiral implementation, a multi-coloured spiral above sliders to alter its defining properties.") %>
     <h3>Euler Spiral</h3>
+  <% end %>
+</div>
+
+<div class="line-break"></div>
+
+<h2>Understanding CSS</h2>
+
+<div class="flex">
+  <%= link_to(colour_translator_path, class: "card-project") do %>
+    <%= image_tag("screenshots/colour_translator.jpg", class: "img-circle", alt: "Screenshot of the Colour Translator with the RGB and HSL values for a shade of orange.") %>
+    <h3>Colour Translator</h3>
+  <% end %>
+
+  <%= link_to(transitions_path, class: "card-project") do %>
+    <%= image_tag("screenshots/transition.jpg", class: "img-circle", alt: "Screenshot of my Transitions experiment with examples mid-change.") %>
+    <h3>Transitions</h3>
   <% end %>
 </div>
