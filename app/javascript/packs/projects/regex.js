@@ -16,9 +16,9 @@ const matches = [
   ["Tes"]
 ];
 
-const reReplace = (string, i, re, valency) => {
-  const colour = valency === 'yes' ? 'green' : 'red';
-  document.getElementById(`${valency}-${i}`)
+const reReplace = (string, i, re, polarity) => {
+  const colour = polarity === 'yes' ? 'green' : 'red';
+  document.getElementById(`${polarity}-${i}`)
     .innerHTML = string.replace(re, `<span class="${colour}-txt">$&</span>`);
 };
 
@@ -49,11 +49,11 @@ const checkMatch = (i, match) => {
   return bool;
 }
 
-const reMatch = (string, i, re, valency) => {
+const reMatch = (string, i, re, polarity) => {
   const match = string.match(re);
-  const icon = document.getElementById(`check-${valency}-${i}`);
+  const icon = document.getElementById(`check-${polarity}-${i}`);
 
-  if (valency === 'no') {
+  if (polarity === 'no') {
     if (match === null && icon.classList.contains('fa-times-circle')) {
       timesToCheck(icon);
     } else if (match !== null && icon.classList.contains('fa-check-circle')) {
