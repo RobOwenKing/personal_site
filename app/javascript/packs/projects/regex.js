@@ -1,20 +1,7 @@
+import { challenges } from './regex_data.js';
+
 const regexInput = document.getElementById('regex');
 const flagsInput = document.getElementById('flags');
-
-const testStrings = [
-  [
-    "Test one",
-    "Test two"
-  ],
-  [
-    "Test three"
-  ]
-];
-
-const matches = [
-  ["Test"],
-  ["Tes"]
-];
 
 const reReplace = (string, i, re, polarity) => {
   const colour = polarity === 'yes' ? 'green' : 'red';
@@ -41,7 +28,7 @@ const checkMatch = (i, match) => {
 
   let bool = true;
 
-  matches[i].forEach((string, j) => {
+  challenges[0].matches[i].forEach((string, j) => {
     if (string != match[j]) {
       bool = false;
     }
@@ -71,14 +58,14 @@ const reMatch = (string, i, re, polarity) => {
 regexInput.addEventListener('input', (event) => {
   const re = new RegExp(regexInput.innerHTML, flagsInput.innerHTML);
 
-  testStrings[0].forEach((string, i) => {
+  challenges[0].strings[0].forEach((string, i) => {
     // document.getElementById(`yes-${i}`)
     //  .innerHTML = string.replace(re, '<span class="green-txt">$&</span>');
     reReplace(string, i, re, 'yes');
     reMatch(string, i, re, 'yes');
   });
 
-  testStrings[1].forEach((string, i) => {
+  challenges[0].strings[1].forEach((string, i) => {
     // document.getElementById(`no-${i}`)
     //  .innerHTML = string.replace(re, '<span class="red-txt">$&</span>');
     reReplace(string, i, re, 'no');
@@ -93,8 +80,8 @@ const buildHTML = () => {
 
   div.insertAdjacentHTML('beforeend', "<h3>Match these:</h3>");
 
-  testStrings[0].forEach((string, i) => {
-    div.insertAdjacentHTML('beforeend', `<div id="yes-${i}" class="left-align">${testStrings[0][i]}</div>`);
+  challenges[0].strings[0].forEach((string, i) => {
+    div.insertAdjacentHTML('beforeend', `<div id="yes-${i}" class="left-align">${challenges[0].strings[0][i]}</div>`);
     yesChecks += `<i id="check-yes-${i}" class="far fa-times-circle red-txt"></i>`;
   });
 
@@ -102,8 +89,8 @@ const buildHTML = () => {
 
   div.insertAdjacentHTML('beforeend', "<h3>Don't match these:</h3>");
 
-  testStrings[1].forEach((string, i) => {
-    div.insertAdjacentHTML('beforeend', `<div id="no-${i}" class="left-align">${testStrings[1][i]}</div>`);
+  challenges[0].strings[1].forEach((string, i) => {
+    div.insertAdjacentHTML('beforeend', `<div id="no-${i}" class="left-align">${challenges[0].strings[1][i]}</div>`);
     noChecks += `<i id="check-no-${i}" class="far fa-times-circle red-txt"></i>`;
   });
 
