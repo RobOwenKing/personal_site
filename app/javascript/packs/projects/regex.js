@@ -3,6 +3,8 @@ import { challenges } from './regex_data.js';
 const regexInput = document.getElementById('regex');
 const flagsInput = document.getElementById('flags');
 
+const challengeName = document.getElementById('challenge-name');
+
 const reReplace = (string, i, re, polarity) => {
   const colour = polarity === 'yes' ? 'green' : 'red';
   document.getElementById(`${polarity}-${i}`)
@@ -55,28 +57,34 @@ const reMatch = (string, i, re, polarity) => {
   }
 };
 
-regexInput.addEventListener('input', (event) => {
+const handleInput = () => {
   const re = new RegExp(regexInput.innerHTML, flagsInput.innerHTML);
 
   challenges[0].strings[0].forEach((string, i) => {
-    // document.getElementById(`yes-${i}`)
-    //  .innerHTML = string.replace(re, '<span class="green-txt">$&</span>');
     reReplace(string, i, re, 'yes');
     reMatch(string, i, re, 'yes');
   });
 
   challenges[0].strings[1].forEach((string, i) => {
-    // document.getElementById(`no-${i}`)
-    //  .innerHTML = string.replace(re, '<span class="red-txt">$&</span>');
     reReplace(string, i, re, 'no');
     reMatch(string, i, re, 'no');
   });
+}
+
+regexInput.addEventListener('input', (event) => {
+  handleInput();
+})
+
+flagsInput.addEventListener('input', (event) => {
+  handleInput();
 })
 
 const buildHTML = () => {
   const div = document.getElementById('test-strings');
   let yesChecks = "";
   let noChecks = "";
+
+  challengeName.innerHTML = challenges[0].name;
 
   div.insertAdjacentHTML('beforeend', "<h3>Match these:</h3>");
 
