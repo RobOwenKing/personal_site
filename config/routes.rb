@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   get 'circles', to: 'projects#circles'
   get 'colour_translator', to: 'projects#colour_translator'
+  get 'crosswords', to: 'projects#crosswords'
   get 'euler_spiral', to: 'projects#euler_spiral'
   get 'game_of_life', to: 'projects#game_of_life'
   get 'regex_challenges', to: 'projects#regex'
