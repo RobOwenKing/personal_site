@@ -4,6 +4,10 @@ const regexInput = document.getElementById('regex');
 const flagsInput = document.getElementById('flags');
 
 const challengeName = document.getElementById('challenge-name');
+const testStrings = document.getElementById('test-strings');
+const challengeSelect = document.getElementById('challenge-select');
+
+let challenge = challenges[0];
 
 const reReplace = (string, i, re, polarity) => {
   const colour = polarity === 'yes' ? 'green' : 'red';
@@ -30,7 +34,7 @@ const checkMatch = (i, match) => {
 
   let bool = true;
 
-  challenges[0].matches[i].forEach((string, j) => {
+  challenge.matches[i].forEach((string, j) => {
     if (string != match[j]) {
       bool = false;
     }
@@ -60,49 +64,66 @@ const reMatch = (string, i, re, polarity) => {
 const handleInput = () => {
   const re = new RegExp(regexInput.innerHTML, flagsInput.innerHTML);
 
-  challenges[0].strings[0].forEach((string, i) => {
+  challenge.strings[0].forEach((string, i) => {
     reReplace(string, i, re, 'yes');
     reMatch(string, i, re, 'yes');
   });
 
-  challenges[0].strings[1].forEach((string, i) => {
+  challenge.strings[1].forEach((string, i) => {
     reReplace(string, i, re, 'no');
     reMatch(string, i, re, 'no');
   });
-}
+};
 
 regexInput.addEventListener('input', (event) => {
   handleInput();
-})
+});
 
 flagsInput.addEventListener('input', (event) => {
   handleInput();
-})
+});
+
+challengeSelect.addEventListener('input', (event) => {
+  challenge = challenges.find(element => element.value == challengeSelect.value);
+  buildHTML();
+});
+
+const buildSelect = () => {
+  for (let i = 0; i < challenges.length; i += 1) {
+    const value = challenges[i].value;
+    const name = challenges[i].name;
+    challengeSelect.insertAdjacentHTML('beforeend', `<option value="${value}">${name}</option>`);
+  }
+};
 
 const buildHTML = () => {
-  const div = document.getElementById('test-strings');
   let yesChecks = "";
   let noChecks = "";
 
-  challengeName.innerHTML = challenges[0].name;
+  challengeName.innerHTML = challenge.name;
+  regexInput.innerText = "Your regex here";
+  flagsInput.innerText = "Flags";
 
-  div.insertAdjacentHTML('beforeend', "<h3>Match these:</h3>");
+  testStrings.innerHTML = "";
 
-  challenges[0].strings[0].forEach((string, i) => {
-    div.insertAdjacentHTML('beforeend', `<div id="yes-${i}" class="left-align">${challenges[0].strings[0][i]}</div>`);
+  testStrings.insertAdjacentHTML('beforeend', "<h3>Match these:</h3>");
+
+  challenge.strings[0].forEach((string, i) => {
+    testStrings.insertAdjacentHTML('beforeend', `<div id="yes-${i}" class="left-align">${challenge.strings[0][i]}</div>`);
     yesChecks += `<i id="check-yes-${i}" class="far fa-times-circle red-txt"></i>`;
   });
 
-  div.insertAdjacentHTML('beforeend', yesChecks);
+  testStrings.insertAdjacentHTML('beforeend', yesChecks);
 
-  div.insertAdjacentHTML('beforeend', "<h3>Don't match these:</h3>");
+  testStrings.insertAdjacentHTML('beforeend', "<h3>Don't match these:</h3>");
 
-  challenges[0].strings[1].forEach((string, i) => {
-    div.insertAdjacentHTML('beforeend', `<div id="no-${i}" class="left-align">${challenges[0].strings[1][i]}</div>`);
+  challenge.strings[1].forEach((string, i) => {
+    testStrings.insertAdjacentHTML('beforeend', `<div id="no-${i}" class="left-align">${challenge.strings[1][i]}</div>`);
     noChecks += `<i id="check-no-${i}" class="far fa-times-circle red-txt"></i>`;
   });
 
-  div.insertAdjacentHTML('beforeend', noChecks);
+  testStrings.insertAdjacentHTML('beforeend', noChecks);
 };
 
 buildHTML();
+buildSelect();

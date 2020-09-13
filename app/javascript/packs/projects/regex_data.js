@@ -1,5 +1,6 @@
 const template = {
   name: "Template",
+  value: "value",
   description: "xxx",
   strings: [
     [
@@ -16,9 +17,10 @@ const template = {
   ]
 };
 
-const hello_world = {
+const helloWorld = {
   name: "Hello World!",
-  description: "xxx",
+  value: "hello-world",
+  description: "Let's refresh the basics. Here are three strings to match and two to avoid matching. Enter your expression and flags below.",
   strings: [
     [
       "Hello, World!",
@@ -39,6 +41,7 @@ const hello_world = {
 
 const ordinals = {
   name: "Second things second",
+  value: "ordinals",
   description: "Match ordinal numbers ???",
   strings: [
     [
@@ -58,8 +61,29 @@ const ordinals = {
   ]
 };
 
+const catalan = {
+ name: "It's all Catalan to me",
+ value: "catalan",
+ description: "In this challenge, you have to match words which include letters not part of the ???",
+  strings: [
+    [
+      "Català",
+      "Test two"
+    ],
+    [
+      "Castell",
+      "Setze jutges d'un jutjat"
+    ]
+  ],
+  matches: [
+    ["Test"],
+    ["Tes"]
+  ]
+};
+
 const regex = {
   name: "Regex-ception",
+  value: "regex-ception",
   description: "Trying to write a regex pattern to match any well-formed regex runs into problems of recursion and nesting. Instead, this challenge is to match a small number of well-formed regex and catch a few simple issues.",
   strings: [
     [
@@ -79,4 +103,4 @@ const regex = {
   ]
 };
 
-export const challenges = [hello_world, regex, ordinals];
+export const challenges = [helloWorld, ordinals, catalan, regex];
