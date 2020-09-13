@@ -13,10 +13,12 @@ const createGrid = () => {
         latestRow.insertAdjacentHTML('beforeend', '<td class="black"></td>');
       } else {
         if ((first[j-1] && first[j-1][i] == '.') || first[j][i-1] == '.') {
-          latestRow.insertAdjacentHTML('beforeend', `<td class="white">${qNumber}<span contenteditable="true"></span></td>`);
+          latestRow.insertAdjacentHTML('beforeend',
+            `<td class="white"><span class="q-number">${qNumber}</span><span contenteditable="true"></span></td>`);
           qNumber += 1;
         } else {
-          latestRow.insertAdjacentHTML('beforeend', `<td class="white"><span contenteditable="true"></span></td>`);
+          latestRow.insertAdjacentHTML('beforeend',
+            `<td class="white"><span contenteditable="true"></span></td>`);
         }
       }
     }
