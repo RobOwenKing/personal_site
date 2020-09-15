@@ -4,6 +4,7 @@ const regexInput = document.getElementById('regex');
 const flagsInput = document.getElementById('flags');
 
 const challengeName = document.getElementById('challenge-name');
+const challengeDescription = document.getElementById('challenge-description');
 const testStrings = document.getElementById('test-strings');
 const challengeSelect = document.getElementById('challenge-select');
 
@@ -101,6 +102,7 @@ const buildHTML = () => {
   let noChecks = "";
 
   challengeName.innerHTML = challenge.name;
+  challengeDescription.innerHTML = challenge.description;
   regexInput.innerText = "Your regex here";
   flagsInput.innerText = "Flags";
 
