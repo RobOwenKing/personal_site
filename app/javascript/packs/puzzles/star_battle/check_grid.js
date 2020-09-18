@@ -70,6 +70,6 @@ export const initCheckGrid = () => {
         }
       }
     }
-    console.log(correct);
+    correct ? window.alert('Looks good!') : window.alert("Seems there's something wrong, sorry!");
   })
 };
