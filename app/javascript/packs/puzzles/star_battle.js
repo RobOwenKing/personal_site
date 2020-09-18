@@ -1,13 +1,10 @@
 import { deepCopy } from '../shared/copy.js';
 import { Vars } from './star_battle/shared_vars.js';
 import { editCellBorders } from './star_battle/edit_borders.js';
+import { mode, initModes } from './star_battle/modes.js';
 
 let creatingCages = false;
 let nextCageNumber = 0;
-
-const enterButton = document.getElementById('btn-enter');
-const solveButton = document.getElementById('btn-solve');
-let mode = 'enter';
 
 const clearCages = document.getElementById('clear-cages');
 const clearStars = document.getElementById('clear-stars');
@@ -20,17 +17,7 @@ const stars = document.getElementById('stars');
 const formStars = document.getElementById('star_battle_stars');
 const formBoard = document.getElementById('star_battle_board');
 
-solveButton.addEventListener('click', (event) => {
-  mode = 'solve';
-  solveButton.classList.add('btn-active');
-  enterButton.classList.remove('btn-active');
-});
-
-enterButton.addEventListener('click', (event) => {
-  mode = 'enter';
-  enterButton.classList.add('btn-active');
-  solveButton.classList.remove('btn-active');
-});
+initModes();
 
 const fillBoard = () => {
   Vars.board.innerHTML = '';
