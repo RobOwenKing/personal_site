@@ -2,29 +2,30 @@ import { deepCopy } from '../shared/copy.js';
 import { Vars } from './star_battle/shared_vars.js';
 import { editCellBorders } from './star_battle/edit_borders.js';
 import { mode, initModes } from './star_battle/modes.js';
+import { initClearCages, initClearStars } from './star_battle/clear.js';
 
 let creatingCages = false;
 let nextCageNumber = 0;
 
-const clearCages = document.getElementById('clear-cages');
-const clearStars = document.getElementById('clear-stars');
 const bruteForce = document.getElementById('brute-force');
 
 const size = document.getElementById('size');
-let sizeValue = parseInt(size.value);
+Vars.sizeValue = parseInt(size.value);
 const stars = document.getElementById('stars');
 
 const formStars = document.getElementById('star_battle_stars');
 const formBoard = document.getElementById('star_battle_board');
 
 initModes();
+initClearCages();
+initClearStars();
 
 const fillBoard = () => {
   Vars.board.innerHTML = '';
-  for (let j = 0; j < sizeValue; j += 1) {
+  for (let j = 0; j < Vars.sizeValue; j += 1) {
     Vars.board.insertAdjacentHTML('beforeend', `<tr draggable="false">`);
     const latestRow = document.querySelector('#board > tr:last-child');
-    for (let i = 0; i < sizeValue; i += 1) {
+    for (let i = 0; i < Vars.sizeValue; i += 1) {
       latestRow.insertAdjacentHTML('beforeend', `<td data-x="${i}" data-y="${j}" class="white clickable" draggable="false"></td>`);
     }
     Vars.board.insertAdjacentHTML('beforeend', '</tr>');
@@ -33,9 +34,9 @@ const fillBoard = () => {
 
 const createBoard = () => {
   const temp = [];
-  for (let j = 0; j < sizeValue; j += 1) {
+  for (let j = 0; j < Vars.sizeValue; j += 1) {
     const latestRow = [];
-    for (let i = 0; i < sizeValue; i += 1) {
+    for (let i = 0; i < Vars.sizeValue; i += 1) {
       latestRow.push(0);
     }
     temp.push(deepCopy(latestRow));
@@ -43,7 +44,7 @@ const createBoard = () => {
   return temp;
 }
 
-const createCagesBoard = () => {
+export const createCagesBoard = () => {
   Vars.cagesBoard = createBoard();
 }
 
@@ -56,7 +57,7 @@ const createBoards = () => {
   createAnswerBoard();
 };
 
-const solveModeClick = (cell, i, j) => {
+export const solveModeClick = (cell, i, j) => {
   Vars.answerBoard[j][i] = (Vars.answerBoard[j][i] + 1) % 4;
 
   if (Vars.answerBoard[j][i] === 0) {
@@ -79,8 +80,8 @@ const solveModeClick = (cell, i, j) => {
 };
 
 const createTableBorders = () => {
-  const height = sizeValue;
-  const width = sizeValue;
+  const height = Vars.sizeValue;
+  const width = Vars.sizeValue;
   for (let i = 0; i < width; i += 1) {
     Vars.board.childNodes[0].childNodes[i].classList.add('border-top');
     Vars.board.childNodes[height - 1].childNodes[i].classList.add('border-bottom');
@@ -142,28 +143,8 @@ const init = () => {
 
 init();
 
-clearCages.addEventListener('click', (event) => {
-  createCagesBoard();
-  for (let j = 0; j < sizeValue; j += 1) {
-    for (let i = 0; i < sizeValue; i += 1) {
-      editCellBorders(Vars.board.childNodes[j].childNodes[i], i, j);
-    }
-  }
-})
-
-clearStars.addEventListener('click', (event) => {
-  for (let j = 0; j < sizeValue; j += 1) {
-    for (let i = 0; i < sizeValue; i += 1) {
-      const cell = Vars.board.childNodes[j].childNodes[i];
-      while (Vars.answerBoard[j][i] != 0) {
-        solveModeClick(cell, i, j);
-      }
-    }
-  }
-})
-
 size.addEventListener('input', (event) => {
-  sizeValue = size.value;
+  Vars.sizeValue = size.value;
   init();
 })
 
@@ -213,8 +194,8 @@ const starPossibleInNeighbourhood = (i, j) => {
 const starPossibleInCage = (i, j) => {
   const cageNumber = Vars.cagesBoard[j][i];
   let starsInCage = 0;
-  for (let l = 0; l < sizeValue; l += 1) {
-    for (let k = 0; k < sizeValue; k += 1) {
+  for (let l = 0; l < Vars.sizeValue; l += 1) {
+    for (let k = 0; k < Vars.sizeValue; k += 1) {
       if (Vars.cagesBoard[l][k] === cageNumber && Vars.answerBoard[l][k] != 0) { starsInCage += 1; }
     }
   }
@@ -236,10 +217,9 @@ const starPossible = (i, j) => {
   }
 };
 
-
 const drawSolution = () => {
-  for (let i = 0; i < sizeValue; i += 1) {
-    for (let j = 0; j < sizeValue; j += 1) {
+  for (let i = 0; i < Vars.sizeValue; i += 1) {
+    for (let j = 0; j < Vars.sizeValue; j += 1) {
       solveModeClick(Vars.board.childNodes[j].childNodes[i], i, j);
     }
   }
@@ -253,50 +233,42 @@ const numStarsInRow = (j) => {
 const solve = (i, j) => {
   if (starPossible(i, j)) {
     Vars.answerBoard[j][i] = 1;
-    if (i == sizeValue - 1) {
+    if (i == Vars.sizeValue - 1) {
       if (numStarsInRow(j) == stars.value) {
-        if (j == sizeValue - 1) {
+        if (j == Vars.sizeValue - 1) {
           drawSolution();
-          // console.log("1");
           return true;
         } else {
           if (solve(0, j + 1)) {
-            // console.log("2");
             return true;
           }
         }
       } else {
-        // console.log("3");
         Vars.answerBoard[j][i] = 0;
         return false;
       }
     } else {
       if (solve(i + 1, j)) {
-        // console.log("4");
         return true;
       };
     }
     Vars.answerBoard[j][i] = 0;
   }
-  if (i == sizeValue - 1) {
+  if (i == Vars.sizeValue - 1) {
     if (numStarsInRow(j) == stars.value) {
-      if (j == sizeValue - 1) {
+      if (j == Vars.sizeValue - 1) {
         drawSolution();
-        // console.log("5");
         return true;
       } else {
         if (solve(0, j + 1)) {
-          // console.log("6");
           return true;
         }
       }
     } else {
-      // console.log("7");
       return false;
     }
   } else {
     if (solve(i + 1, j)) {
-      // console.log("8");
       return true;
     };
   }

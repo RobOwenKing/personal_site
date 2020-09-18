@@ -2,7 +2,8 @@ const Vars = {
   board: document.getElementById('board'),
   cagesBoard: [],
   answerBoard: [],
-  cells: []
+  cells: [],
+  sizeValue: 0
 };
 
 export { Vars };
