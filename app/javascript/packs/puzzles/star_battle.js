@@ -3,11 +3,10 @@ import { Vars } from './star_battle/shared_vars.js';
 import { editCellBorders } from './star_battle/edit_borders.js';
 import { mode, initModes } from './star_battle/modes.js';
 import { initClearCages, initClearStars } from './star_battle/clear.js';
+import { initBruteForce } from './star_battle/brute_force.js';
 
 let creatingCages = false;
 let nextCageNumber = 0;
-
-const bruteForce = document.getElementById('brute-force');
 
 const size = document.getElementById('size');
 Vars.sizeValue = parseInt(size.value);
@@ -19,6 +18,7 @@ const formBoard = document.getElementById('star_battle_board');
 initModes();
 initClearCages();
 initClearStars();
+initBruteForce();
 
 const fillBoard = () => {
   Vars.board.innerHTML = '';
@@ -153,133 +153,3 @@ stars.addEventListener('input', (event) => {
     formStars.value = stars.value;
   }
 })
-
-const starPossibleInRow = (i, j) => {
-  let starsInRow = 0;
-  for (let k = 0; k < i; k += 1) {
-    if (Vars.answerBoard[j][k] != 0) {
-      starsInRow += 1;
-    }
-  }
-  const answer = starsInRow < stars.value ? true : false;
-  return answer;
-};
-
-const starPossibleInCol = (i, j) => {
-  let starsInCol = 0;
-  for (let k = 0; k < j; k += 1) {
-    if (Vars.answerBoard[k][i] != 0) {
-      starsInCol += 1;
-    }
-  }
-  const answer = starsInCol < stars.value ? true : false;
-  return answer;
-};
-
-const starPossibleInNeighbourhood = (i, j) => {
-  if (j > 0) {
-    if (Vars.answerBoard[j-1][i-1] && Vars.answerBoard[j-1][i-1] != 0) { return false; }
-    if (Vars.answerBoard[j-1][i] != 0) { return false; }
-    if (Vars.answerBoard[j-1][i+1] && Vars.answerBoard[j-1][i+1] != 0) { return false; }
-  }
-
-  if (i > 0) {
-    if (Vars.answerBoard[j][i-1] != 0) { return false; }
-    if (Vars.answerBoard[j+1] && Vars.answerBoard[j+1][i-1] != 0) { return false; }
-  }
-
-  return true;
-};
-
-const starPossibleInCage = (i, j) => {
-  const cageNumber = Vars.cagesBoard[j][i];
-  let starsInCage = 0;
-  for (let l = 0; l < Vars.sizeValue; l += 1) {
-    for (let k = 0; k < Vars.sizeValue; k += 1) {
-      if (Vars.cagesBoard[l][k] === cageNumber && Vars.answerBoard[l][k] != 0) { starsInCage += 1; }
-    }
-  }
-  const answer = starsInCage < stars.value ? true : false;
-  return answer;
-}
-
-const starPossible = (i, j) => {
-  if (!starPossibleInCol(i, j)) {
-    return false;
-  } else if (!starPossibleInRow(i,j)) {
-    return false;
-  } else if (!starPossibleInNeighbourhood(i, j)) {
-    return false;
-  } else if (!starPossibleInCage(i, j)) {
-    return false;
-  } else {
-    return true;
-  }
-};
-
-const drawSolution = () => {
-  for (let i = 0; i < Vars.sizeValue; i += 1) {
-    for (let j = 0; j < Vars.sizeValue; j += 1) {
-      solveModeClick(Vars.board.childNodes[j].childNodes[i], i, j);
-    }
-  }
-};
-
-const numStarsInRow = (j) => {
-  const reducer = (accumulator, currentValue) => accumulator + currentValue;
-  return Vars.answerBoard[j].reduce(reducer);
-};
-
-const solve = (i, j) => {
-  if (starPossible(i, j)) {
-    Vars.answerBoard[j][i] = 1;
-    if (i == Vars.sizeValue - 1) {
-      if (numStarsInRow(j) == stars.value) {
-        if (j == Vars.sizeValue - 1) {
-          drawSolution();
-          return true;
-        } else {
-          if (solve(0, j + 1)) {
-            return true;
-          }
-        }
-      } else {
-        Vars.answerBoard[j][i] = 0;
-        return false;
-      }
-    } else {
-      if (solve(i + 1, j)) {
-        return true;
-      };
-    }
-    Vars.answerBoard[j][i] = 0;
-  }
-  if (i == Vars.sizeValue - 1) {
-    if (numStarsInRow(j) == stars.value) {
-      if (j == Vars.sizeValue - 1) {
-        drawSolution();
-        return true;
-      } else {
-        if (solve(0, j + 1)) {
-          return true;
-        }
-      }
-    } else {
-      return false;
-    }
-  } else {
-    if (solve(i + 1, j)) {
-      return true;
-    };
-  }
-};
-
-bruteForce.addEventListener('click', (event) => {
-  // solveBruteForce();
-  console.log(Vars.cagesBoard);
-  solve(0, 0);
-  console.log(Vars.answerBoard);
-  // drawSolution();
-})
-
-// export { board, cagesBoard };
