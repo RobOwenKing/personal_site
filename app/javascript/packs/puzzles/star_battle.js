@@ -1,4 +1,4 @@
-import { VARS, createBoards } from './star_battle/setup.js';
+import { VARS, createBoards, fillBoard, createTableBorders } from './star_battle/setup.js';
 import { editCellBorders } from './star_battle/edit_borders.js';
 import { mode, initModes } from './star_battle/modes.js';
 import { solveModeClick } from './star_battle/clicks.js';
@@ -19,31 +19,6 @@ initModes();
 initClearCages();
 initClearStars();
 initBruteForce();
-
-const fillBoard = () => {
-  VARS.board.innerHTML = '';
-  for (let j = 0; j < VARS.sizeValue; j += 1) {
-    VARS.board.insertAdjacentHTML('beforeend', `<tr draggable="false">`);
-    const latestRow = document.querySelector('#board > tr:last-child');
-    for (let i = 0; i < VARS.sizeValue; i += 1) {
-      latestRow.insertAdjacentHTML('beforeend', `<td data-x="${i}" data-y="${j}" class="white clickable" draggable="false"></td>`);
-    }
-    VARS.board.insertAdjacentHTML('beforeend', '</tr>');
-  }
-};
-
-const createTableBorders = () => {
-  const height = VARS.sizeValue;
-  const width = VARS.sizeValue;
-  for (let i = 0; i < width; i += 1) {
-    VARS.board.childNodes[0].childNodes[i].classList.add('border-top');
-    VARS.board.childNodes[height - 1].childNodes[i].classList.add('border-bottom');
-  }
-  for (let j = 0; j < height; j += 1) {
-    VARS.board.childNodes[j].childNodes[0].classList.add('border-left');
-    VARS.board.childNodes[j].childNodes[width - 1].classList.add('border-right');
-  }
-};
 
 const enterModeClick = (cell, i, j) => {
   creatingCages = true;
