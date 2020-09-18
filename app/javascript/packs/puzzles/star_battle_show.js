@@ -156,7 +156,14 @@ const init = () => {
 init();
 
 clearGrid.addEventListener('click', (event) => {
-  init();
+  for (let j = 0; j < sizeValue; j += 1) {
+    for (let i = 0; i < sizeValue; i += 1) {
+      const cell = board.childNodes[j].childNodes[i];
+      while (answerBoard[j][i] != 0) {
+        solveModeClick(cell, i, j);
+      }
+    }
+  }
 })
 
 const countStarsInRow = (j) => {
@@ -227,22 +234,3 @@ checkGrid.addEventListener('click', (event) => {
   }
   console.log(correct);
 })
-
-/*
-
-const starPossibleInCage = (i, j) => {
-  const cageNumber = cagesBoard[j][i];
-  let starsInCage = 0;
-  for (let l = 0; l < sizeValue; l += 1) {
-    for (let k = 0; k < sizeValue; k += 1) {
-      if (cagesBoard[l][k] === cageNumber && answerBoard[l][k] != 0) { starsInCage += 1; }
-    }
-  }
-  const answer = starsInCage < stars.value ? true : false;
-  return answer;
-}
-
-const numStarsInRow = (j) => {
-  const reducer = (accumulator, currentValue) => accumulator + currentValue;
-  return answerBoard[j].reduce(reducer);
-};*/

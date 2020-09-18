@@ -14,7 +14,8 @@ const enterButton = document.getElementById('btn-enter');
 const solveButton = document.getElementById('btn-solve');
 let mode = 'enter';
 
-const clearGrid = document.getElementById('clear-grid');
+const clearCages = document.getElementById('clear-cages');
+const clearStars = document.getElementById('clear-stars');
 const bruteForce = document.getElementById('brute-force');
 
 const size = document.getElementById('size');
@@ -48,17 +49,29 @@ const fillBoard = () => {
   }
 };
 
-const createBoards = () => {
-  cagesBoard = [];
-  answerBoard = [];
+const createBoard = () => {
+  const board = [];
   for (let j = 0; j < sizeValue; j += 1) {
     const latestRow = [];
     for (let i = 0; i < sizeValue; i += 1) {
       latestRow.push(0);
     }
-    answerBoard.push(deepCopy(latestRow));
-    cagesBoard.push(deepCopy(latestRow));
+    board.push(deepCopy(latestRow));
   }
+  return board;
+}
+
+const createCagesBoard = () => {
+  cagesBoard = createBoard();
+}
+
+const createAnswerBoard = () => {
+  answerBoard = createBoard();
+}
+
+const createBoards = () => {
+  createCagesBoard();
+  createAnswerBoard();
 };
 
 const solveModeClick = (cell, i, j) => {
@@ -202,8 +215,24 @@ const init = () => {
 
 init();
 
-clearGrid.addEventListener('click', (event) => {
-  init();
+clearCages.addEventListener('click', (event) => {
+  createCagesBoard();
+  for (let j = 0; j < sizeValue; j += 1) {
+    for (let i = 0; i < sizeValue; i += 1) {
+      editCellBorders(board.childNodes[j].childNodes[i], i, j);
+    }
+  }
+})
+
+clearStars.addEventListener('click', (event) => {
+  for (let j = 0; j < sizeValue; j += 1) {
+    for (let i = 0; i < sizeValue; i += 1) {
+      const cell = board.childNodes[j].childNodes[i];
+      while (answerBoard[j][i] != 0) {
+        solveModeClick(cell, i, j);
+      }
+    }
+  }
 })
 
 size.addEventListener('input', (event) => {
