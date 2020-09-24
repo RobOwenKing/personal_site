@@ -1,5 +1,8 @@
 import { challenges } from './regex_data.js';
 
+let regex = '';
+let flags = '';
+
 const regexInput = document.getElementById('regex');
 const flagsInput = document.getElementById('flags');
 
@@ -63,7 +66,7 @@ const reMatch = (string, i, re, polarity) => {
 };
 
 const handleInput = () => {
-  const re = new RegExp(regexInput.innerHTML, flagsInput.innerHTML);
+  const re = new RegExp(regex, flags);
 
   challenge.strings[0].forEach((string, i) => {
     reReplace(string, i, re, 'yes');
@@ -77,10 +80,12 @@ const handleInput = () => {
 };
 
 regexInput.addEventListener('input', (event) => {
+  regex = regexInput.innerHTML;
   handleInput();
 });
 
 flagsInput.addEventListener('input', (event) => {
+  flags = flagsInput.innerHTML;
   handleInput();
 });
 

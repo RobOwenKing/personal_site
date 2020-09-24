@@ -1,5 +1,7 @@
 <h1>Star Battles</h1>
+
 <h2>Puzzles</h2>
+
 <ul>
   <% @puzzles.each do |puzzle| %>
     <%= link_to(star_battle_path(puzzle.id)) do %>
@@ -7,6 +9,8 @@
     <% end %>
   <% end %>
 </ul>
+
 <div class="line-break"></div>
+
 <h2>Creator and Solver</h2>
 <%= image_tag("screenshots/star_battle.jpg", class: "img-circle", alt: "Screenshot of the Star Battle Creator and Solver") %>
