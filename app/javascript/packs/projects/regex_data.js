@@ -62,9 +62,9 @@ const ordinals = {
 };
 
 const catalan = {
- name: "It's all Catalan to me",
- value: "catalan",
- description: "In this challenge, you have to match words which include letters not part of the ISO Basic Latin Alphabet (the 26 letters of the English alphabet). So the first string should match 'Català', the second 'Força', etc.",
+  name: "It's all Catalan to me",
+  value: "catalan",
+  description: "In this challenge, you have to match words which include letters not part of the ISO Basic Latin Alphabet (the 26 letters of the English alphabet). So the first string should match 'Català', the second 'Força', etc.",
   strings: [
     [
       "Català",
@@ -82,6 +82,31 @@ const catalan = {
     ["adéu", "diacrítics"]
   ]
 };
+
+const roman = {
+  name: "Easy as I, II, III",
+  value: "roman",
+  description: "Can you match these well-formed <a href='https://en.wikipedia.org/wiki/Roman_numerals'>Roman numerals</a> and avoid the incorrect examples?",
+  strings: [
+    [
+      "III",
+      "XLII",
+      "MMXX",
+      "MDCCXXIX"
+    ],
+    [
+      "MMXXA",
+      "IXI",
+      "ID"
+    ]
+  ],
+  matches: [
+    ["III"],
+    ["XLII"],
+    ["MMXX"],
+    ["MDCCXXIX"]
+  ]
+}
 
 const regex = {
   name: "Regex-ception",
@@ -105,4 +130,4 @@ const regex = {
   ]
 };
 
-export const challenges = [helloWorld, ordinals, catalan, regex];
+export const challenges = [helloWorld, ordinals, catalan, roman, regex];
