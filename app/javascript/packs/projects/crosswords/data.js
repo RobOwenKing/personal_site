@@ -24,6 +24,11 @@ const first = {
     "To cultivate"
   ],
   dQs: [
+    "To govern",
+    "Part of your head",
+    "A fist",
+    "A talon",
+    "Part of a ship"
   ]
 };
 

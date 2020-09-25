@@ -73,7 +73,7 @@ const createGrid = (solution) => {
 
     const latestRow = document.querySelector('tbody tr:last-child');
     for (let i = 0; i < solution[0].length; i += 1) {
-      latestRow.insertAdjacentHTML('beforeend', `<td data-i='${i}' data-j='${j}'></td>`);
+      latestRow.insertAdjacentHTML('beforeend', `<td id='${i}-${j}' data-i='${i}' data-j='${j}'></td>`);
 
     }
   }
