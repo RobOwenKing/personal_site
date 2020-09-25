@@ -7,7 +7,6 @@ Rails.application.routes.draw do
 
   get 'circles', to: 'projects#circles'
   get 'colour_translator', to: 'projects#colour_translator'
-  get 'crosswords', to: 'projects#crosswords'
   get 'euler_spiral', to: 'projects#euler_spiral'
   get 'game_of_life', to: 'projects#game_of_life'
   get 'regex_challenges', to: 'projects#regex'
@@ -24,5 +23,8 @@ Rails.application.routes.draw do
 
   resources :star_battles, only: [ :index, :show, :new, :create ]
   get 'star_battle', to: 'puzzles#star_battle'
+
+  get "/crosswords/:crossword", to: "crosswords#show"
+  get "crosswords", to: 'projects#crosswords'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
