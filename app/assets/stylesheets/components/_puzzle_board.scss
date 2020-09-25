@@ -29,6 +29,11 @@
   color: white;
 }
 
+.highlighted {
+  background-color: $orange;
+  opacity: 0.5;
+}
+
 .border-top {
   border-top-color: black;
 }
