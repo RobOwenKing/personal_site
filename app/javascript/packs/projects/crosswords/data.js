@@ -14,6 +14,16 @@ const first = {
     "....EVADE....",
     ".....ARE.....",
     "......D......"
+  ],
+  aQs: [
+    "N/A",
+    "FUN (written in original grid)",
+    "What bargain hunters enjoy",
+    "A written acknowledgment",
+    "Such and nothing more",
+    "To cultivate"
+  ],
+  dQs: [
   ]
 };
 
