@@ -86,7 +86,7 @@ const catalan = {
 const roman = {
   name: "Easy as I, II, III",
   value: "roman",
-  description: "Can you match these well-formed <a href='https://en.wikipedia.org/wiki/Roman_numerals'>Roman numerals</a> and avoid the incorrect examples?",
+  description: "Can you match these well-formed <a href='https://en.wikipedia.org/wiki/Roman_numerals#Standard_form'>Roman numerals</a> and avoid the incorrect examples?",
   strings: [
     [
       "III",
