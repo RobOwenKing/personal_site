@@ -1,5 +1,6 @@
 const first = {
   name: "first",
+  size: [13, 13],
   solution: [
     "......R......",
     ".....FUN.....",
@@ -16,19 +17,20 @@ const first = {
     "......D......"
   ],
   aQs: [
-    "N/A",
-    "FUN (written in original grid)",
-    "What bargain hunters enjoy",
-    "A written acknowledgment",
-    "Such and nothing more",
-    "To cultivate"
+    ["FUN", "FUN (written in original grid)", 1, 5],
+    ["SALES", "What bargain hunters enjoy", 2, 4],
+    ["RECEIPT", "A written acknowledgment", 3, 3],
+    ["MERE", "Such and nothing more", 4, 2],
+    ["FARM", "To cultivate", 4, 7],
+    ["DOVE", "???", 5, 1],
+    ["RAIL", "???", 5, 8]
   ],
   dQs: [
-    "To govern",
-    "Part of your head",
-    "A fist",
-    "A talon",
-    "Part of a ship"
+    ["RULE", "To govern", 0, 6],
+    ["FACE", "Part of your head", 1, 5],
+    ["NEIF", "A fist", 1, 7],
+    ["SERE", "A talon", 2, 4],
+    ["SPAR", "Part of a ship", 2, 8]
   ]
 };
 

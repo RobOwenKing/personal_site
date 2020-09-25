@@ -1,23 +1,22 @@
 let direction = true;
 let activeElement;
-let puzzle;
 
-const showQuestion = (input) => {
+const showQuestion = (puzzle) => {
   const active = document.activeElement;
 
   if (direction) {
-    question.innerText = puzzle.aQs[parseInt(active.dataset.a)];
+    question.innerText = puzzle.aQs[parseInt(active.dataset.a)][1];
   } else {
-    question.innerText = puzzle.dQs[parseInt(active.dataset.d)];
+    question.innerText = puzzle.dQs[parseInt(active.dataset.d)][1];
   }
 };
 
-const activateInputs = () => {
+const activateInputs = (puzzle) => {
   const inputs = document.querySelectorAll('input');
 
   inputs.forEach((input) => {
     input.addEventListener('focus', (event) => {
-      showQuestion();
+      showQuestion(puzzle);
       highlightCells();
     });
   });
@@ -40,42 +39,43 @@ const highlightCells = () => {
   });
 };
 
-const handleArrow = (i, j, dir) => {
+const handleArrow = (i, j, dir, puzzle) => {
   if (dir != direction) {
     direction = !direction;
     highlightCells();
-    showQuestion();
+    showQuestion(puzzle);
   } else {
     document.getElementById(`${i}-${j}`).childNodes[0].focus();
   }
 };
 
-const handleKeyPresses = (solution) => {
+const handleKeyPresses = (puzzle) => {
+  const solution = puzzle.solution;
+
   document.addEventListener('keyup', (event) => {
     const input = document.activeElement;
     const i = parseInt(input.parentElement.dataset.i);
     const j = parseInt(input.parentElement.dataset.j);
 
     if (event.key === "ArrowRight" && solution[j][i+1] && solution[j][i+1] != '.') {
-      handleArrow(i+1, j, true);
+      handleArrow(i+1, j, true, puzzle);
     } else if (event.key === "ArrowLeft" && solution[j][i-1] && solution[j][i-1] != '.') {
-      handleArrow(i-1, j, true);
+      handleArrow(i-1, j, true, puzzle);
     } else if (event.key === "ArrowUp" && solution[j-1] && solution[j-1][i] != '.') {
-      handleArrow(i, j-1, false);
+      handleArrow(i, j-1, false, puzzle);
     } else if (event.key === "ArrowDown" && solution[j+1] && solution[j+1][i] != '.') {
-      handleArrow(i, j+1, false);
+      handleArrow(i, j+1, false, puzzle);
     } else if (event.keyCode >= 65 && event.keyCode <= 90) {
       if (direction && solution[j][i+1] && solution[j][i+1] != '.') {
-        handleArrow(i+1, j, true);
+        handleArrow(i+1, j, true, puzzle);
       } else if (!direction && solution[j+1] && solution[j+1][i] != '.') {
-        handleArrow(i, j+1, false);
+        handleArrow(i, j+1, false, puzzle);
       }
     }
   });
 };
 
-export const activate = (parameter) => {
-  puzzle = parameter;
-  activateInputs();
-  handleKeyPresses(puzzle.solution);
+export const activate = (puzzle) => {
+  activateInputs(puzzle);
+  handleKeyPresses(puzzle);
 };

@@ -8,5 +8,5 @@ const puzzle = puzzles.find(element => element.name == grid.parentElement.datase
 
 export const question = document.getElementById('question');
 
-onLoad(puzzle.solution);
+onLoad(puzzle);
 activate(puzzle);
