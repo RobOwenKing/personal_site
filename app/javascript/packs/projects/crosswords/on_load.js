@@ -20,7 +20,7 @@ const createAcrosses = (puzzle) => {
       const cell = document.getElementById(`${i+k}-${j}`);
       cell.classList.add('white');
       cell.insertAdjacentHTML('beforeend',
-      `<input type="text" maxlength="1" data-a='${pos}' />`);
+      `<input type="text" maxlength="1" data-a='${pos}' data-i='${i+k}' data-j='${j}' />`);
     }
   });
 };
@@ -35,7 +35,7 @@ const createDowns = (puzzle) => {
       if (cell.innerHTML == '') {
         cell.classList.add('white');
         cell.insertAdjacentHTML('beforeend',
-        `<input type="text" maxlength="1" data-d='${pos}' />`);
+        `<input type="text" maxlength="1" data-d='${pos}' data-i='${i}' data-j='${j+k}' />`);
       } else {
         cell.childNodes[0].dataset.d = pos;
       }
