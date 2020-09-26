@@ -16,6 +16,8 @@ const activateInputs = (puzzle) => {
 
   inputs.forEach((input) => {
     input.addEventListener('focus', (event) => {
+      if (!input.dataset.a) { direction = false; }
+      if (!input.dataset.d) { direction = true; }
       showQuestion(puzzle);
       highlightCells();
     });
