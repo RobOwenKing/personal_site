@@ -23,5 +23,8 @@ Rails.application.routes.draw do
 
   resources :star_battles, only: [ :index, :show, :new, :create ]
   get 'star_battle', to: 'puzzles#star_battle'
+
+  get "/crosswords/:crossword", to: "crosswords#show"
+  get "crosswords", to: 'projects#crosswords'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

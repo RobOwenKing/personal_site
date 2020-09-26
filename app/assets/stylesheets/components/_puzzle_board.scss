@@ -4,9 +4,10 @@
 }
 
 #puzzle-grid th, td {
-  height: 40px;
-  width: 40px;
+  height: 32px;
+  width: 32px;
   border: 2px solid #CCCCCC;
+  position: relative;
 }
 
 .clickable {
@@ -28,6 +29,10 @@
   color: white;
 }
 
+.highlighted {
+  background-color: rgba(245, 126, 42, 0.5);
+}
+
 .border-top {
   border-top-color: black;
 }
@@ -42,4 +47,21 @@
 
 .border-left {
   border-left-color: black;
+}
+
+.q-number {
+  font-size: 10px;
+  position: absolute;
+  left: 2px;
+  top: 2px;
+}
+
+#puzzle-grid input {
+  padding: 0;
+  text-align: center;
+  border: 0;
+  height: 30px;
+  width: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
