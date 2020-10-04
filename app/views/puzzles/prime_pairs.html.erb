@@ -1,0 +1,29 @@
+<h1>Prime Pairs Plus</h1>
+
+<p>This project was inspired by Matt Parker's Maths Puzzles series (see video below).</p>
+
+<p>
+  Order digits from
+  <input type="number" id="min-term" min="1" value="1" class="narrow-input">
+  to
+  <input type="number" id="max-term" value="10" class="narrow-input">
+</p>
+
+<p>
+  So that every
+  <input type="number" id="tuple-length" value="2" class="narrow-input">
+  numbers in a row add up to a
+  <select name="filter" id="filter">
+    <option value="prime">prime number</option>
+    <option value="square">perfect square</option>
+    <option value="fibonacci">Fibonacci number</option>
+  </select>
+</p>
+
+<p id="solution"></p>
+
+<div class="line-break"></div>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/AXfl_e33Gt4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<%= javascript_pack_tag 'puzzles/prime_pairs' %>
