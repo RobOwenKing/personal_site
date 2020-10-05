@@ -41,14 +41,10 @@ const checkLast = (solutionArray) => {
   if (solutionArray.length < tupleLength) { return true; }
 
   const tuple = solutionArray.slice(-tupleLength).reduce(reducer);
-  switch(filter) {
-    case 'prime': return isPrime(tuple);
-    case 'square': return isSquare(tuple);
-    case 'fibonacci': return isFibonacci(tuple);
-  }
+  return filter.call(this, tuple);
 };
 
-const addNumberToArray = (solutionArray) => {
+const addNumberToArray = (solutionArray, filter) => {
   if (solutionArray.length === (maxTerm - minTerm + 1)) {
     solution.innerHTML = solutionArray.join(', ');
     return true;
@@ -57,7 +53,7 @@ const addNumberToArray = (solutionArray) => {
   for (let i = minTerm; i <= maxTerm; i+= 1) {
     if (!solutionArray.includes(i)) {
       solutionArray.push(i);
-      if (checkLast(solutionArray) && addNumberToArray(solutionArray)) {
+      if (checkLast(solutionArray, filter) && addNumberToArray(solutionArray)) {
         return true;
       } else {
         solutionArray.pop();
@@ -68,13 +64,21 @@ const addNumberToArray = (solutionArray) => {
   return false;
 };
 
+const setFilter = (filterValue) => {
+  switch(filterValue) {
+    case 'prime': return isPrime;
+    case 'square': return isSquare;
+    case 'fibonacci': return isFibonacci;
+  }
+}
+
 const solve = () => {
   minTerm = parseInt(inputMin.value);
   maxTerm = parseInt(inputMax.value);
   tupleLength = parseInt(inputTuple.value);
-  filter = inputFilter.value;
+  filter = setFilter(inputFilter.value);
 
-  if (!addNumberToArray([])) {
+  if (!addNumberToArray([], filter)) {
     solution.innerHTML = "No solution found, sorry";
   }
 }
