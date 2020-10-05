@@ -49,18 +49,26 @@ const setFilter = (filterValue) => {
     case 'square': return isSquare;
     case 'fibonacci': return isFibonacci;
   }
-}
+};
 
-const solve = () => {
+const updateValues = () => {
   minTerm = parseInt(inputMin.value);
   maxTerm = parseInt(inputMax.value);
   tupleLength = parseInt(inputTuple.value);
   filter = setFilter(inputFilter.value);
+};
+
+const solve = () => {
+  updateValues();
 
   if (!addNumberToArray([], filter)) {
     solution.innerHTML = "No solution found, sorry";
   }
-}
+};
+
+const count = () => {
+
+};
 
 const inputs = document.querySelectorAll('input');
 inputs.forEach((input) => {
