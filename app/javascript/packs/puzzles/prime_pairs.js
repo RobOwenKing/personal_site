@@ -1,3 +1,5 @@
+import { isSquare, isPrime, isFibonacci } from '../shared/maths';
+
 const inputMin = document.getElementById('min-term');
 const inputMax = document.getElementById('max-term');
 const inputTuple = document.getElementById('tuple-length');
@@ -8,30 +10,7 @@ let maxTerm = parseInt(inputMax.value);
 let tupleLength = parseInt(inputTuple.value);
 let filter = inputFilter.value;
 
-const fibs = [0, 1];
-
 const solutionDisplay = document.getElementById('solution');
-
-const isSquare = (number) => {
-  return (Math.floor(Math.sqrt(number)) ** 2) === number;
-}
-
-const isPrime = (number) => {
-  // Note that our number will always be > 2
-  for (let i = 2; i < number; i += 1) {
-    if (number % i == 0) {
-      return false;
-    }
-  }
-  return true;
-};
-
-const isFibonacci = (number) => {
-  while (fibs[fibs.length-1] < number) {
-    fibs.push(fibs[fibs.length-1] + fibs[fibs.length-2]);
-  }
-  return fibs.includes(number);
-}
 
 const reducer = (total, current) => {
   return total + current;
