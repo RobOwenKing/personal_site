@@ -4,6 +4,7 @@ const inputMin = document.getElementById('min-term');
 const inputMax = document.getElementById('max-term');
 const inputTuple = document.getElementById('tuple-length');
 const inputFilter = document.getElementById('filter');
+const inputCount = document.getElementById('count');
 
 let minTerm = parseInt(inputMin.value);
 let maxTerm = parseInt(inputMax.value);
@@ -11,19 +12,20 @@ let tupleLength = parseInt(inputTuple.value);
 let filter = inputFilter.value;
 
 const solutionDisplay = document.getElementById('solution');
+const totalDisplay = document.getElementById('total');
 
 const reducer = (total, current) => {
   return total + current;
 };
 
-const checkLast = (solutionArray) => {
-  if (solutionArray.length < tupleLength) { return true; }
+const checkLast = (array) => {
+  if (array.length < tupleLength) { return true; }
 
-  const tuple = solutionArray.slice(-tupleLength).reduce(reducer);
+  const tuple = array.slice(-tupleLength).reduce(reducer);
   return filter.call(this, tuple);
 };
 
-const addNumberToArray = (solutionArray, filter) => {
+const iterateSolve = (solutionArray) => {
   if (solutionArray.length === (maxTerm - minTerm + 1)) {
     solution.innerHTML = solutionArray.join(', ');
     return true;
@@ -32,12 +34,11 @@ const addNumberToArray = (solutionArray, filter) => {
   for (let i = minTerm; i <= maxTerm; i+= 1) {
     if (!solutionArray.includes(i)) {
       solutionArray.push(i);
-      if (checkLast(solutionArray, filter) && addNumberToArray(solutionArray)) {
+      if (checkLast(solutionArray) && iterateSolve(solutionArray)) {
         return true;
       } else {
         solutionArray.pop();
       }
-
     }
   }
   return false;
@@ -61,24 +62,59 @@ const updateValues = () => {
 const solve = () => {
   updateValues();
 
-  if (!addNumberToArray([], filter)) {
+  if (!iterateSolve([])) {
     solution.innerHTML = "No solution found, sorry";
   }
 };
 
-const count = () => {
+const iterateCount = (countArray, counter) => {
+  if (countArray.length === (maxTerm - minTerm + 1)) {
+    counter += 1;
+    return counter;
+  }
 
+  for (let i = minTerm; i <= maxTerm; i+= 1) {
+    if (!countArray.includes(i)) {
+      countArray.push(i);
+      if (checkLast(countArray)) {
+        counter = iterateCount(countArray, counter);
+      }
+      countArray.pop();
+    }
+  }
+
+  return counter;
 };
 
-const inputs = document.querySelectorAll('input');
-inputs.forEach((input) => {
-  input.addEventListener('input', (event) => {
-    solve();
-  })
-});
+const count = () => {
+  updateValues();
 
-document.querySelector('select').addEventListener('input', (event) => {
+  totalDisplay.innerHTML = iterateCount([], 0);
+};
+
+const run = () => {
   solve();
+  if (inputCount.checked) {
+    count();
+  } else {
+    totalDisplay.innerHTML = "Not counting";
+  }
+};
+
+inputMin.addEventListener('input', (event) => {
+  run();
 });
 
-solve();
+inputMax.addEventListener('input', (event) => {
+  run();
+});
+
+inputTuple.addEventListener('input', (event) => {
+  run();
+});
+
+inputFilter.addEventListener('input', (event) => {
+  run();
+});
+
+run();

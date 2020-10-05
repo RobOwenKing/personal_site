@@ -3,10 +3,10 @@
 <p>This project was inspired by Matt Parker's Maths Puzzles series (see video below).</p>
 
 <p>
-  Order digits from
+  Order the numbers from
   <input type="number" id="min-term" min="1" value="1" class="narrow-input">
   to
-  <input type="number" id="max-term" value="10" class="narrow-input">
+  <input type="number" id="max-term" value="3" class="narrow-input">
 </p>
 
 <p>
@@ -20,10 +20,19 @@
   </select>
 </p>
 
-<p id="solution"></p>
+<p class="large-text" id="solution"></p>
+
+<label for="count">Count solutions?</label>
+<input type="checkbox" id="count" checked>
+
+<p>Total solutions: <span id="total"></span></p>
+
+<p>Note that the count of solutions counts each solution and its reverse as different, so you may wish to divide the answer given by two.</p>
 
 <div class="line-break"></div>
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/AXfl_e33Gt4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div class="iframe-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/AXfl_e33Gt4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 <%= javascript_pack_tag 'puzzles/prime_pairs' %>
