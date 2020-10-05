@@ -90,4 +90,8 @@ inputs.forEach((input) => {
   })
 });
 
+document.querySelector('select').addEventListener('input', (event) => {
+  solve();
+});
+
 solve();
