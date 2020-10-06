@@ -2,7 +2,7 @@ const isSquare = (number) => {
   if (number < 0) { return false; }
 
   return (Math.floor(Math.sqrt(number)) ** 2) === number;
-}
+};
 
 const isPrime = (number) => {
   if (number < 2) { return false; }
@@ -24,6 +24,12 @@ const isFibonacci = (number) => {
     fibs.push(fibs[fibs.length-1] + fibs[fibs.length-2]);
   }
   return fibs.includes(number);
-}
+};
 
-export { isSquare, isPrime, isFibonacci };
+const isTriangle = (number) => {
+  const option = Math.floor(Math.sqrt(number * 2));
+
+  return (option * (option + 1)) / 2 === number;
+};
+
+export { isSquare, isPrime, isFibonacci, isTriangle };

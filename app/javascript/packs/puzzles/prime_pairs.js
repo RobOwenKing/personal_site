@@ -1,4 +1,4 @@
-import { isSquare, isPrime, isFibonacci } from '../shared/maths';
+import { isSquare, isPrime, isFibonacci, isTriangle } from '../shared/maths';
 
 const inputMin = document.getElementById('min-term');
 const inputMax = document.getElementById('max-term');
@@ -49,6 +49,7 @@ const setFilter = (filterValue) => {
     case 'prime': return isPrime;
     case 'square': return isSquare;
     case 'fibonacci': return isFibonacci;
+    case 'triangle': return isTriangle;
   }
 };
 
@@ -70,7 +71,6 @@ const solve = () => {
 const iterateCount = (countArray, counter) => {
   if (countArray.length === (maxTerm - minTerm + 1)) {
     counter += 1;
-    console.log(countArray);
     return counter;
   }
 
@@ -103,10 +103,12 @@ const run = () => {
 };
 
 inputMin.addEventListener('input', (event) => {
+  inputMax.setAttribute('min', parseInt(inputMin.value) + 1);
   run();
 });
 
 inputMax.addEventListener('input', (event) => {
+  inputMin.setAttribute('max', parseInt(inputMax.value) - 1);
   run();
 });
 
