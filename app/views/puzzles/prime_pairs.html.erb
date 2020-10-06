@@ -4,7 +4,7 @@
 
 <p>
   Order the numbers from
-  <input type="number" id="min-term" min="1" value="1" class="narrow-input">
+  <input type="number" id="min-term" value="1" class="narrow-input">
   to
   <input type="number" id="max-term" value="3" class="narrow-input">
 </p>
@@ -12,7 +12,7 @@
 <p>
   So that every
   <input type="number" id="tuple-length" value="2" class="narrow-input">
-  numbers in a row add up to a
+  numbers in a row add up to a positive
   <select name="filter" id="filter">
     <option value="prime">prime number</option>
     <option value="square">perfect square</option>
@@ -21,6 +21,8 @@
 </p>
 
 <p class="large-text" id="solution"></p>
+
+<br>
 
 <label for="count">Count solutions?</label>
 <input type="checkbox" id="count" checked>

@@ -70,6 +70,7 @@ const solve = () => {
 const iterateCount = (countArray, counter) => {
   if (countArray.length === (maxTerm - minTerm + 1)) {
     counter += 1;
+    console.log(countArray);
     return counter;
   }
 

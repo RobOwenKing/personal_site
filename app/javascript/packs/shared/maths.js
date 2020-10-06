@@ -1,9 +1,12 @@
 const isSquare = (number) => {
+  if (number < 0) { return false; }
+
   return (Math.floor(Math.sqrt(number)) ** 2) === number;
 }
 
 const isPrime = (number) => {
-  // Note that our number will always be > 2
+  if (number < 2) { return false; }
+
   for (let i = 2; i < number; i += 1) {
     if (number % i == 0) {
       return false;
@@ -15,6 +18,8 @@ const isPrime = (number) => {
 const fibs = [0, 1];
 
 const isFibonacci = (number) => {
+  if (number < 0) { return false; }
+
   while (fibs[fibs.length-1] < number) {
     fibs.push(fibs[fibs.length-1] + fibs[fibs.length-2]);
   }
