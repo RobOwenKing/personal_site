@@ -11,26 +11,7 @@ const showQuestion = (puzzle) => {
   }
 };
 
-const activateInputs = (puzzle) => {
-  const inputs = document.querySelectorAll('input');
-
-  inputs.forEach((input) => {
-    input.addEventListener('focus', (event) => {
-      if (!input.dataset.a) { direction = false; }
-      if (!input.dataset.d) { direction = true; }
-      showQuestion(puzzle);
-      highlightCells();
-    });
-  });
-};
-
 const highlightCells = () => {
-  const current = document.querySelectorAll('.highlighted');
-  current.forEach((cell) => {
-    cell.classList.remove('highlighted');
-    cell.classList.add('white');
-  });
-
   const active = document.activeElement;
   const letter = direction ? 'a' : 'd';
   const target = direction ? active.dataset.a : active.dataset.d;
@@ -41,9 +22,35 @@ const highlightCells = () => {
   });
 };
 
+const unhighlightCells = () => {
+  const current = document.querySelectorAll('.highlighted');
+  current.forEach((cell) => {
+    cell.classList.remove('highlighted');
+    cell.classList.add('white');
+  });
+};
+
+const activateInputs = (puzzle) => {
+  const inputs = document.querySelectorAll('input');
+
+  inputs.forEach((input) => {
+    input.addEventListener('focus', (event) => {
+      if (!input.dataset.a) { direction = false; }
+      if (!input.dataset.d) { direction = true; }
+      showQuestion(puzzle);
+      highlightCells();
+    });
+
+    input.addEventListener('blur', (event) => {
+      unhighlightCells();
+    })
+  });
+};
+
 const handleArrow = (i, j, dir, puzzle) => {
   if (dir != direction) {
     direction = !direction;
+    unhighlightCells();
     highlightCells();
     showQuestion(puzzle);
   } else {
