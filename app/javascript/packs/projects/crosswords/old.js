@@ -1,3 +1,4 @@
+/*
 const createGrid = (solution) => {
   let qNumber = 1;
   for (let j = 0; j < solution.length; j += 1) {
@@ -161,3 +162,4 @@ const fillGrid = (solution) => {
     }
   });
 };
+*/
