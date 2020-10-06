@@ -1,0 +1,41 @@
+<h1>Prime Pairs Plus</h1>
+
+<p>This project was inspired by the below video in the series Matt Parker's Maths Puzzles. I recommend trying it yourself first: order the number 1 to 9 so that any two next to each other add up to a prime number. The below tool finds solutions to this and a range of related problems.</p>
+
+<p>
+  Order the numbers from
+  <input type="number" id="min-term" value="1" max="2" class="narrow-input">
+  to
+  <input type="number" id="max-term" value="3" min="2" class="narrow-input">
+</p>
+
+<p>
+  So that every
+  <input type="number" id="tuple-length" value="2" class="narrow-input">
+  numbers in a row add up to a positive
+  <select name="filter" id="filter">
+    <option value="prime">prime number</option>
+    <option value="square">perfect square</option>
+    <option value="fibonacci">Fibonacci number</option>
+    <option value="triangle">triangle number</option>
+  </select>
+</p>
+
+<p class="large-text" id="solution"></p>
+
+<br>
+
+<label for="count">Count solutions?</label>
+<input type="checkbox" id="count" checked>
+
+<p class="large-text">Total solutions: <span id="total"></span></p>
+
+<p>Note that the count of solutions counts each solution and its reverse as different, so you may wish to divide the answer given by two.</p>
+
+<div class="line-break"></div>
+
+<div class="iframe-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/AXfl_e33Gt4" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<%= javascript_pack_tag 'puzzles/prime_pairs' %>

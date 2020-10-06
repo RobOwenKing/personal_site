@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'transitions', to: 'projects#transitions'
 
   get 'harki', to: 'puzzles#harki'
+  get 'prime_pairs', to: 'puzzles#prime_pairs'
   get 'wahnu', to: 'puzzles#wahnu'
 
   get 'tetris', to: 'projects#tetris'
