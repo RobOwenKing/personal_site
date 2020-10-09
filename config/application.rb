@@ -24,6 +24,6 @@ module PersonalSite
 end
 
 # Bug (in SASS?) after upgrade to Ruby 2.6.6
-Rails.application.config.assets.configure do |env|
-  env.export_concurrent = false
-end
+# Rails.application.config.assets.configure do |env|
+#   env.export_concurrent = false
+# end
