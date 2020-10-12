@@ -7,12 +7,15 @@
   border: solid black 1px;
   background: white;
   outline: none;
+}
+
+.slider-opacity {
   opacity: 0.8;
   -webkit-transition: .2s;
   transition: opacity .2s;
 }
 
-.slider:hover {
+.slider-opacity:hover {
   opacity: 1;
 }
 
