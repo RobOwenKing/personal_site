@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'colour_translator', to: 'projects#colour_translator'
   get 'euler_spiral', to: 'projects#euler_spiral'
   get 'game_of_life', to: 'projects#game_of_life'
+  get 'money', to: 'projects#money'
   get 'regex_challenges', to: 'projects#regex'
   get 'roman_calculator', to: 'projects#roman_calculator'
   # get 'snake', to: 'projects#snake'
