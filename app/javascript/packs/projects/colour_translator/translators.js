@@ -42,7 +42,7 @@ export const RGBtoHSL = () => {
   const sRaw = calculateS(delta, lRaw);
 
   // Return the values, moving S and L to 0 to 100
-  return [hValue, sRaw * 100, lRaw * 100];
+  return [Math.round(hValue), Math.round(sRaw * 100), Math.round(lRaw * 100)];
 };
 
 const calculateRGBPrimes = (cValue, xValue) => {
@@ -80,5 +80,5 @@ export const HSLtoRGB = () => {
   const gValue = (RGBPrimes[1] + mValue) * 255;
   const bValue = (RGBPrimes[2] + mValue) * 255;
 
-  return [rValue, gValue, bValue];
+  return [Math.round(rValue), Math.round(gValue), Math.round(bValue)];
 };
