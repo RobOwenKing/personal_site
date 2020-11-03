@@ -20,11 +20,11 @@ const template = {
 const helloWorld = {
   name: "Hello World!",
   value: "hello-world",
-  description: "Welcome to my Regex Challenges. So you've learnt the basics of regex somewhere like <a href='https://regexone.com/'>regexone.com</a>, right? You know they're important, you've got a bit of a feel for them, but you also know you need some more practice. That's where I was a couple of weeks ago when I decided to build these challenges.<div>They start easier and get harder. You get a tick for each string when you get the described match(es), but that's not required to move on. Skip a challenge if you want, or stay on one and experiment some more. Note: this is built in Javascript, but I've tried to make sure the challenges can be answered with implementation-independent expressions.</div><div>First, let's refresh the basics. Here are three strings to match and two to avoid matching. Enter your expression and flags below.</div>",
+  description: "<p>Welcome to my Regex Challenges. So you've learnt the basics of regex somewhere like <a href='https://regexone.com/'>regexone.com</a> and now you want a bit more practice? Great! That's where I was when I decided to build these challenges. They are not to teach you best practices and optimal real-world solutions, instead they are for you to become more familiar and comfortable.</p><p>They start easier and get harder. You get a tick for each string when you get the described match(es), but that's not required to move on. Skip a challenge if you want, or stay on one and experiment some more. Note: this is built using the Javascript regular expression engine and <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/@@match'>.match()</a>.</p><p>First, let's refresh the basics. Here are three strings to match and two to avoid matching. Enter your expression and flags below.</p>",
   strings: [
     [
       "Hello, World!",
-      "Hello world",
+      "Hello world?",
       "HELLO WORLD!"
     ],
     [
@@ -34,9 +34,10 @@ const helloWorld = {
   ],
   matches: [
     ["Hello, World!"],
-    ["Hello world"],
+    ["Hello world?"],
     ["HELLO WORLD!"]
-  ]
+  ],
+  solution: /hello,? world(!|\?)/i
 };
 
 const ordinals = {
@@ -58,7 +59,8 @@ const ordinals = {
     ["1st", "2nd", "3rd", "4th"],
     ["21ST"],
     ["10th"]
-  ]
+  ],
+  solution: /\d+(st|nd|rd|th)\b/ig
 };
 
 const catalan = {
@@ -80,7 +82,8 @@ const catalan = {
     ["Català"],
     ["Força"],
     ["adéu", "diacrítics"]
-  ]
+  ],
+  solution: /\w*[àéíç]\w*/gi
 };
 
 const roman = {
@@ -105,7 +108,8 @@ const roman = {
     ["XLII"],
     ["MMXX"],
     ["MDCCXXIX"]
-  ]
+  ],
+  solution: /M{0,3}(C[MD]|D?C{0,3})?(X[CL]|L?X{0,3})?(I[XV]|V?I{0,3})?/
 }
 
 const regex = {
