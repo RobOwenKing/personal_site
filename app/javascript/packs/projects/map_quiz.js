@@ -1,1 +1,3 @@
-map_quiz.js
+const place = document.getElementById('place');
+
+place.innerText = "Arizona";
