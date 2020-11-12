@@ -10,8 +10,8 @@ const fillCell = (i, j) => {
   const value = puzzleBoard[j][i];
   if (value === '.') {
     return `<td data-x="${i}" data-y="${j}" class="white clickable"></td>`
-  } else if (value === '?') {
-    return `<td data-x="${i}" data-y="${j}" class="black"></td>`
+  } else {
+    return `<td data-x="${i}" data-y="${j}" class="black">${value === '?' ? '' : value}</td>`
   }
 };
 
