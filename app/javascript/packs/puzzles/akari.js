@@ -3,7 +3,7 @@ import { deepCopy } from '../shared/copy.js';
 const board = document.getElementById('board');
 
 const puzzleBoard = [
-  ['.', '?', '.'],
+  ['.', '.', '.'],
   ['.', '3', '.'],
   ['.', '.', '.'],
 ];
@@ -18,14 +18,23 @@ const createBoard = () => {
     temp.push(deepCopy(latestRow));
   }
   return temp;
-}
+};
+
+const createCheckBoard = (newBoard) => {
+  for (let j = 0; j < puzzleBoard.length; j += 1) {
+    for (let i = 0; i < puzzleBoard[0].length; i += 1) {
+      if (puzzleBoard[j][i] === '-') { newBoard[j][i] = 1; }
+    }
+  }
+  return newBoard;
+};
 
 const fillCell = (i, j) => {
   const value = puzzleBoard[j][i];
   if (value === '.') {
-    return `<td data-x="${i}" data-y="${j}" class="white clickable"></td>`
+    return `<td id="cell-${i}-${j}"" data-x="${i}" data-y="${j}" class="white clickable"></td>`
   } else {
-    return `<td data-x="${i}" data-y="${j}" class="black">${value === '?' ? '' : value}</td>`
+    return `<td data-x="${i}" data-y="${j}" class="black">${value === '-' ? '' : value}</td>`
   }
 };
 
@@ -40,9 +49,29 @@ const fillBoard = () => {
   }
 };
 
+const handleNumber = (i, j) => {
+  checkBoard[j][i] += 1;
+}
+
+const handleAddingLight = (i, j) => {
+  if (puzzleBoard[j][i-1] && puzzleBoard[j][i-1] != '.') {
+    handleNumber(i-1, j);
+  }
+  if (puzzleBoard[j][i+1] && puzzleBoard[j][i+1] != '.') {
+    handleNumber(i+1, j);
+  }
+  if (puzzleBoard[j-1] && puzzleBoard[j-1][i] != '.') {
+    handleNumber(i, j-1);
+  }
+  if (puzzleBoard[j+1] && puzzleBoard[j+1][i] != '.') {
+    handleNumber(i, j+1);
+  }
+  console.log(checkBoard);
+};
+
 const handleClick = (cell) => {
-  const j = cell.dataset.y;
-  const i = cell.dataset.x;
+  const j = parseInt(cell.dataset.y);
+  const i = parseInt(cell.dataset.x);
   answerBoard[j][i] = (answerBoard[j][i] + 1) % 3;
 
   if (answerBoard[j][i] === 0) {
@@ -55,12 +84,12 @@ const handleClick = (cell) => {
     cell.classList.remove('red-txt');
     cell.classList.add('yellow-bg');
     cell.innerHTML = '<i class="far fa-lightbulb"></i>';
+    handleAddingLight(i, j);
   }
-}
+};
 
 const activateCells = () => {
   const cells = document.querySelectorAll('#board [class*="white"]')
-  console.log(cells);
   cells.forEach((cell) => {
     cell.addEventListener('mousedown', (event) => {
       handleClick(cell);
@@ -69,7 +98,10 @@ const activateCells = () => {
 };
 
 const answerBoard = createBoard();
-const checkBoard = createBoard();
+const checkBoard = createCheckBoard(createBoard());
+
+console.log(answerBoard);
+console.log(checkBoard);
 
 fillBoard();
 activateCells();
