@@ -5,7 +5,7 @@ const board = document.getElementById('board');
 const puzzleBoard = [
   ['.', '.', '.'],
   ['.', '3', '.'],
-  ['.', '.', '.'],
+  ['.', '.', '2'],
 ];
 
 const createBoard = () => {
@@ -32,9 +32,9 @@ const createCheckBoard = (newBoard) => {
 const fillCell = (i, j) => {
   const value = puzzleBoard[j][i];
   if (value === '.') {
-    return `<td id="cell-${i}-${j}"" data-x="${i}" data-y="${j}" class="white clickable"></td>`
+    return `<td id="cell-${i}-${j}" data-x="${i}" data-y="${j}" class="white clickable"></td>`
   } else {
-    return `<td data-x="${i}" data-y="${j}" class="black">${value === '-' ? '' : value}</td>`
+    return `<td id="cell-${i}-${j}" data-x="${i}" data-y="${j}" class="black">${value === '-' ? '' : value}</td>`
   }
 };
 
@@ -49,22 +49,39 @@ const fillBoard = () => {
   }
 };
 
-const handleNumber = (i, j) => {
+const updateNumber = (i, j) => {
+  const cell = document.getElementById(`cell-${i}-${j}`);
+  if (checkBoard[j][i] > puzzleBoard[j][i]) {
+    cell.classList.remove('green-txt');
+    cell.classList.add('red-txt');
+    cell.innerHTML = puzzleBoard[j][i];
+  } else if (checkBoard[j][i] == puzzleBoard[j][i]) {
+    cell.classList.remove('red-txt');
+    cell.classList.add('green-txt');
+    cell.innerHTML = '<i class="fas fa-check"></i>';
+  } else {
+    cell.classList.remove('green-txt');
+    cell.innerHTML = puzzleBoard[j][i];
+  }
+};
+
+const handleAddingNeighbour = (i, j) => {
   checkBoard[j][i] += 1;
-}
+  updateNumber(i, j);
+};
 
 const handleAddingLight = (i, j) => {
   if (puzzleBoard[j][i-1] && puzzleBoard[j][i-1] != '.') {
-    handleNumber(i-1, j);
+    handleAddingNeighbour(i-1, j);
   }
   if (puzzleBoard[j][i+1] && puzzleBoard[j][i+1] != '.') {
-    handleNumber(i+1, j);
+    handleAddingNeighbour(i+1, j);
   }
   if (puzzleBoard[j-1] && puzzleBoard[j-1][i] != '.') {
-    handleNumber(i, j-1);
+    handleAddingNeighbour(i, j-1);
   }
   if (puzzleBoard[j+1] && puzzleBoard[j+1][i] != '.') {
-    handleNumber(i, j+1);
+    handleAddingNeighbour(i, j+1);
   }
   console.log(checkBoard);
 };
