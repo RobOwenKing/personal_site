@@ -70,6 +70,11 @@ const handleAddingNeighbour = (i, j) => {
   updateNumber(i, j);
 };
 
+const handleRemovingNeighbour = (i, j) => {
+  checkBoard[j][i] -= 1;
+  updateNumber(i, j);
+};
+
 const handleAddingLight = (i, j) => {
   if (puzzleBoard[j][i-1] && puzzleBoard[j][i-1] != '.') {
     handleAddingNeighbour(i-1, j);
@@ -83,7 +88,21 @@ const handleAddingLight = (i, j) => {
   if (puzzleBoard[j+1] && puzzleBoard[j+1][i] != '.') {
     handleAddingNeighbour(i, j+1);
   }
-  console.log(checkBoard);
+};
+
+const handleRemovingLight = (i, j) => {
+  if (puzzleBoard[j][i-1] && puzzleBoard[j][i-1] != '.') {
+    handleRemovingNeighbour(i-1, j);
+  }
+  if (puzzleBoard[j][i+1] && puzzleBoard[j][i+1] != '.') {
+    handleRemovingNeighbour(i+1, j);
+  }
+  if (puzzleBoard[j-1] && puzzleBoard[j-1][i] != '.') {
+    handleRemovingNeighbour(i, j-1);
+  }
+  if (puzzleBoard[j+1] && puzzleBoard[j+1][i] != '.') {
+    handleRemovingNeighbour(i, j+1);
+  }
 };
 
 const handleClick = (cell) => {
@@ -94,6 +113,7 @@ const handleClick = (cell) => {
   if (answerBoard[j][i] === 0) {
     cell.classList.remove('yellow-bg');
     cell.innerHTML = '';
+    handleRemovingLight(i, j);
   } else if (answerBoard[j][i] === 1) {
     cell.classList.add('red-txt');
     cell.innerHTML = '<i class="fas fa-times"></i>';
