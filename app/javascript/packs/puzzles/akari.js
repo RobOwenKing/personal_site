@@ -75,21 +75,34 @@ const handleRemovingNeighbour = (i, j) => {
   updateNumber(i, j);
 };
 
-const propagateAddedLight = (i, j, deltaI, deltaJ) => {
+const handleYellowBackground = (i, j) => {
+  const cell = document.getElementById(`cell-${i}-${j}`);
+  if (checkBoard[j][i] > 0) {
+    cell.classList.add('yellow-bg');
+  } else {
+    cell.classList.remove('yellow-bg');
+  }
+};
+
+const propagateAddedLight = (i, j, deltaI, deltaJ, isImmediateNeighbour) => {
   let currentI = i + deltaI;
   let currentJ = j + deltaJ;
   if (puzzleBoard[currentJ] && puzzleBoard[currentJ][currentI]) {
     if (puzzleBoard[currentJ][currentI] != '.') {
-      handleAddingNeighbour(currentI, currentJ);
+      if (isImmediateNeighbour) { handleAddingNeighbour(currentI, currentJ); }
+    } else {
+      checkBoard[currentJ][currentI] += 1;
+      handleYellowBackground(currentI, currentJ);
+      propagateAddedLight(currentI, currentJ, deltaI, deltaJ, false);
     }
   }
 };
 
 const handleAddingLight = (i, j) => {
-  propagateAddedLight(i, j, -1, 0);
-  propagateAddedLight(i, j, 1, 0);
-  propagateAddedLight(i, j, 0, -1);
-  propagateAddedLight(i, j, 0, 1);
+  propagateAddedLight(i, j, -1, 0, true);
+  propagateAddedLight(i, j, 1, 0, true);
+  propagateAddedLight(i, j, 0, -1, true);
+  propagateAddedLight(i, j, 0, 1, true);
 };
 
 const handleRemovingLight = (i, j) => {
@@ -113,7 +126,7 @@ const handleClick = (cell) => {
   answerBoard[j][i] = (answerBoard[j][i] + 1) % 3;
 
   if (answerBoard[j][i] === 0) {
-    cell.classList.remove('yellow-bg');
+    checkBoard[j][i] -= 1;
     cell.innerHTML = '';
     handleRemovingLight(i, j);
   } else if (answerBoard[j][i] === 1) {
@@ -121,10 +134,11 @@ const handleClick = (cell) => {
     cell.innerHTML = '<i class="fas fa-times"></i>';
   } else {
     cell.classList.remove('red-txt');
-    cell.classList.add('yellow-bg');
+    checkBoard[j][i] += 1;
     cell.innerHTML = '<i class="far fa-lightbulb"></i>';
     handleAddingLight(i, j);
   }
+  handleYellowBackground(i, j);
 };
 
 const activateCells = () => {
