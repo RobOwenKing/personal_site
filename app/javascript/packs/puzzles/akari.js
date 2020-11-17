@@ -75,19 +75,21 @@ const handleRemovingNeighbour = (i, j) => {
   updateNumber(i, j);
 };
 
+const propagateAddedLight = (i, j, deltaI, deltaJ) => {
+  let currentI = i + deltaI;
+  let currentJ = j + deltaJ;
+  if (puzzleBoard[currentJ] && puzzleBoard[currentJ][currentI]) {
+    if (puzzleBoard[currentJ][currentI] != '.') {
+      handleAddingNeighbour(currentI, currentJ);
+    }
+  }
+};
+
 const handleAddingLight = (i, j) => {
-  if (puzzleBoard[j][i-1] && puzzleBoard[j][i-1] != '.') {
-    handleAddingNeighbour(i-1, j);
-  }
-  if (puzzleBoard[j][i+1] && puzzleBoard[j][i+1] != '.') {
-    handleAddingNeighbour(i+1, j);
-  }
-  if (puzzleBoard[j-1] && puzzleBoard[j-1][i] != '.') {
-    handleAddingNeighbour(i, j-1);
-  }
-  if (puzzleBoard[j+1] && puzzleBoard[j+1][i] != '.') {
-    handleAddingNeighbour(i, j+1);
-  }
+  propagateAddedLight(i, j, -1, 0);
+  propagateAddedLight(i, j, 1, 0);
+  propagateAddedLight(i, j, 0, -1);
+  propagateAddedLight(i, j, 0, 1);
 };
 
 const handleRemovingLight = (i, j) => {
