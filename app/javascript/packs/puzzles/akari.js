@@ -86,6 +86,11 @@ const handleYellowBackground = (i, j) => {
   } else {
     cell.classList.remove('yellow-bg');
   }
+  if (answerBoard[j][i] == 2 && checkBoard[j][i] > 1) {
+    cell.classList.add('red-txt');
+  } else {
+    cell.classList.remove('red-txt');
+  }
 };
 
 const propagateAddedLight = (i, j, deltaI, deltaJ, isImmediateNeighbour) => {
@@ -140,10 +145,8 @@ const handleClick = (cell) => {
     cell.innerHTML = '';
     handleRemovingLight(i, j);
   } else if (answerBoard[j][i] === 1) {
-    cell.classList.add('red-txt');
     cell.innerHTML = '<i class="fas fa-times"></i>';
   } else {
-    if (checkBoard[j][i] == 0) { cell.classList.remove('red-txt'); }
     checkBoard[j][i] += 1;
     cell.innerHTML = '<i class="far fa-lightbulb"></i>';
     handleAddingLight(i, j);
