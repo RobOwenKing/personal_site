@@ -49,8 +49,12 @@ const fillBoard = () => {
   }
 };
 
+const findCell = (i, j) => {
+  return document.getElementById(`cell-${i}-${j}`);
+};
+
 const updateNumber = (i, j) => {
-  const cell = document.getElementById(`cell-${i}-${j}`);
+  const cell = findCell(i, j);
   if (checkBoard[j][i] > puzzleBoard[j][i]) {
     cell.classList.remove('green-txt');
     cell.classList.add('red-txt');
@@ -76,7 +80,7 @@ const handleRemovingNeighbour = (i, j) => {
 };
 
 const handleYellowBackground = (i, j) => {
-  const cell = document.getElementById(`cell-${i}-${j}`);
+  const cell = findCell(i, j);
   if (checkBoard[j][i] > 0) {
     cell.classList.add('yellow-bg');
   } else {
@@ -85,8 +89,8 @@ const handleYellowBackground = (i, j) => {
 };
 
 const propagateAddedLight = (i, j, deltaI, deltaJ, isImmediateNeighbour) => {
-  let currentI = i + deltaI;
-  let currentJ = j + deltaJ;
+  const currentI = i + deltaI;
+  const currentJ = j + deltaJ;
   if (puzzleBoard[currentJ] && puzzleBoard[currentJ][currentI]) {
     if (puzzleBoard[currentJ][currentI] != '.') {
       if (isImmediateNeighbour) { handleAddingNeighbour(currentI, currentJ); }
@@ -99,15 +103,15 @@ const propagateAddedLight = (i, j, deltaI, deltaJ, isImmediateNeighbour) => {
 };
 
 const propagateRemovedLight = (i, j, deltaI, deltaJ, isImmediateNeighbour) => {
-  let currentI = i + deltaI;
-  let currentJ = j + deltaJ;
+  const currentI = i + deltaI;
+  const currentJ = j + deltaJ;
   if (puzzleBoard[currentJ] && puzzleBoard[currentJ][currentI]) {
     if (puzzleBoard[currentJ][currentI] != '.') {
       if (isImmediateNeighbour) { handleRemovingNeighbour(currentI, currentJ); }
     } else {
       checkBoard[currentJ][currentI] -= 1;
       handleYellowBackground(currentI, currentJ);
-      propagateAddedLight(currentI, currentJ, deltaI, deltaJ, false);
+      propagateRemovedLight(currentI, currentJ, deltaI, deltaJ, false);
     }
   }
 };
@@ -139,7 +143,7 @@ const handleClick = (cell) => {
     cell.classList.add('red-txt');
     cell.innerHTML = '<i class="fas fa-times"></i>';
   } else {
-    cell.classList.remove('red-txt');
+    if (checkBoard[j][i] == 0) { cell.classList.remove('red-txt'); }
     checkBoard[j][i] += 1;
     cell.innerHTML = '<i class="far fa-lightbulb"></i>';
     handleAddingLight(i, j);
