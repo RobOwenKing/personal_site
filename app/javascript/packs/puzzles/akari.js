@@ -3,9 +3,11 @@ import { deepCopy } from '../shared/copy.js';
 const board = document.getElementById('board');
 
 const puzzleBoard = [
-  ['.', '.', '.'],
-  ['.', '3', '.'],
-  ['.', '.', '2'],
+  ['.', '.', '.', '.', '.'],
+  ['.', '3', '.', '.', '.'],
+  ['.', '.', '2', '-', '.'],
+  ['.', '.', '0', '.', '.'],
+  ['.', '.', '.', '.', '.']
 ];
 
 const createBoard = () => {
@@ -65,7 +67,7 @@ const updateNumber = (i, j) => {
     cell.innerHTML = '<i class="fas fa-check"></i>';
   } else {
     cell.classList.remove('green-txt');
-    cell.innerHTML = puzzleBoard[j][i];
+    cell.innerHTML = puzzleBoard[j][i] == '-' ? '' : puzzleBoard[j][i];
   }
 };
 
