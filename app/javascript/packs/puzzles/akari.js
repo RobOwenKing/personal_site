@@ -98,6 +98,20 @@ const propagateAddedLight = (i, j, deltaI, deltaJ, isImmediateNeighbour) => {
   }
 };
 
+const propagateRemovedLight = (i, j, deltaI, deltaJ, isImmediateNeighbour) => {
+  let currentI = i + deltaI;
+  let currentJ = j + deltaJ;
+  if (puzzleBoard[currentJ] && puzzleBoard[currentJ][currentI]) {
+    if (puzzleBoard[currentJ][currentI] != '.') {
+      if (isImmediateNeighbour) { handleRemovingNeighbour(currentI, currentJ); }
+    } else {
+      checkBoard[currentJ][currentI] -= 1;
+      handleYellowBackground(currentI, currentJ);
+      propagateAddedLight(currentI, currentJ, deltaI, deltaJ, false);
+    }
+  }
+};
+
 const handleAddingLight = (i, j) => {
   propagateAddedLight(i, j, -1, 0, true);
   propagateAddedLight(i, j, 1, 0, true);
@@ -106,18 +120,10 @@ const handleAddingLight = (i, j) => {
 };
 
 const handleRemovingLight = (i, j) => {
-  if (puzzleBoard[j][i-1] && puzzleBoard[j][i-1] != '.') {
-    handleRemovingNeighbour(i-1, j);
-  }
-  if (puzzleBoard[j][i+1] && puzzleBoard[j][i+1] != '.') {
-    handleRemovingNeighbour(i+1, j);
-  }
-  if (puzzleBoard[j-1] && puzzleBoard[j-1][i] != '.') {
-    handleRemovingNeighbour(i, j-1);
-  }
-  if (puzzleBoard[j+1] && puzzleBoard[j+1][i] != '.') {
-    handleRemovingNeighbour(i, j+1);
-  }
+  propagateRemovedLight(i, j, -1, 0, true);
+  propagateRemovedLight(i, j, 1, 0, true);
+  propagateRemovedLight(i, j, 0, -1, true);
+  propagateRemovedLight(i, j, 0, 1, true);
 };
 
 const handleClick = (cell) => {
