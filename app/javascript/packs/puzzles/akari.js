@@ -22,15 +22,6 @@ const createBoard = () => {
   return temp;
 };
 
-const createCheckBoard = (newBoard) => {
-  for (let j = 0; j < puzzleBoard.length; j += 1) {
-    for (let i = 0; i < puzzleBoard[0].length; i += 1) {
-      if (puzzleBoard[j][i] === '-') { newBoard[j][i] = 1; }
-    }
-  }
-  return newBoard;
-};
-
 const fillCell = (i, j) => {
   const value = puzzleBoard[j][i];
   if (value === '.') {
@@ -154,6 +145,7 @@ const handleClick = (cell) => {
     handleAddingLight(i, j);
   }
   handleYellowBackground(i, j);
+  console.log(checkBoard);
 };
 
 const activateCells = () => {
@@ -166,10 +158,7 @@ const activateCells = () => {
 };
 
 const answerBoard = createBoard();
-const checkBoard = createCheckBoard(createBoard());
-
-console.log(answerBoard);
-console.log(checkBoard);
+const checkBoard = createBoard();
 
 fillBoard();
 activateCells();
