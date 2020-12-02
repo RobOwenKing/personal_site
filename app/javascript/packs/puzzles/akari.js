@@ -128,6 +128,25 @@ const handleRemovingLight = (i, j) => {
   propagateRemovedLight(i, j, 0, 1, true);
 };
 
+const isSolution = () => {
+  for (let j = 0; j < puzzleBoard.length; j += 1) {
+    for (let i = 0; i < puzzleBoard[0].length; i += 1) {
+      const puzzleBoardValue = puzzleBoard[j][i];
+      const checkBoardValue = checkBoard[j][i];
+      if (puzzleBoardValue == '.') {
+        // Every empty square needs to be lit
+        if (checkBoardValue == 0) { return false; }
+        // Lights should not be seen by other lights
+        if (answerBoard[j][i] == 2 && checkBoardValue > 1) { return false; }
+      } else if (puzzleBoardValue != '-') {
+        // Number squares need correct number of neighbours
+        if (puzzleBoardValue != checkBoardValue) { return false; }
+      }
+    }
+  }
+  return true;
+};
+
 const handleClick = (cell) => {
   const j = parseInt(cell.dataset.y);
   const i = parseInt(cell.dataset.x);
@@ -145,7 +164,8 @@ const handleClick = (cell) => {
     handleAddingLight(i, j);
   }
   handleYellowBackground(i, j);
-  console.log(checkBoard);
+
+  if (isSolution()) {window.alert("Congratulations! You've solved it");}
 };
 
 const activateCells = () => {
