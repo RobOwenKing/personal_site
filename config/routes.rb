@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get 'sudoku', to: 'projects#sudoku'
   get 'transitions', to: 'projects#transitions'
 
+  get 'akari', to: 'puzzles#akari'
   get 'harki', to: 'puzzles#harki'
   get 'prime_pairs', to: 'puzzles#prime_pairs'
   get 'wahnu', to: 'puzzles#wahnu'
