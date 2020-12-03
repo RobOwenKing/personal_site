@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'akari/index'
+  get 'akari/show'
+  get 'akari/new'
+  get 'akari/create'
   root to: 'pages#home'
   get 'portfolio', to: 'pages#portfolio'
 
