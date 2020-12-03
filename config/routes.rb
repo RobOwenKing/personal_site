@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'akari/index'
-  get 'akari/show'
-  get 'akari/new'
-  get 'akari/create'
   root to: 'pages#home'
   get 'portfolio', to: 'pages#portfolio'
 
@@ -25,10 +21,12 @@ Rails.application.routes.draw do
   get 'prime_pairs', to: 'puzzles#prime_pairs'
   get 'wahnu', to: 'puzzles#wahnu'
 
-  get 'tetris', to: 'projects#tetris'
-  resources :tetris_scores, only: [ :index, :new, :create ]
+  resources :akari, only: [:index, :show, :new, :create]
 
-  resources :star_battles, only: [ :index, :show, :new, :create ]
+  get 'tetris', to: 'projects#tetris'
+  resources :tetris_scores, only: [:index, :new, :create]
+
+  resources :star_battles, only: [:index, :show, :new, :create]
   get 'star_battle', to: 'puzzles#star_battle'
 
   get "/crosswords/:crossword", to: "crosswords#show"
