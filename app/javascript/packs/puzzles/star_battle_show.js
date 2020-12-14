@@ -47,6 +47,6 @@ const hintButton = document.getElementById('hint-button');
 const hintDisplay = document.getElementById('hint-display');
 
 hintButton.addEventListener('click', (event) => {
-  hintButton.hidden = true;
+  hintButton.style.display = "none";
   hintDisplay.hidden = false;
 })
