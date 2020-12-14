@@ -40,3 +40,13 @@ const init = () => {
 };
 
 init();
+
+// Show page code
+
+const hintButton = document.getElementById('hint-button');
+const hintDisplay = document.getElementById('hint-display');
+
+hintButton.addEventListener('click', (event) => {
+  hintButton.hidden = true;
+  hintDisplay.hidden = false;
+})
