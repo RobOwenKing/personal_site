@@ -1,7 +1,7 @@
 import { VARS } from './setup.js';
 
 const checkGridButton = document.getElementById('check-grid');
-const stars = parseInt(JSON.parse(VARS.board.parentElement.dataset.stars));
+const stars = parseInt(JSON.parse(VARS.puzzleData.stars));
 
 const countStarsInRow = (j) => {
   let count = 0;
