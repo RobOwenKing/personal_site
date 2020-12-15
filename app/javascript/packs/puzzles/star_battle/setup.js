@@ -1,6 +1,7 @@
 import { deepCopy } from '../../shared/copy.js';
 
 const VARS = {
+  puzzleData: document.getElementById('puzzle-grid').dataset,
   board: document.getElementById('board'),
   cagesBoard: [],
   answerBoard: [],

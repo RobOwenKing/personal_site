@@ -17,8 +17,6 @@ class StarBattlesController < ApplicationController
   def create
     @star_battle = StarBattle.new(star_battle_params)
 
-    raise
-
     if @star_battle.save
       redirect_to star_battle_path(@star_battle)
     else

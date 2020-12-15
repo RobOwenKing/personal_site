@@ -2,15 +2,28 @@
 
 <h2>Puzzles</h2>
 
-<ul>
-  <% @puzzles.each do |puzzle| %>
-    <%= link_to(star_battle_path(puzzle.id)) do %>
-      <li class="btn btn-orange"><%= puzzle.name %></li>
-    <% end %>
-  <% end %>
-</ul>
+<p>New to Star Battles? Check out my Intro puzzles below.</p>
+
+<% @puzzles.each do |puzzle| %>
+  <span>
+    <%= link_to puzzle.name, star_battle_path(puzzle.id) %>
+    <%= ' · ' unless puzzle == @puzzles.last %>
+  </span>
+<% end %>
+
+<div class="line-break"></div>
+
+<h2>Intro to Star Battles</h2>
+
+<% @lessons.each do |lesson| %>
+  <span>
+    <%= link_to lesson.name, star_battle_path(lesson.id) %>
+    <%= ' · ' unless lesson == @lessons.last %>
+  </span>
+<% end %>
 
 <div class="line-break"></div>
 
 <h2>Creator and Solver</h2>
+
 <%= image_tag("screenshots/star_battle.jpg", class: "img-circle", alt: "Screenshot of the Star Battle Creator and Solver") %>

@@ -1,7 +1,7 @@
 import { VARS } from './setup.js';
 
-const checkGrid = document.getElementById('check-grid');
-const stars = parseInt(JSON.parse(VARS.board.parentElement.dataset.stars));
+const checkGridButton = document.getElementById('check-grid');
+const stars = parseInt(JSON.parse(VARS.puzzleData.stars));
 
 const countStarsInRow = (j) => {
   let count = 0;
@@ -46,30 +46,43 @@ const checkNeighbourhoodEmpty = (i, j) => {
   return true;
 };
 
-export const initCheckGrid = () => {
-  checkGrid.addEventListener('click', (event) => {
-    let correct = true;
-    const checkedCages = [];
-    for (let i = 0; i < VARS.sizeValue; i += 1) {
-      if (countStarsInRow(i) != stars || countStarsInCol(i) != stars) {
+const checkRowsAndCols = () => {
+  let correct = true;
+  for (let i = 0; i < VARS.sizeValue; i += 1) {
+    if (countStarsInRow(i) != stars || countStarsInCol(i) != stars) {
+      correct = false;
+    }
+  }
+  return correct;
+};
+
+const checkNeighbourhoodsAndCages = () => {
+  let correct = checkRowsAndCols();
+  const checkedCages = [];
+  for (let i = 0; i < VARS.sizeValue; i += 1) {
+    for (let j = 0; j < VARS.sizeValue; j += 1) {
+      if (VARS.answerBoard[j][i] == 2 && !checkNeighbourhoodEmpty(i, j)) {
         correct = false;
       }
-    }
-    for (let i = 0; i < VARS.sizeValue; i += 1) {
-      for (let j = 0; j < VARS.sizeValue; j += 1) {
-        if (VARS.answerBoard[j][i] == 2 && !checkNeighbourhoodEmpty(i, j)) {
+      const currentCage = VARS.cagesBoard[j][i]
+      if (checkedCages.indexOf(currentCage) == -1) {
+        if (countStarsInCage(currentCage) != stars) {
           correct = false;
-        }
-        const currentCage = VARS.cagesBoard[j][i]
-        if (checkedCages.indexOf(currentCage) == -1) {
-          if (countStarsInCage(currentCage) != stars) {
-            correct = false;
-          } else {
-            checkedCages.push(currentCage);
-          }
+        } else {
+          checkedCages.push(currentCage);
         }
       }
     }
-    correct ? window.alert('Looks good!') : window.alert("Seems there's something wrong, sorry!");
+  }
+  return correct;
+};
+
+export const checkGrid = () => {
+  return checkRowsAndCols() && checkNeighbourhoodsAndCages();
+};
+
+export const initCheckGrid = () => {
+  checkGridButton.addEventListener('click', (event) => {
+    checkGrid() ? window.alert('Looks good!') : window.alert("Seems there's something wrong, sorry!");
   })
 };
