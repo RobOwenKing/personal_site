@@ -21,4 +21,12 @@
 <div id="hint-button" class="btn btn-orange">Show hint</div>
 <div id="hint-display" hidden><%= @star_battle.hint %></div>
 
+<br>
+<br>
+
+<%= link_to 'Back to all puzzles', star_battles_path, class: "btn btn-blue" %>
+<% if @star_battle.next %>
+  <%= link_to 'Next puzzle', star_battle_path(@star_battle.next), class: "btn btn-orange" %>
+<% end %>
+
 <%= javascript_pack_tag 'puzzles/star_battle_show' %>
