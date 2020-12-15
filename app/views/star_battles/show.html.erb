@@ -13,13 +13,12 @@
 
 <br>
 
-<div id="hint-button" class="btn btn-orange">Show hint</div>
-<div id="hint-display" hidden><%= @star_battle.hint %></div>
-
-
 <ul>
   <li id="check-grid" class="btn btn-orange">Check answer</li>
   <li id="clear-stars" class="btn btn-blue">Clear grid</li>
 </ul>
+
+<div id="hint-button" class="btn btn-orange">Show hint</div>
+<div id="hint-display" hidden><%= @star_battle.hint %></div>
 
 <%= javascript_pack_tag 'puzzles/star_battle_show' %>
