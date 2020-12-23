@@ -20,7 +20,7 @@ const template = {
 const helloWorld = {
   name: "Hello World!",
   value: "hello-world",
-  description: "<p>Welcome to my Regex Challenges. So you've learnt the basics of regex somewhere like <a href='https://regexone.com/'>regexone.com</a> and now you want a bit more practice? Great! That's where I was when I decided to build these challenges. They are not to teach you best practices and optimal real-world solutions, instead they are for you to become more familiar and comfortable.</p><p>They start easier and get harder. You get a tick for each string when you get the described match(es), but that's not required to move on. Skip a challenge if you want, or stay on one and experiment some more. Note: this is built using the Javascript regular expression engine and <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/@@match'>.match()</a>.</p><p>First, let's refresh the basics. Here are three strings to match and two to avoid matching. Enter your expression and flags below.</p>",
+  description: "<p>Welcome to my Regex Challenges. So you've learnt the basics of regex somewhere like <a href='https://regexone.com/'>regexone.com</a> and now you want a bit more practice? Great! That's where I was when I decided to build these challenges. They are not about straight-laced real-world use cases and best practices, instead they are for you to play and explore.</p><p>They are roughly ordered from easier to harder. You get a tick for each string when you get the described match(es), but that's not required to move on. Skip a challenge if you want, or stay on one and experiment some more. Note: this is built using the Javascript regular expression engine and <a href='https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/@@match'>.match()</a>.</p><p>First, let's refresh the basics. Here are three strings to match and two to avoid matching. Enter your expression and flags below.</p>",
   strings: [
     [
       "Hello, World!",
@@ -92,15 +92,16 @@ const roman = {
   description: "Can you match these well-formed <a href='https://en.wikipedia.org/wiki/Roman_numerals#Standard_form'>Roman numerals</a> and avoid the incorrect examples?",
   strings: [
     [
-      "III",
       "XLII",
       "MMXX",
-      "MDCCXXIX"
+      "MDCCXIV",
+      "Episode VIII: The Last Jedi"
     ],
     [
       "MMXXA",
       "IXI",
-      "ID"
+      "ID",
+      "LIVE"
     ]
   ],
   matches: [
@@ -131,7 +132,29 @@ const regex = {
     ["/(regex)/"],
     ["/colou?r/"],
     ["/\\d+/"]
+  ],
+  solution: //
+};
+
+const titles = {
+  name: "Titles",
+  value: "titles",
+  description: "",
+  strings: [
+    [
+      "Dr. Jill Biden",
+      "Dr Jekyll and Mr Hyde",
+
+    ]
   ]
 };
+
+const emails = {
+
+};
+
+const snowclones = {
+
+}
 
 export const challenges = [helloWorld, ordinals, catalan, roman, regex];
