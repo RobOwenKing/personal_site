@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   get 'akari', to: 'puzzles#akari'
   get 'harki', to: 'puzzles#harki'
+  get 'hip', to: 'puzzles#hip'
   get 'prime_pairs', to: 'puzzles#prime_pairs'
   get 'wahnu', to: 'puzzles#wahnu'
 
