@@ -65,7 +65,7 @@ const testForSquares = (colour, newX, newY) => {
 
 const handleClick = (cell, x, y) => {
   // Update display board
-  cell.innerHTML = 'o';
+  cell.innerHTML = '<i class="fas fa-circle"></i>';
   if (state.playerColour == 0) {
     cell.classList.add('red-txt');
   } else {
