@@ -65,9 +65,9 @@ const testForSquares = (colour, newX, newY) => {
 
 const updateTurnColour = () => {
   if (state.playerColour == 0) {
-    turnColour.innerHTML = '<span class="b-orange-txt">Orange</span>';
+    turnColour.innerHTML = '<strong class="b-orange-txt">Orange</strong>';
   } else {
-    turnColour.innerHTML = '<span class="b-blue-txt">Blue</span>';
+    turnColour.innerHTML = '<strong class="b-blue-txt">Blue</strong>';
   }
 }
 
