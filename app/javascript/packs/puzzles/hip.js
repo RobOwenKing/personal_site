@@ -72,9 +72,9 @@ const handleClick = (cell, x, y) => {
   // Update display board
   cell.innerHTML = '<i class="fas fa-circle"></i>';
   if (state.playerColour == 0) {
-    cell.classList.add('red-txt');
+    cell.classList.add('b-orange-txt');
   } else {
-    cell.classList.add('blue-txt');
+    cell.classList.add('b-blue-txt');
   }
 
   // Update internal board
