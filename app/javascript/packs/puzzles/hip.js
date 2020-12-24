@@ -64,8 +64,11 @@ const testForSquares = (colour, newX, newY) => {
 };
 
 const updateTurnColour = () => {
-  const colour = state.playerColour == 0 ? "Red" : "Blue";
-  turnColour.innerHTML = colour;
+  if (state.playerColour == 0) {
+    turnColour.innerHTML = '<span class="b-orange-txt">Orange</span>';
+  } else {
+    turnColour.innerHTML = '<span class="b-blue-txt">Blue</span>';
+  }
 }
 
 const handleClick = (cell, x, y) => {
