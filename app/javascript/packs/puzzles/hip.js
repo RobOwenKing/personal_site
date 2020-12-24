@@ -63,6 +63,11 @@ const testForSquares = (colour, newX, newY) => {
   moves.push([parseInt(newX), parseInt(newY)]);
 };
 
+const updateTurnColour = () => {
+  const colour = state.playerColour == 0 ? "Red" : "Blue";
+  turnColour.innerHTML = colour;
+}
+
 const handleClick = (cell, x, y) => {
   // Update display board
   cell.innerHTML = '<i class="fas fa-circle"></i>';
@@ -80,7 +85,7 @@ const handleClick = (cell, x, y) => {
 
   // Change colour to give other player next turn
   state.playerColour = 1 - state.playerColour;
-  turnColour.innerHTML = state.playerColour == 0 ? "Red" : "Blue";
+  updateTurnColour();
 
   // Add the new state to the state queue
   state.boardHTML = displayBoard.innerHTML;
@@ -108,7 +113,7 @@ const init = () => {
 
   createDisplayBoard();
   activateDisplayBoard();
-  turnColour.innerHTML = "Red";
+  updateTurnColour();
 };
 
 init();
@@ -121,7 +126,7 @@ undoButton.addEventListener('click', (event) => {
   state = deepCopyObject(stateQueue[stateQueue.length - 1]);
   board.innerHTML = state.boardHTML;
   activateDisplayBoard();
-  turnColour.innerHTML = state.playerColour == 0 ? "Red" : "Blue";
+  updateTurnColour();
 })
 
 resetButton.addEventListener('click', (event) => {
