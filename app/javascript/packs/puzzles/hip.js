@@ -46,7 +46,16 @@ const isSquare = (distances, i , j) => {
   return distances.some(([i, j]) => i == neededX && j == neededY);
 };
 
-const testForSquares = (colour, newX, newY) => {
+const addSymbolOutline = (cell) => {
+  cell.classList.add('symbol-outline');
+}
+
+const highlightSquare = (cell, x, y, distances, i, j) => {
+  addSymbolOutline(cell);
+
+};
+
+const testForSquares = (colour, cell, newX, newY) => {
   const moves = colour == 0 ? state.movesPlayer0 : state.movesPlayer1;
   if (moves.length > 0) {
     const distances = moves.map(([i,j]) => [newX - i, newY - j]);
@@ -55,6 +64,7 @@ const testForSquares = (colour, newX, newY) => {
         if (isSquareCandidate(distances, i, j)) {
           if (isSquare(distances, i, j)) {
             window.alert('Square!');
+            highlightSquare(cell, newX, newY, distances, i ,j);
           }
         }
       }
@@ -84,7 +94,7 @@ const handleClick = (cell, x, y) => {
   state.internalBoard[y][x] = state.playerColour;
 
   // Test whether the new move has created any squares
-  testForSquares(state.playerColour, x, y);
+  testForSquares(state.playerColour, cell, x, y);
 
   // Change colour to give other player next turn
   state.playerColour = 1 - state.playerColour;
