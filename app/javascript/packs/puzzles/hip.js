@@ -59,8 +59,14 @@ const highlightSquare = (cell, x, y, moves, i, j) => {
   addSymbolOutline(corner2);
 
   // Third corner
+  const corner3 = document.getElementById(`${moves[j][0]}-${moves[j][1]}`);
+  addSymbolOutline(corner3);
 
   // Fourth corner
+  const corner4X = (moves[i][0] + moves[j][0]) - x;
+  const corner4Y = (moves[i][1] + moves[j][1]) - y;
+  const corner4 = document.getElementById(`${corner4X}-${corner4Y}`);
+  addSymbolOutline(corner4);
 };
 
 const testForSquares = (colour, cell, newX, newY) => {
@@ -78,7 +84,7 @@ const testForSquares = (colour, cell, newX, newY) => {
       }
     }
   }
-  moves.push([parseInt(newX), parseInt(newY)]);
+  moves.push([newX, newY]);
 };
 
 const updateTurnColour = () => {
@@ -102,7 +108,7 @@ const handleClick = (cell, x, y) => {
   state.internalBoard[y][x] = state.playerColour;
 
   // Test whether the new move has created any squares
-  testForSquares(state.playerColour, cell, x, y);
+  testForSquares(state.playerColour, cell, parseInt(x), parseInt(y));
 
   // Change colour to give other player next turn
   state.playerColour = 1 - state.playerColour;
