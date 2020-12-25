@@ -28,7 +28,7 @@ const createDisplayBoard = () => {
     displayBoard.insertAdjacentHTML('beforeend', `<tr>`);
     const latestRow = document.querySelector('#board > tr:last-child');
     for (let i = 0; i < cols.value; i += 1) {
-      latestRow.insertAdjacentHTML('beforeend', `<td data-x="${i}" data-y="${j}" class="white"></td>`);
+      latestRow.insertAdjacentHTML('beforeend', `<td id="${i}-${j}" data-x="${i}" data-y="${j}" class="white"></td>`);
     }
     displayBoard.insertAdjacentHTML('beforeend', '</tr>');
   }
@@ -50,9 +50,17 @@ const addSymbolOutline = (cell) => {
   cell.classList.add('symbol-outline');
 }
 
-const highlightSquare = (cell, x, y, distances, i, j) => {
+const highlightSquare = (cell, x, y, moves, i, j) => {
+  // First corner
   addSymbolOutline(cell);
 
+  // Second corner
+  const corner2 = document.getElementById(`${moves[i][0]}-${moves[i][1]}`);
+  addSymbolOutline(corner2);
+
+  // Third corner
+
+  // Fourth corner
 };
 
 const testForSquares = (colour, cell, newX, newY) => {
@@ -64,7 +72,7 @@ const testForSquares = (colour, cell, newX, newY) => {
         if (isSquareCandidate(distances, i, j)) {
           if (isSquare(distances, i, j)) {
             window.alert('Square!');
-            highlightSquare(cell, newX, newY, distances, i ,j);
+            highlightSquare(cell, newX, newY, moves, i ,j);
           }
         }
       }
