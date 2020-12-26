@@ -136,14 +136,19 @@ const activateDisplayBoard = () => {
 };
 
 const init = () => {
+  createDisplayBoard();
+  activateDisplayBoard();
+  state.boardHTML = displayBoard.innerHTML;
+
   state.internalBoard = createInternalBoard();
   state.movesPlayer0 = [];
   state.movesPlayer1 = [];
-  state.playerColour = 0;
 
-  createDisplayBoard();
-  activateDisplayBoard();
+  state.playerColour = 0;
   updateTurnColour();
+
+  // Push the initial state into the queue
+  stateQueue.push(deepCopyObject(state));
 };
 
 // When the user changes the number of rows or columns, reset everything
