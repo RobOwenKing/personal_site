@@ -43,6 +43,11 @@
     <h3>Hip</h3>
   <% end %>
 
+  <%= link_to(prime_pairs_path, class: "card-project") do %>
+    <%= image_tag("screenshots/prime_pairs.jpg", class: "img-circle", alt: "Screenshot of Prime Pairs Plus set to order the numbers from 1 to 16 so that every pair adds up to a prime.") %>
+    <h3>Prime Pairs Plus</h3>
+  <% end %>
+
   <% link_to(sudoku_path, class: "card-project") do %>
     <% image_tag("screenshots/sudoku.jpg", class: "img-circle", alt: "Screenshot of my Sudoku app having brute-forced the solution to a puzzle.") %>
     <h3>Sudoku Solver</h3>
