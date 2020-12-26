@@ -8,8 +8,10 @@ const undoButton = document.getElementById('undo');
 const resetButton = document.getElementById('reset');
 
 let state = {};
+// Saving copies of above state for undo function
 const stateQueue = [];
 
+// An array of arrays to store current board position
 const createInternalBoard = () => {
   const temp = [];
   for (let j = 0; j < rows.value; j += 1) {
@@ -22,6 +24,7 @@ const createInternalBoard = () => {
   return temp;
 };
 
+// Fill the empty <tbody> with rows and cells
 const createDisplayBoard = () => {
   displayBoard.innerHTML = '';
   for (let j = 0; j < rows.value; j += 1) {
@@ -143,12 +146,12 @@ const init = () => {
   updateTurnColour();
 };
 
-init();
-
+// When the user changes the number of rows or columns, reset everything
 rows.addEventListener('input', (event) => { init(); })
 cols.addEventListener('input', (event) => { init(); })
 
 undoButton.addEventListener('click', (event) => {
+  // Remove the current state from the state queue
   stateQueue.pop();
   state = deepCopyObject(stateQueue[stateQueue.length - 1]);
   board.innerHTML = state.boardHTML;
@@ -159,3 +162,5 @@ undoButton.addEventListener('click', (event) => {
 resetButton.addEventListener('click', (event) => {
   init();
 })
+
+init();
