@@ -42,12 +42,16 @@ const activateInputs = (puzzle) => {
 
   inputs.forEach((input) => {
     input.addEventListener('click', (event) => {
-      if (input.classList.contains('highlighted')) {
-        if (direction == true && input.dataset.d) {
-          changeDirection(puzzle);
-        } else if (direction == false && input.dataset.a) {
-          changeDirection(puzzle);
+      if (input.dataset.focused == 'false') {
+        if (input.classList.contains('highlighted')) {
+          if (direction == true && input.dataset.d) {
+            changeDirection(puzzle);
+          } else if (direction == false && input.dataset.a) {
+            changeDirection(puzzle);
+          }
         }
+      } else {
+        input.dataset.focused = false;
       }
     })
 
@@ -60,6 +64,7 @@ const activateInputs = (puzzle) => {
 
     input.addEventListener('blur', (event) => {
       unhighlightCells();
+      input.dataset.focused = true;
     })
   });
 };
