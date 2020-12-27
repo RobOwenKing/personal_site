@@ -30,10 +30,31 @@ const unhighlightCells = () => {
   });
 };
 
+const changeDirection = (puzzle) => {
+  direction = !direction;
+  unhighlightCells();
+  showQuestion(puzzle);
+  highlightCells();
+};
+
 const activateInputs = (puzzle) => {
   const inputs = document.querySelectorAll('input');
 
   inputs.forEach((input) => {
+    input.addEventListener('click', (event) => {
+      if (input.dataset.focused == 'false') {
+        if (input.classList.contains('highlighted')) {
+          if (direction == true && input.dataset.d) {
+            changeDirection(puzzle);
+          } else if (direction == false && input.dataset.a) {
+            changeDirection(puzzle);
+          }
+        }
+      } else {
+        input.dataset.focused = false;
+      }
+    })
+
     input.addEventListener('focus', (event) => {
       if (!input.dataset.a) { direction = false; }
       if (!input.dataset.d) { direction = true; }
@@ -43,16 +64,14 @@ const activateInputs = (puzzle) => {
 
     input.addEventListener('blur', (event) => {
       unhighlightCells();
+      input.dataset.focused = true;
     })
   });
 };
 
 const handleArrow = (i, j, dir, puzzle) => {
   if (dir != direction) {
-    direction = !direction;
-    unhighlightCells();
-    highlightCells();
-    showQuestion(puzzle);
+    changeDirection(puzzle);
   } else {
     document.getElementById(`${i}-${j}`).childNodes[0].focus();
   }
