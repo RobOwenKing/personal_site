@@ -34,6 +34,22 @@ const activateInputs = (puzzle) => {
   const inputs = document.querySelectorAll('input');
 
   inputs.forEach((input) => {
+    input.addEventListener('click', (event) => {
+      if (input.classList.contains('highlighted')) {
+        if (direction == true && input.dataset.d) {
+          direction = false;
+          unhighlightCells();
+          showQuestion(puzzle);
+          highlightCells();
+        } else if (direction == false && input.dataset.a) {
+          direction = true;
+          unhighlightCells();
+          showQuestion(puzzle);
+          highlightCells();
+        }
+      }
+    })
+
     input.addEventListener('focus', (event) => {
       if (!input.dataset.a) { direction = false; }
       if (!input.dataset.d) { direction = true; }
