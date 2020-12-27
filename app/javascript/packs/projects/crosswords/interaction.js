@@ -66,10 +66,7 @@ const activateInputs = (puzzle) => {
 
 const handleArrow = (i, j, dir, puzzle) => {
   if (dir != direction) {
-    direction = !direction;
-    unhighlightCells();
-    highlightCells();
-    showQuestion(puzzle);
+    changeDirection(puzzle);
   } else {
     document.getElementById(`${i}-${j}`).childNodes[0].focus();
   }
