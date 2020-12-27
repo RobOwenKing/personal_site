@@ -30,6 +30,13 @@ const unhighlightCells = () => {
   });
 };
 
+const changeDirection = (puzzle) => {
+  direction = !direction;
+  unhighlightCells();
+  showQuestion(puzzle);
+  highlightCells();
+};
+
 const activateInputs = (puzzle) => {
   const inputs = document.querySelectorAll('input');
 
@@ -37,15 +44,9 @@ const activateInputs = (puzzle) => {
     input.addEventListener('click', (event) => {
       if (input.classList.contains('highlighted')) {
         if (direction == true && input.dataset.d) {
-          direction = false;
-          unhighlightCells();
-          showQuestion(puzzle);
-          highlightCells();
+          changeDirection(puzzle);
         } else if (direction == false && input.dataset.a) {
-          direction = true;
-          unhighlightCells();
-          showQuestion(puzzle);
-          highlightCells();
+          changeDirection(puzzle);
         }
       }
     })
