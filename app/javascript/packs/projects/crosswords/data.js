@@ -54,4 +54,60 @@ const first = {
   ]
 };
 
+const tribute = {
+  name: "tribute",
+  size: [13, 13],
+  solution: [
+    "......C......",
+    ".....FUN.....",
+    "....DUROC....",
+    "...MONDALE...",
+    "..WELD.HALF..",
+    ".MYST...WAIT.",
+    "BANS.....TRIG",
+    ".ENID...VISE.",
+    "..EARS.SOOT..",
+    "...HAIRPIN...",
+    "....BAAED....",
+    ".....NYC.....",
+    "......S......"
+  ],
+  aQs: [
+    ["FUN", "What this puzzle is (hopefully)", 1, 5],
+    ["DUROC", "???", 2, 4],
+    ["MONDALE", "Carter's vice-president", 3, 3],
+    ["WELD", "???", 4, 2],
+    ["HALF", "???", 4, 7],
+    ["MYST", "???", 5, 1],
+    ["WAIT", "???", 5, 8],
+    ["BANS", "???", 6, 0],
+    ["TRIG", "???", 6, 9],
+    ["ENID", "???", 7, 1],
+    ["VISE", "???", 7, 8],
+    ["EARS", "???", 8, 2],
+    ["SOOT", "???", 8, 7],
+    ["HAIRPIN", "???", 9, 3],
+    ["BAAED", "Imitated a sheep", 10, 4],
+    ["NYC", "???", 11, 5]
+  ],
+  dQs: [
+    ["CURD", "", 0, 6],
+    ["FUND", "", 1, 5],
+    ["NOAH", "", 1, 7],
+    ["DOLT", "", 2, 4],
+    ["CLAW", "A talon", 2, 8],
+    ["MESSIAH", "", 3, 3],
+    ["ELATION", "", 3, 9],
+    ["WYNNE", "", 4, 2],
+    ["FIRST", "", 4, 10],
+    ["MAE", "", 5, 1],
+    ["TIE", "", 5, 11],
+    ["DRAB", "", 7, 4],
+    ["VOID", "", 7, 8],
+    ["SIAN", "", 8, 5],
+    ["SPEC", "", 8, 7],
+    ["RAYS", "", 9, 6]
+  ]
+};
+
 export const puzzles = [first];
