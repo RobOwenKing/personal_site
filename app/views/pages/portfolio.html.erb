@@ -48,6 +48,11 @@
     <h3>Prime Pairs Plus</h3>
   <% end %>
 
+  <%= link_to(clocks_path, class: "card-project") do %>
+    <%= image_tag("screenshots/clocks.jpg", class: "img-circle", alt: "Screenshot of my Clocks project.") %>
+    <h3>Clocks</h3>
+  <% end %>
+
   <% link_to(sudoku_path, class: "card-project") do %>
     <% image_tag("screenshots/sudoku.jpg", class: "img-circle", alt: "Screenshot of my Sudoku app having brute-forced the solution to a puzzle.") %>
     <h3>Sudoku Solver</h3>
