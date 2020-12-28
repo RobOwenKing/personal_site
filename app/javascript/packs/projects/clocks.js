@@ -44,6 +44,7 @@ const randomOffset = (max) => {
 }
 
 const formatNumber = (num) => {
+  // Prepend a zero for single-digit numbers
   return num < 10 ? '0' + num.toString() : num;
 }
 
@@ -99,7 +100,7 @@ const drawBetween = (hrs, mins, secs) => {
   const angleMins = (2 * Math.PI * (mins / 60)) - (0.5 * Math.PI);
   const angleSecs = (2 * Math.PI * (secs / 60)) - (0.5 * Math.PI);
 
-  const [angleA, angleB, angleC] = [angleHrs, angleMins, angleSecs].sort();
+  const [angleA, angleB, angleC] = [angleHrs, angleMins, angleSecs].sort((a, b) => a - b);
 
   ctxBetween.lineWidth = 5;
   ctxBetween.beginPath();
@@ -120,9 +121,9 @@ const drawBetween = (hrs, mins, secs) => {
 
 const init = () => {
   const time = new Date(Date.now());
-  const hrs  = time.getHours();
-  const mins = time.getMinutes();
-  const secs = time.getSeconds();
+  const hrs  = parseInt(time.getHours());
+  const mins = parseInt(time.getMinutes());
+  const secs = parseInt(time.getSeconds());
 
   state.secs = secs;
   updateRomanClock(hrs, mins, secs);
