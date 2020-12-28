@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'quedem', to: 'pages#quedem'
 
   get 'circles', to: 'projects#circles'
+  get 'clocks', to: 'projects#clocks'
   get 'colour_translator', to: 'projects#colour_translator'
   get 'euler_spiral', to: 'projects#euler_spiral'
   get 'game_of_life', to: 'projects#game_of_life'
