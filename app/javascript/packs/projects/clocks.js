@@ -40,15 +40,7 @@ const updateRomanClock = (hrs, mins, secs) => {
 };
 
 const randomOffset = (max) => {
-  // Get a random number 0..1
-  const random = Math.random();
-  // By squaring we cluster values closer to 0
-  // Multiplying by 5 means we have a random number 0..5
-  // Taking the ceiling means our offset will (almost) never be 0
-  let offset = Math.ceil((random ** 3) * max);
-  offset = offset == 0 ? 1 : offset;
-  const sign = Math.random() < 0.5 ? 1 : -1;
-  return offset * sign;
+  return Math.random() < 0.5 ? 1 : -1;
 }
 
 const formatNumber = (num) => {
@@ -58,7 +50,7 @@ const formatNumber = (num) => {
 const initWrongClock = (hrs, mins, secs) => {
   state.currentWrongHrs = hrs;
   state.currentWrongMins = mins;
-  state.currentWrongSecs = (secs + randomOffset(3) + 60) % 60;
+  state.currentWrongSecs = (secs + randomOffset() + 60) % 60;
 
   const displayHrs = formatNumber(hrs);
   const displayMins = formatNumber(mins);
@@ -68,8 +60,7 @@ const initWrongClock = (hrs, mins, secs) => {
 }
 
 const updateWrongClock = (hrs, mins, secs) => {
-  const deltaSecs = secs - state.currentWrongSecs;
-  const targetSecs = (secs + deltaSecs + randomOffset(3) + 60) % 60;
+  const targetSecs = (secs + randomOffset() + 60) % 60;
   let targetMins = state.currentWrongMins;
 
   if (state.currentWrongSecs > 45 && targetSecs < 15) {
