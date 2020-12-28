@@ -9,12 +9,17 @@
 const roman = document.getElementById('roman');
 const wrong = document.getElementById('wrong');
 const canvasBetween = document.getElementById('between');
+const canvasOrders = document.getElementById('orders');
 
 const state = {};
 
 const ctxBetween = canvasBetween.getContext('2d');
 canvasBetween.width = 240;
 canvasBetween.height = 180;
+
+const ctxOrders = canvasOrders.getContext('2d');
+canvasOrders.width = 240;
+canvasOrders.height = 180;
 
 const romanify = (num) => {
   // We only need Roman numerals up to L as we'll never reach 90
@@ -84,6 +89,13 @@ const updateWrongClock = (hrs, mins, secs) => {
   const displaySecs = formatNumber(state.currentWrongSecs);
 
   wrong.innerHTML = `<span class="clock-large">${displayHrs}:${displayMins}</span>${displaySecs}`;
+};
+
+const drawArc = (startX, startY, radius, startAngle, endAngle, colour) => {
+  ctxBetween.beginPath();
+  ctxBetween.strokeStyle = colour;
+  ctxBetween.arc(startX, startY, radius, startAngle, endAngle);
+  ctxBetween.stroke();
 }
 
 const drawBetween = (hrs, mins, secs) => {
@@ -103,32 +115,37 @@ const drawBetween = (hrs, mins, secs) => {
   const [angleA, angleB, angleC] = [angleHrs, angleMins, angleSecs].sort((a, b) => a - b);
 
   ctxBetween.lineWidth = 5;
-  ctxBetween.beginPath();
-  ctxBetween.strokeStyle = '#E01A4F';
-  ctxBetween.arc(startX, startY, 60, angleC, angleA);
-  ctxBetween.stroke();
 
-  ctxBetween.beginPath();
-  ctxBetween.strokeStyle = '#042D43';
-  ctxBetween.arc(startX, startY, 65, angleB, angleC);
-  ctxBetween.stroke();
-
-  ctxBetween.beginPath();
-  ctxBetween.strokeStyle = '#F57E2A';
-  ctxBetween.arc(startX, startY, 70, angleA, angleB);
-  ctxBetween.stroke();
+  drawArc(startX, startY, 60, angleC, angleA, '#E01A4F');
+  drawArc(startX, startY, 65, angleB, angleC, '#042D43');
+  drawArc(startX, startY, 70, angleA, angleB, '#F57E2A');
 };
+
+const drawOrders = (yrs, mths, dts, hrs, mins, secs, mscs) => {
+  // Draw background
+  ctxOrders.fillStyle = 'black';
+  ctxOrders.fillRect(0, 0, canvasOrders.width, canvasOrders.height);
+
+  // Set up variables we'll need
+  const startX = canvasOrders.width / 2;
+  const startY = canvasOrders.height / 2;
+}
 
 const init = () => {
   const time = new Date(Date.now());
+  const yrs  = parseInt(time.getFullYear());
+  const mths = parseInt(time.getMonth());
+  const dts  = parseInt(time.getDate());
   const hrs  = parseInt(time.getHours());
   const mins = parseInt(time.getMinutes());
   const secs = parseInt(time.getSeconds());
+  const mscs = parseInt(time.getMilliseconds());
 
   state.secs = secs;
   updateRomanClock(hrs, mins, secs);
   initWrongClock(hrs, mins, secs);
   drawBetween(hrs, mins, secs);
+  drawOrders(yrs, mths, dts, hrs, mins, secs, mscs);
 }
 
 const updateClocks = () => {
@@ -143,6 +160,7 @@ const updateClocks = () => {
     updateRomanClock(hrs, mins, secs);
     updateWrongClock(hrs, mins, secs);
     drawBetween(hrs, mins, secs);
+    drawOrders();
   }
 };
 
