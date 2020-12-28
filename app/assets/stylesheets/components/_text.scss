@@ -27,3 +27,13 @@
 [contenteditable] {
   padding: 0px 4px;
 }
+
+.clock-text {
+  font-size: 1.2rem;
+  font-family: monospace;
+
+  .clock-large {
+    font-size: 1.6rem;
+    padding-right: 2px;
+  }
+}
