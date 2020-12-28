@@ -34,7 +34,7 @@ const romanify = (num) => {
 };
 
 const updateRomanClock = (hrs, mins, secs) => {
-  roman.innerHTML = `${romanify(hrs)}.${romanify(mins)}:${romanify(secs)}`;
+  roman.innerHTML = `<span class="large-text">${romanify(hrs)}:${romanify(mins)}</span>${romanify(secs)}`;
 };
 
 const randomOffset = (max) => {
@@ -62,7 +62,7 @@ const initWrongClock = (hrs, mins, secs) => {
   const displayMins = formatNumber(mins);
   const displaySecs = formatNumber(state.currentWrongSecs);
 
-  wrong.innerHTML = `${displayHrs}.${displayMins}:${displaySecs}`;
+  wrong.innerHTML = `<span class="large-text">${displayHrs}:${displayMins}</span>${displaySecs}`;
 }
 
 const updateWrongClock = (hrs, mins, secs) => {
@@ -89,7 +89,7 @@ const updateWrongClock = (hrs, mins, secs) => {
   const displayMins = formatNumber(state.currentWrongMins);
   const displaySecs = formatNumber(state.currentWrongSecs);
 
-  wrong.innerHTML = `${displayHrs}.${displayMins}:${displaySecs}`;
+  wrong.innerHTML = `<span class="large-text">${displayHrs}:${displayMins}</span>${displaySecs}`;
 }
 
 const drawBetween = (hrs, mins, secs) => {
