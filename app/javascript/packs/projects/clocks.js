@@ -1,6 +1,8 @@
 // IDEAS
 // Single-handed (colour = seconds, length = hour, direction = minutes?)
 // Rain and flowers
+// Orders of magnitude
+
 // Random clock
 // Angle between
 
