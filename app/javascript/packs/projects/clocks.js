@@ -121,6 +121,16 @@ const drawBetween = (hrs, mins, secs) => {
   drawArc(startX, startY, 70, angleA, angleB, '#F57E2A');
 };
 
+const drawLine = (angle, length, colour) => {
+  ctxOrders.rotate(angle);
+  ctxOrders.beginPath();
+  ctxOrders.strokeStyle = colour;
+  ctxOrders.moveTo(0, 0);
+  ctxOrders.lineTo(length, 0);
+  ctxOrders.stroke();
+  ctxOrders.rotate(-angle);
+}
+
 const drawOrders = (yrs, mths, dts, hrs, mins, secs, mscs) => {
   // Draw background
   ctxOrders.fillStyle = 'black';
@@ -129,6 +139,27 @@ const drawOrders = (yrs, mths, dts, hrs, mins, secs, mscs) => {
   // Set up variables we'll need
   const startX = canvasOrders.width / 2;
   const startY = canvasOrders.height / 2;
+
+  const angleYrs = (2 * Math.PI * ((yrs % 100) / 100)) - (0.5 * Math.PI);
+  const angleMths = (2 * Math.PI * (mths / 12)) - (0.5 * Math.PI);
+  const angleDts = (2 * Math.PI * (dts / 31)) - (0.5 * Math.PI);
+  const angleHrs = (2 * Math.PI * ((hrs % 12) / 12)) - (0.5 * Math.PI);
+  const angleMins = (2 * Math.PI * (mins / 60)) - (0.5 * Math.PI);
+  const angleSecs = (2 * Math.PI * (secs / 60)) - (0.5 * Math.PI);
+  const angleMscs = (2 * Math.PI * (mscs / 1000)) - (0.5 * Math.PI);
+
+  ctxOrders.lineWidth = 5;
+  ctxOrders.lineCap = "round";
+
+  ctxOrders.translate(startX, startY);
+  drawLine(angleYrs, 75, '#ff0000');
+  drawLine(angleMths, 70, '#ffa500');
+  drawLine(angleDts, 65, '#ffff00');
+  drawLine(angleHrs, 60, '#008000');
+  drawLine(angleMins, 55, '#0000ff');
+  drawLine(angleSecs, 50, '#4b0082');
+  drawLine(angleMscs, 45, '#ee82ee');
+  ctxOrders.translate(-startX, -startY);
 }
 
 const init = () => {
@@ -150,18 +181,23 @@ const init = () => {
 
 const updateClocks = () => {
   const time = new Date(Date.now());
-  const secs = time.getSeconds();
+  const yrs  = parseInt(time.getFullYear());
+  const mths = parseInt(time.getMonth());
+  const dts  = parseInt(time.getDate());
+  const hrs  = parseInt(time.getHours());
+  const mins = parseInt(time.getMinutes());
+  const secs = parseInt(time.getSeconds());
+  const mscs = parseInt(time.getMilliseconds());
 
   if (secs != state.secs) {
     state.secs = secs;
-    const hrs  = time.getHours();
-    const mins = time.getMinutes();
 
     updateRomanClock(hrs, mins, secs);
     updateWrongClock(hrs, mins, secs);
     drawBetween(hrs, mins, secs);
-    drawOrders();
   }
+
+  drawOrders(yrs, mths, dts, hrs, mins, secs, mscs);
 };
 
 init();
