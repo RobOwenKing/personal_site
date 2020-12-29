@@ -230,6 +230,39 @@ const drawBinary = (hrs, mins, secs) => {
   }
 };
 
+const drawConnected = (hrs, mins, secs) => {
+  // Draw background
+  ctxConnected.fillStyle = 'black';
+  ctxConnected.fillRect(0, 0, canvasConnected.width, canvasConnected.height);
+
+  const angleHrs = (2 * Math.PI * ((hrs % 12) / 12)) - (0.5 * Math.PI);
+  const angleMins = (2 * Math.PI * (mins / 60)) - (0.5 * Math.PI);
+  const angleSecs = (2 * Math.PI * (secs / 60)) - (0.5 * Math.PI);
+
+  const centreX = canvasConnected.width / 2;
+  const centreY = canvasConnected.height / 2;
+
+  const endHrsX = centreX + (25 * Math.cos(angleHrs));
+  const endHrsY = centreY + (25 * Math.sin(angleHrs));
+
+  const endMinsX = endHrsX + (25 * Math.cos(angleMins));
+  const endMinsY = endHrsY + (25 * Math.sin(angleMins));
+
+  const endSecsX = endMinsX + (25 * Math.cos(angleSecs));
+  const endSecsY = endMinsY + (25 * Math.sin(angleSecs));
+
+  ctxConnected.lineWidth = 5;
+  ctxConnected.lineCap = "round";
+
+  ctxConnected.beginPath();
+  ctxConnected.strokeStyle = 'white';
+  ctxConnected.moveTo(centreX, centreY);
+  ctxConnected.lineTo(endHrsX, endHrsY);
+  ctxConnected.lineTo(endMinsX, endMinsY);
+  ctxConnected.lineTo(endSecsX, endSecsY);
+  ctxConnected.stroke();
+};
+
 const init = () => {
   const time = new Date(Date.now());
   const yrs  = parseInt(time.getFullYear());
@@ -247,6 +280,7 @@ const init = () => {
   drawOrders(yrs, mths, dts, hrs, mins, secs, mscs);
   drawOneHand(hrs, mins, secs);
   drawBinary(hrs, mins, secs);
+  drawConnected(hrs, mins, secs);
 }
 
 const updateClocks = () => {
@@ -267,6 +301,7 @@ const updateClocks = () => {
     drawBetween(hrs, mins, secs);
     drawOneHand(hrs, mins, secs);
     drawBinary(hrs, mins, secs);
+    drawConnected(hrs, mins, secs);
   }
 
   drawOrders(yrs, mths, dts, hrs, mins, secs, mscs);
