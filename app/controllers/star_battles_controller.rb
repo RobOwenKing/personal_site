@@ -1,5 +1,5 @@
 class StarBattlesController < ApplicationController
-  # http_basic_authenticate_with name: User.first.name, password: User.first.password, only: :new
+  http_basic_authenticate_with name: User.first.name, password: User.first.password, only: :new
 
   def index
     @puzzles = StarBattle.where(lesson: false)
