@@ -1,3 +1,7 @@
+<% content_for :meta_title, "Star Battle Puzzles, by Rob Owen King" %>
+<% content_for :meta_description, "Star Battles are a great puzzle - simple rules leading to fascinating logical consequences. Here are the one's I've made for you." %>
+<% content_for :meta_image, "screenshots/star_battle.jpg" %>
+
 <h1>Star Battles</h1>
 
 <h2>Puzzles</h2>
@@ -26,4 +30,6 @@
 
 <h2>Creator and Solver</h2>
 
-<%= image_tag("screenshots/star_battle.jpg", class: "img-circle", alt: "Screenshot of the Star Battle Creator and Solver") %>
+<%= link_to(controller: "puzzles", action: "star_battle", class: "card-project") do %>
+  <%= image_tag("screenshots/star_battle.jpg", class: "img-circle", alt: "Screenshot of the Star Battle Creator and Solver") %>
+<% end %>

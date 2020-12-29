@@ -1,6 +1,9 @@
-<h1>Star Battles: <%= @star_battle.name %></h1>
+<% content_for :meta_title, "<%= @star_battle.name %>, a Star Battle by Rob Owen King" %>
+<% content_for :meta_description, "Star Battles are a great puzzle - simple rules leading to fascinating logical consequences. Here's one I've made for you." %>
+<% content_for :meta_image, "screenshots/star_battle.jpg" %>
 
-<br>
+
+<h1>Star Battles: <%= @star_battle.name %></h1>
 
 <%= @star_battle.intro %>
 <p>Stars per row/col/cage: <% @star_battle.stars.times do %><i class="fas fa-star yellow-txt"></i><% end %></p>
@@ -19,7 +22,10 @@
 </ul>
 
 <div id="hint-button" class="btn btn-orange">Show hint</div>
-<div id="hint-display" hidden><%= @star_battle.hint %></div>
+<div id="hint-display" hidden>
+  <br>
+  <%= @star_battle.hint %>
+</div>
 
 <br>
 <br>
