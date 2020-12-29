@@ -11,6 +11,8 @@ const wrong = document.getElementById('wrong');
 const canvasBetween = document.getElementById('between');
 const canvasOrders = document.getElementById('orders');
 const canvasOneHand = document.getElementById('one-hand');
+const canvasBinary = document.getElementById('binary');
+const canvasConnected = document.getElementById('connected');
 
 const state = {};
 
@@ -25,6 +27,14 @@ canvasOrders.height = 180;
 const ctxOneHand = canvasOneHand.getContext('2d');
 canvasOneHand.width = 240;
 canvasOneHand.height = 180;
+
+const ctxBinary = canvasBinary.getContext('2d');
+canvasBinary.width = 240;
+canvasBinary.height = 180;
+
+const ctxConnected = canvasConnected.getContext('2d');
+canvasConnected.width = 240;
+canvasConnected.height = 180;
 
 const romanify = (num) => {
   // We only need Roman numerals up to L as we'll never reach 90
@@ -188,6 +198,30 @@ const drawOneHand = (hrs, mins, secs) => {
   ctxOneHand.translate(-startX, -startY);
 }
 
+const drawBinary = (hrs, mins, secs) => {
+  // Draw background
+  ctxBinary.fillStyle = 'black';
+  ctxBinary.fillRect(0, 0, canvasBinary.width, canvasBinary.height);
+
+  const binaryHrs  = hrs.toString(2);
+  const binaryMins = mins.toString(2);
+  const binarySecs = secs.toString(2);
+
+  const xStep = canvasBetween.width / 8;
+  const yStep = canvasBetween.height / 6;
+
+  for (let i = 0; i < 7; i += 1) {
+    ctxBinary.beginPath();
+    if (i < binarySecs.length && binarySecs.charAt(binarySecs.length - 1 - i) == '1') {
+      ctxBinary.fillStyle = '#F57E2A';
+    } else {
+      ctxBinary.fillStyle = '#042D43';
+    }
+    ctxBinary.arc(xStep * (7 - i), yStep * (3 + 1), 10, 0, 2 * Math.PI);
+    ctxBinary.fill();
+  }
+};
+
 const init = () => {
   const time = new Date(Date.now());
   const yrs  = parseInt(time.getFullYear());
@@ -204,6 +238,7 @@ const init = () => {
   drawBetween(hrs, mins, secs);
   drawOrders(yrs, mths, dts, hrs, mins, secs, mscs);
   drawOneHand(hrs, mins, secs);
+  drawBinary(hrs, mins, secs);
 }
 
 const updateClocks = () => {
@@ -223,6 +258,7 @@ const updateClocks = () => {
     updateWrongClock(hrs, mins, secs);
     drawBetween(hrs, mins, secs);
     drawOneHand(hrs, mins, secs);
+    drawBinary(hrs, mins, secs);
   }
 
   drawOrders(yrs, mths, dts, hrs, mins, secs, mscs);
