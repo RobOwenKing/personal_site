@@ -1,3 +1,5 @@
+
+
 <h1>Star Battles</h1>
 
 <h2>Puzzles</h2>
@@ -26,7 +28,6 @@
 
 <h2>Creator and Solver</h2>
 
-<%= link_to(star_battles_path, class: "card-project") do %>
+<%= link_to(controller: "puzzles", action: "star_battle", class: "card-project") do %>
   <%= image_tag("screenshots/star_battle.jpg", class: "img-circle", alt: "Screenshot of the Star Battle Creator and Solver") %>
-  <h3>Conway's Game of Life</h3>
 <% end %>
