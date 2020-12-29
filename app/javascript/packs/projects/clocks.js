@@ -1,10 +1,6 @@
 // IDEAS
 // Single-handed (colour = seconds, length = hour, direction = minutes?)
-// Rain and flowers
-// Orders of magnitude
-
-// Random clock
-// Angle between
+// Smooth between
 
 const roman = document.getElementById('roman');
 const wrong = document.getElementById('wrong');
@@ -43,9 +39,11 @@ const romanify = (num) => {
   const arabics = [50, 40, 10, 9, 5, 4, 1];
   let answer = '';
 
-  // We'll iterate over the above arrays
+  // We'll iterate over the above arrays, note from larger to smaller
   for (let i = 0; i < romans.length; i += 1) {
-    //
+    // If our num is still bigger than next Arabic numeral
+    // We need to append its Roman expression to our answer
+    // Note inclusion of 4, 9 and 40 to handle prepending of Is and Xs
     while (num >= arabics[i]) {
       answer += romans[i];
       num -= arabics[i];
@@ -55,26 +53,32 @@ const romanify = (num) => {
  return answer == '' ? 'Nulla' : answer;
 };
 
-const updateRomanClock = (hrs, mins, secs) => {
-  roman.innerHTML = `<span class="clock-large">${romanify(hrs)}:${romanify(mins)}</span>${romanify(secs)}`;
+const updateRomanClock = (state) => {
+  // Convert each element to Roman numerals
+  const romanHrs = romanify(state.hrs);
+  const romanMins = romanify(state.mins);
+  const romanSecs = romanify(state.secs);
+  // Enter them into the dom in one go
+  roman.innerHTML = `<span class="clock-large">${romanHrs}:${romanMins}</span>${romanSecs}`;
 };
 
 const randomOffset = (max) => {
+  // 50/50 to return +/-1
   return Math.random() < 0.5 ? 1 : -1;
 }
 
 const formatNumber = (num) => {
-  // Prepend a zero for single-digit numbers
+  // Prepend a zero to single-digit numbers
   return num < 10 ? '0' + num.toString() : num;
 }
 
-const initWrongClock = (hrs, mins, secs) => {
-  state.currentWrongHrs = hrs;
-  state.currentWrongMins = mins;
-  state.currentWrongSecs = (secs + randomOffset() + 60) % 60;
+const initWrongClock = (state) => {
+  state.currentWrongHrs = state.hrs;
+  state.currentWrongMins = state.mins;
+  state.currentWrongSecs = (state.secs + randomOffset() + 60) % 60;
 
-  const displayHrs = formatNumber(hrs);
-  const displayMins = formatNumber(mins);
+  const displayHrs = formatNumber(state.hrs);
+  const displayMins = formatNumber(state.mins);
   const displaySecs = formatNumber(state.currentWrongSecs);
 
   wrong.innerHTML = `<span class="clock-large">${displayHrs}:${displayMins}</span>${displaySecs}`;
@@ -267,6 +271,19 @@ const drawConnected = (hrs, mins, secs) => {
   drawLine(ctxConnected, endMinsX, endMinsY, endSecsX, endSecsY, 'white');
 };
 
+const setState = () => {
+  state.preupdateSecs = state.secs
+
+  const time = new Date(Date.now());
+  state.yrs  = parseInt(time.getFullYear());
+  state.mths = parseInt(time.getMonth());
+  state.dts  = parseInt(time.getDate());
+  state.hrs  = parseInt(time.getHours());
+  state.mins = parseInt(time.getMinutes());
+  state.secs = parseInt(time.getSeconds());
+  state.mscs = parseInt(time.getMilliseconds());
+}
+
 const init = () => {
   const time = new Date(Date.now());
   const yrs  = parseInt(time.getFullYear());
@@ -277,9 +294,9 @@ const init = () => {
   const secs = parseInt(time.getSeconds());
   const mscs = parseInt(time.getMilliseconds());
 
-  state.secs = secs;
-  updateRomanClock(hrs, mins, secs);
-  initWrongClock(hrs, mins, secs);
+  state.preupdateSecs = secs;
+  updateRomanClock(state);
+  initWrongClock(state);
   drawBetween(hrs, mins, secs);
   drawOrders(yrs, mths, dts, hrs, mins, secs, mscs);
   drawOneHand(hrs, mins, secs);
@@ -296,11 +313,12 @@ const updateClocks = () => {
   const mins = parseInt(time.getMinutes());
   const secs = parseInt(time.getSeconds());
   const mscs = parseInt(time.getMilliseconds());
+  setState();
 
-  if (secs != state.secs) {
-    state.secs = secs;
+  if (state.secs != state.preupdateSecs) {
+    state.preupdateSecs = state.secs;
 
-    updateRomanClock(hrs, mins, secs);
+    updateRomanClock(state);
     updateWrongClock(hrs, mins, secs);
     drawBetween(hrs, mins, secs);
     drawOneHand(hrs, mins, secs);
