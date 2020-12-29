@@ -230,6 +230,14 @@ const drawBinary = (hrs, mins, secs) => {
   }
 };
 
+const drawLine = (context, startX, startY, endX, endY, colour) => {
+  context.beginPath();
+  context.strokeStyle = 'white';
+  context.moveTo(startX, startY);
+  context.lineTo(endX, endY);
+  context.stroke();
+}
+
 const drawConnected = (hrs, mins, secs) => {
   // Draw background
   ctxConnected.fillStyle = 'black';
@@ -254,13 +262,9 @@ const drawConnected = (hrs, mins, secs) => {
   ctxConnected.lineWidth = 5;
   ctxConnected.lineCap = "round";
 
-  ctxConnected.beginPath();
-  ctxConnected.strokeStyle = 'white';
-  ctxConnected.moveTo(centreX, centreY);
-  ctxConnected.lineTo(endHrsX, endHrsY);
-  ctxConnected.lineTo(endMinsX, endMinsY);
-  ctxConnected.lineTo(endSecsX, endSecsY);
-  ctxConnected.stroke();
+  drawLine(ctxConnected, centreX, centreY, endHrsX, endHrsY, 'white');
+  drawLine(ctxConnected, endHrsX, endHrsY, endMinsX, endMinsY, 'white');
+  drawLine(ctxConnected, endMinsX, endMinsY, endSecsX, endSecsY, 'white');
 };
 
 const init = () => {
