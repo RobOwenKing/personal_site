@@ -5,7 +5,7 @@
 
 <h1>Star Battles: <%= @star_battle.name %></h1>
 
-<%= @star_battle.intro %>
+<%= simple_format(@star_battle.intro) %>
 <p>Stars per row/col/cage: <% @star_battle.stars.times do %><i class="fas fa-star yellow-txt"></i><% end %></p>
 
 <table id="puzzle-grid" draggable="false"
