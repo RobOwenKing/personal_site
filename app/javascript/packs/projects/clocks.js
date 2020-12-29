@@ -206,19 +206,27 @@ const drawBinary = (hrs, mins, secs) => {
   const binaryHrs  = hrs.toString(2);
   const binaryMins = mins.toString(2);
   const binarySecs = secs.toString(2);
+  const strings = [binaryHrs, binaryMins, binarySecs];
 
   const xStep = canvasBetween.width / 8;
   const yStep = canvasBetween.height / 6;
 
-  for (let i = 0; i < 7; i += 1) {
-    ctxBinary.beginPath();
-    if (i < binarySecs.length && binarySecs.charAt(binarySecs.length - 1 - i) == '1') {
-      ctxBinary.fillStyle = '#F57E2A';
-    } else {
-      ctxBinary.fillStyle = '#042D43';
+  for (let j = 0; j < 3; j += 1) {
+    for (let i = 0; i < 7; i += 1) {
+      if (j == 0 && (i == 5 || i == 6)) {
+        break;
+      } else {
+        ctxBinary.beginPath();
+        if (i < strings[j].length && strings[j].charAt(strings[j].length - 1 - i) == '1') {
+          ctxBinary.fillStyle = '#F57E2A';
+        } else {
+          ctxBinary.fillStyle = '#042D43';
+        }
+        ctxBinary.arc(xStep * (7 - i), yStep * (j + 2), 10, 0, 2 * Math.PI);
+        ctxBinary.fill();
+      }
+
     }
-    ctxBinary.arc(xStep * (7 - i), yStep * (3 + 1), 10, 0, 2 * Math.PI);
-    ctxBinary.fill();
   }
 };
 
