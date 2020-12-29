@@ -75,9 +75,9 @@ const updateWrongClock = (hrs, mins, secs) => {
   let targetMins = state.currentWrongMins;
 
   if (state.currentWrongSecs > 45 && targetSecs < 15) {
-    targetMins = state.currentWrongMins + 1;
+    targetMins = (state.currentWrongMins + 1) % 60;
   } else if (state.currentWrongSecs < 15 && targetSecs > 45) {
-    targetMins = state.currentWrongMins - 1;
+    targetMins = (state.currentWrongMins + 59) % 60;
   }
 
   if (state.currentWrongMins > 45 && targetMins < 15) {
