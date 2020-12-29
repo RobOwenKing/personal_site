@@ -10,6 +10,7 @@ const roman = document.getElementById('roman');
 const wrong = document.getElementById('wrong');
 const canvasBetween = document.getElementById('between');
 const canvasOrders = document.getElementById('orders');
+const canvasOneHand = document.getElementById('one-hand');
 
 const state = {};
 
@@ -20,6 +21,10 @@ canvasBetween.height = 180;
 const ctxOrders = canvasOrders.getContext('2d');
 canvasOrders.width = 240;
 canvasOrders.height = 180;
+
+const ctxOneHand = canvasOneHand.getContext('2d');
+canvasOneHand.width = 240;
+canvasOneHand.height = 180;
 
 const romanify = (num) => {
   // We only need Roman numerals up to L as we'll never reach 90
@@ -121,14 +126,14 @@ const drawBetween = (hrs, mins, secs) => {
   drawArc(startX, startY, 70, angleA, angleB, '#F57E2A');
 };
 
-const drawLine = (angle, length, colour) => {
-  ctxOrders.rotate(angle);
-  ctxOrders.beginPath();
-  ctxOrders.strokeStyle = colour;
-  ctxOrders.moveTo(0, 0);
-  ctxOrders.lineTo(length, 0);
-  ctxOrders.stroke();
-  ctxOrders.rotate(-angle);
+const drawLine = (context, angle, length, colour) => {
+  context.rotate(angle);
+  context.beginPath();
+  context.strokeStyle = colour;
+  context.moveTo(0, 0);
+  context.lineTo(length, 0);
+  context.stroke();
+  context.rotate(-angle);
 }
 
 const drawOrders = (yrs, mths, dts, hrs, mins, secs, mscs) => {
@@ -152,14 +157,35 @@ const drawOrders = (yrs, mths, dts, hrs, mins, secs, mscs) => {
   ctxOrders.lineCap = "round";
 
   ctxOrders.translate(startX, startY);
-  drawLine(angleYrs, 75, '#ff0000');
-  drawLine(angleMths, 70, '#ffa500');
-  drawLine(angleDts, 65, '#ffff00');
-  drawLine(angleHrs, 60, '#008000');
-  drawLine(angleMins, 55, '#0000ff');
-  drawLine(angleSecs, 50, '#4b0082');
-  drawLine(angleMscs, 45, '#ee82ee');
+  drawLine(ctxOrders, angleYrs, 75, '#ff0000');
+  drawLine(ctxOrders, angleMths, 70, '#ffa500');
+  drawLine(ctxOrders, angleDts, 65, '#ffff00');
+  drawLine(ctxOrders, angleHrs, 60, '#008000');
+  drawLine(ctxOrders, angleMins, 55, '#0000ff');
+  drawLine(ctxOrders, angleSecs, 50, '#4b0082');
+  drawLine(ctxOrders, angleMscs, 45, '#ee82ee');
   ctxOrders.translate(-startX, -startY);
+}
+
+const drawOneHand = (hrs, mins, secs) => {
+  // Draw background
+  ctxOneHand.fillStyle = 'black';
+  ctxOneHand.fillRect(0, 0, canvasOneHand.width, canvasOneHand.height);
+
+  // Set up variables we'll need
+  const startX = canvasOneHand.width / 2;
+  const startY = canvasOneHand.height / 2;
+
+  const lengthHrs = ((hrs % 12) * 4) + 31;
+  const angleMins = (2 * Math.PI * (mins / 60)) - (0.5 * Math.PI);
+  const colourSecs = `hsl(${secs * 6},100%,50%)`;
+
+  ctxOneHand.lineWidth = 5;
+  ctxOneHand.lineCap = "round";
+
+  ctxOneHand.translate(startX, startY);
+  drawLine(ctxOneHand, angleMins, lengthHrs, colourSecs);
+  ctxOneHand.translate(-startX, -startY);
 }
 
 const init = () => {
@@ -177,6 +203,7 @@ const init = () => {
   initWrongClock(hrs, mins, secs);
   drawBetween(hrs, mins, secs);
   drawOrders(yrs, mths, dts, hrs, mins, secs, mscs);
+  drawOneHand(hrs, mins, secs);
 }
 
 const updateClocks = () => {
@@ -195,6 +222,7 @@ const updateClocks = () => {
     updateRomanClock(hrs, mins, secs);
     updateWrongClock(hrs, mins, secs);
     drawBetween(hrs, mins, secs);
+    drawOneHand(hrs, mins, secs);
   }
 
   drawOrders(yrs, mths, dts, hrs, mins, secs, mscs);
