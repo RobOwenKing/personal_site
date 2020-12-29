@@ -136,7 +136,7 @@ const drawBetween = (hrs, mins, secs) => {
   drawArc(startX, startY, 70, angleA, angleB, '#F57E2A');
 };
 
-const drawLine = (context, angle, length, colour) => {
+const drawLineWithRotation = (context, angle, length, colour) => {
   context.rotate(angle);
   context.beginPath();
   context.strokeStyle = colour;
@@ -167,13 +167,13 @@ const drawOrders = (yrs, mths, dts, hrs, mins, secs, mscs) => {
   ctxOrders.lineCap = "round";
 
   ctxOrders.translate(startX, startY);
-  drawLine(ctxOrders, angleYrs, 75, '#ff0000');
-  drawLine(ctxOrders, angleMths, 70, '#ffa500');
-  drawLine(ctxOrders, angleDts, 65, '#ffff00');
-  drawLine(ctxOrders, angleHrs, 60, '#008000');
-  drawLine(ctxOrders, angleMins, 55, '#0000ff');
-  drawLine(ctxOrders, angleSecs, 50, '#4b0082');
-  drawLine(ctxOrders, angleMscs, 45, '#ee82ee');
+  drawLineWithRotation(ctxOrders, angleYrs, 75, '#ff0000');
+  drawLineWithRotation(ctxOrders, angleMths, 70, '#ffa500');
+  drawLineWithRotation(ctxOrders, angleDts, 65, '#ffff00');
+  drawLineWithRotation(ctxOrders, angleHrs, 60, '#008000');
+  drawLineWithRotation(ctxOrders, angleMins, 55, '#0000ff');
+  drawLineWithRotation(ctxOrders, angleSecs, 50, '#4b0082');
+  drawLineWithRotation(ctxOrders, angleMscs, 45, '#ee82ee');
   ctxOrders.translate(-startX, -startY);
 }
 
@@ -194,7 +194,7 @@ const drawOneHand = (hrs, mins, secs) => {
   ctxOneHand.lineCap = "round";
 
   ctxOneHand.translate(startX, startY);
-  drawLine(ctxOneHand, angleMins, lengthHrs, colourSecs);
+  drawLineWithRotation(ctxOneHand, angleMins, lengthHrs, colourSecs);
   ctxOneHand.translate(-startX, -startY);
 }
 
