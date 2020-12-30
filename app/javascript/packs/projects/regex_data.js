@@ -24,7 +24,7 @@ const helloWorld = {
   strings: [
     [
       "Hello, World!",
-      "Hello world?",
+      "Hello, world?",
       "HELLO WORLD!"
     ],
     [
@@ -34,7 +34,7 @@ const helloWorld = {
   ],
   matches: [
     ["Hello, World!"],
-    ["Hello world?"],
+    ["Hello, world?"],
     ["HELLO WORLD!"]
   ],
   solution: /hello,? world(!|\?)/i
@@ -110,9 +110,9 @@ const roman = {
     ["MMXX"],
     ["MDCCXXIX"]
   ],
-  solution: /M{0,3}(C[MD]|D?C{0,3})?(X[CL]|L?X{0,3})?(I[XV]|V?I{0,3})?/
+  solution: /\bM{0,3}(C[MD]|D?C{0,3})?(X[CL]|L?X{0,3})?(I[XV]|V?I{0,3})?\b/g
 }
-
+/*
 const regex = {
   name: "Regex-ception",
   value: "regex-ception",
@@ -134,27 +134,36 @@ const regex = {
     ["/\\d+/"]
   ],
   solution: //
-};
+};*/
 
 const titles = {
-  name: "Titles",
+  name: "I'm not great at titles",
   value: "titles",
-  description: "",
+  description: "Refactoring. Love it or hate it, it's a fact of coding. Even regular expressions. Try and match these titles ('Dr.', 'Mr', 'Mrs', 'Miss', 'Fr.'), and think about the different ways you can tackle this and the pros and cons of each.",
   strings: [
     [
       "Dr. Jill Biden",
-      "Dr Jekyll and Mr Hyde",
-
-    ]
-  ]
+      "Mr and Mrs Bun, the Bakers",
+      "Miss Piggy",
+      "Fr. Ted"
+    ],
+    [
+      "MRI",
+      "Mississippi",
+      "Drs"
+    ],
+  ],
+  matches: [
+    ["Dr."],
+    ["Mr", "Mrs"],
+    ["Miss"],
+    ["Fr."]
+  ],
+  solution: /([fd]r|mrs?|miss)(\.|\b)/gi
 };
 
-const emails = {
+const snowclones = {};
 
-};
+const comments = {};
 
-const snowclones = {
-
-}
-
-export const challenges = [helloWorld, ordinals, catalan, roman, regex];
+export const challenges = [helloWorld, ordinals, catalan, titles, roman];
