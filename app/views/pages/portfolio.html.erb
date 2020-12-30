@@ -81,9 +81,14 @@
 
 <div class="line-break"></div>
 
-<h2>Understanding CSS</h2>
+<h2>For Coders</h2>
 
 <div class="flex">
+  <%= link_to(regex_challenges_path, class: "card-project") do %>
+    <%= image_tag("screenshots/regex_challenges.jpg", class: "img-circle", alt: "Screenshot of someone trying to use a regular expression to match some Catalan words with special characters to mixed success.") %>
+    <h3>Regex Challenges</h3>
+  <% end %>
+
   <%= link_to(colour_translator_path, class: "card-project") do %>
     <%= image_tag("screenshots/colour_translator.jpg", class: "img-circle", alt: "Screenshot of the Colour Translator with the RGB and HSL values for a shade of orange.") %>
     <h3>Colour Translator</h3>
