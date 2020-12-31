@@ -220,7 +220,6 @@ canvas.addEventListener('mousemove', (event) => {
   currentY = event.offsetY;
 })
 
-
 const init = () => {
   count = 0;
   total = area.total;

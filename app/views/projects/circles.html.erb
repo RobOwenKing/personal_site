@@ -3,8 +3,10 @@
 <label for="area-select">Pick one: </label>
 <select name="area" id="area-select"></select>
 
-<p><span id="count">0</span>/<span id="total">320000</span> = <span id="percent"></span>%</p>
+<p><span id="count">0</span> / <span id="total">320000</span> = <span id="percent"></span>%</p>
 
 <canvas id="circles"></canvas>
+
+<p>Data from <%= link_to "WHO", "https://covid19.who.int/", target: :_blank %>, retrieved 31st Dec 2020.</p>
 
 <%= javascript_pack_tag 'projects/circles' %>
