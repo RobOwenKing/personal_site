@@ -5,19 +5,21 @@ const alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m
 
 const startButton = document.getElementById("start");
 const startBlock = document.getElementById("start-block");
+const explanation = document.getElementById("explanation");
 
 const game = document.getElementById("game");
 const patternDisplay = document.getElementById("pattern");
 const codeInput = document.getElementById("code-input");
 const answerInput = document.getElementById("input");
 const countdownDisplay = document.getElementById("countdown");
+const currentScore = document.getElementById("current-score");
 const answersDisplay = document.getElementById("answers");
 const codeDisplay = document.getElementById("code-display");
 
 const twitter = document.getElementById("twitter");
 
 const gameOver = document.getElementById("game-over");
-const scoreDisplay = document.getElementById("score");
+const gameOverScore = document.getElementById("game-over-score");
 const allAnswers = document.getElementById("all-answers");
 
 let timer;
@@ -69,7 +71,7 @@ const timerCallback = () => {
   } else {
     clearInterval(timer);
     game.hidden = true;
-    scoreDisplay.innerText = score;
+    gameOverScore.innerText = score;
     startBlock.hidden = false;
     gameOver.hidden = false;
     twitter.innerHTML = `<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=I%20scored%20${score}!%20Can%20you%20beat%20me?%20It's%20round%20${roundCode}%20here:"><i class="fab fa-twitter"></i></a>`
@@ -83,12 +85,14 @@ const startTimer = () => {
 
 const startRound = () => {
   startBlock.hidden = true;
+  explanation.hidden = true;
   game.hidden = false;
   gameOver.hidden = true;
   setPattern();
   score = 0;
   answerInput.value = "";
   countdownDisplay.value = 0;
+  currentScore.innerHTML = "0";
   answersDisplay.innerHTML = "";
   startTimer();
 };
@@ -104,6 +108,7 @@ const handleCorrectInput = (answer) => {
     clearInterval(timer);
     score += 100;
     score += Math.floor(10 * (10 - countdownDisplay.value));
+    currentScore.innerHTML = score;
     countdownDisplay.value = 0;
     startTimer();
   }

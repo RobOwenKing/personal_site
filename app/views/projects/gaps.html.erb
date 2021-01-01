@@ -1,3 +1,7 @@
+<% content_for :meta_title, "G_ps, by Rob Owen King" %>
+<% content_for :meta_description, "Quick! How many four-letter words can you think of ending in 'g'? Play Gaps today." %>
+<% content_for :meta_image, "screenshots/gaps.jpg" %>
+
 <h1>G_PS</h1>
 
 <div id="start-block">
@@ -8,6 +12,9 @@
     <label for="code-input">(Optional) Enter round code:</label>
     <input type="text" id="code-input"></input>
   </div>
+</div>
+
+<div id="explanation">
   <h3>How it works</h3>
   <p>You'll be given a letter pattern, like G A _ _, and then have to think of as many English words as you can which fit that pattern. In this case, you could have "gaps", "game", "gala", "gate", "gawk", etc. You get points for every correct word, more points the quicker you answer.</p>
 </div>
@@ -22,6 +29,8 @@
   <br>
   <br>
 
+  <h3>Score: <span id="current-score"></span></h3>
+
   <div>
     <label for="countdown">Time left:</label>
     <progress id="countdown" max="10" value="0">0</progress>
@@ -32,7 +41,7 @@
 
 <div id="game-over" hidden>
   <h4>Game Over</h4>
-  <h3>You scored <span id="score"></span>!</h3>
+  <h3>You scored <span id="game-over-score"></span>!</h3>
   <p>Round code: <span id="code-display"></span></p>
   <div>
     Challenge your friends:
