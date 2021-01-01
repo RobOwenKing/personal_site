@@ -74,7 +74,7 @@ const timerCallback = () => {
     gameOverScore.innerText = score;
     startBlock.hidden = false;
     gameOver.hidden = false;
-    twitter.innerHTML = `<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=I%20scored%20${score}!%20Can%20you%20beat%20me?%20Enter%20round%20code%20${roundCode}%20here:"><i class="fab fa-twitter"></i></a>`
+    twitter.innerHTML = `<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=I%20scored%20${score}!%20Can%20you%20beat%20me?%20Enter%20round%20code%20${roundCode}%20here:&url=www.robowenking.com/gaps"><i class="fab fa-twitter"></i></a>`
     displayPossibleAnswers();
   }
 }
