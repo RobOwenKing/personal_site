@@ -23,9 +23,13 @@ let regex;
 
 const setPattern = () => {
   const patternNo = Math.floor(Math.random() * patterns.length);
-  pattern = patterns[patternNo][0]
-  regex = new RegExp(pattern, 'i')
-  patternDisplay.innerHTML = pattern.replace(/\\w/g, '_');
+  pattern = patterns[patternNo][0];
+  regex = new RegExp(pattern, 'i');
+  // First replace every \\w (gap) with _
+  // Then make all letters uppercase
+  // Then add a space between each character
+  pattern = pattern.replace(/\\w/g, '_').toUpperCase().split('').join('&nbsp;');;
+  patternDisplay.innerHTML = pattern;
 };
 
 const timerCallback = () => {
