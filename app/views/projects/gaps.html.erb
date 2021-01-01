@@ -1,7 +1,13 @@
 <h1>G_PS</h1>
 
-<div id="start">
-  <div class="btn btn-orange">Start new round</div>
+<div id="start-block">
+  <div class="btn btn-orange" id="start">Start new round</div>
+  <br>
+  <br>
+  <div>
+    <label for="code-input">(Optional) Enter round code:</label>
+    <input type="text" id="code-input"></input>
+  </div>
   <h3>How it works</h3>
   <p>You'll be given a letter pattern, like G A _ _, and then have to think of as many English words as you can which fit that pattern. In this case, you could have "gaps", "game", "gala", "gate", "gawk", etc. You get points for every correct word, more points the quicker you answer.</p>
 </div>
@@ -27,6 +33,11 @@
 <div id="game-over" hidden>
   <h4>Game Over</h4>
   <h3>You scored <span id="score"></span>!</h3>
+  <p>Round code: <span id="code-display"></span></p>
+  <div>
+    Challenge your friends:
+    <span id="twitter"></span>
+  </div>
   <p>Possible answers: <span id="all-answers"></span></p>
 </div>
 
