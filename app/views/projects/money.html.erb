@@ -9,10 +9,13 @@
 
 <select id="output-currency"></select>
 <span>and</span>
-<select id="output-country"></select>
+<input id="output-country" list="countries" placeholder="Pick a country"></select>
+<datalist id="countries"></datalist>
 
 <div class="line-break"></div>
 
-<span id="input">0</span> = <span id="output">0</span>
+<div class="large-text">
+  <span id="input">0</span> = <span id="output">0</span>
+</div>
 
 <%= javascript_pack_tag 'projects/money' %>
