@@ -2,7 +2,7 @@
 
 <p>Explain</p>
 
-<input type="number" id="input-value">
+<input type="number" id="input-value" value="100">
 <select id="input-currency"></select>
 
 <p>to me in terms of</p>
@@ -17,5 +17,7 @@
 <div class="large-text">
   <span id="input">0</span> = <span id="output">0</span>
 </div>
+
+<div>That's equivalent to <span class="large-text" id="per-person"></span> per person in <span class="large-text" id="per-person-country"></span></div>
 
 <%= javascript_pack_tag 'projects/money' %>

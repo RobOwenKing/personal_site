@@ -1,6 +1,6 @@
-export const selectOptions = `<option value="EUR" selected="selected">Euro</option>
+export const selectOptions = `<option value="GBP" selected="selected">United Kingdom Pounds</option>
+    <option value="EUR">Euro</option>
     <option value="USD">United States Dollars</option>
-    <option value="GBP">United Kingdom Pounds</option>
     <option value="AUD">Australia Dollars</option>
     <option value="BRL">Brazil Real</option>
     <option value="BGN">Bulgaria Lev</option>
@@ -94,7 +94,7 @@ export const countryOptions  = [
         "population": 9939800
     },
     {
-        "country": "Bahamas",
+        "country": "The Bahamas",
         "population": 385640
     },
     {
@@ -146,16 +146,8 @@ export const countryOptions  = [
         "population": 2254126
     },
     {
-        "country": "Bouvet Island",
-        "population": 0
-    },
-    {
         "country": "Brazil",
         "population": 209469333
-    },
-    {
-        "country": "British Indian Ocean Territory",
-        "population": 0
     },
     {
         "country": "Brunei",
@@ -334,10 +326,6 @@ export const countryOptions  = [
         "population": 277679
     },
     {
-        "country": "French Southern territories",
-        "population": 0
-    },
-    {
         "country": "Gabon",
         "population": 2119275
     },
@@ -400,10 +388,6 @@ export const countryOptions  = [
     {
         "country": "Haiti",
         "population": 11123176
-    },
-    {
-        "country": "Heard Island and McDonald Islands",
-        "population": 0
     },
     {
         "country": "Holy See (Vatican City State)",
@@ -946,11 +930,11 @@ export const countryOptions  = [
         "population": 9630959
     },
     {
-        "country": "United Kingdom",
+        "country": "The United Kingdom",
         "population": 66460344
     },
     {
-        "country": "United States",
+        "country": "The United States",
         "population": 326687501
     },
     {
