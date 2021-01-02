@@ -11,7 +11,6 @@ const input  = document.getElementById('input');
 const output = document.getElementById('output');
 const perPerson = document.getElementById('per-person');
 const perPersonCountry = document.getElementById('per-person-country');
-let country = countryOptions.filter(element => element["country"] == "The United Kingdom");
 
 const getRates = () => {
   fetch('https://api.exchangeratesapi.io/latest')
@@ -31,15 +30,16 @@ const convert = () => {
   outputValue = (inputValue / firstRate) * secondRate;
 
   input.innerHTML  = `${inputValue} ${inputCurrency.value}`;
-  output.innerHTML = `${outputValue} ${outputCurrency.value}`;
+  output.innerHTML = `${outputValue.toFixed(2)} ${outputCurrency.value}`;
 };
 
 const updatePerPerson = () => {
-  country = countryOptions.filter(element => element["country"] == outputCountry.value);
-  const population = parseInt(country[0]["population"]);
+  const country = outputCountry.value || "The United Kingdom";
+  const countryData = countryOptions.filter(element => element["country"] == country);
+  const population = parseInt(countryData[0]["population"]);
   const perPersonValue = outputValue / population;
-  perPerson.innerHTML = `${perPersonValue} ${outputCurrency.value}`;
-  perPersonCountry.innerHTML = outputCountry.value;
+  perPerson.innerHTML = `${perPersonValue.toFixed(2)} ${outputCurrency.value}`;
+  perPersonCountry.innerHTML = country;
 };
 
 const update = () => {

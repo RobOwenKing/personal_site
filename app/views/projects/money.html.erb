@@ -18,6 +18,13 @@
   <span id="input">0</span> = <span id="output">0</span>
 </div>
 
+<br />
+
 <div>That's equivalent to <span class="large-text" id="per-person"></span> per person in <span class="large-text" id="per-person-country"></span></div>
+
+<div class="line-break"></div>
+
+<p class="small-text">Conversion rates from the European Central Bank via the <%= link_to "Exchange rates API", "https://exchangeratesapi.io/" %>.</p>
+<p class="small-text">Population data from <%= link_to "here", "https://github.com/samayo/country-json" %> under the <%= link_to "MIT License", "https://github.com/samayo/country-json/blob/master/LICENSE" %>.</p>
 
 <%= javascript_pack_tag 'projects/money' %>
