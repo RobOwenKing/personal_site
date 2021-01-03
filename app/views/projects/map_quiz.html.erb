@@ -1,0 +1,20 @@
+<h1>US State Capitals Challenge</h1>
+
+<div class="btn btn-orange" id="start">Start</div>
+
+<div id="game" style="display: none">
+  <div id="question">The <strong id="category">capital</strong> of <strong id="prompt">Alabama</strong> is...</div>
+  <br>
+  <input type="text" id="answer">
+  <br>
+  <br>
+  <div class="btn btn-blue" id="skip">Don't know</div>
+</div>
+
+<div id="results" style="display: none">
+  Well done! You got <strong id="score"></strong> correct in <strong id="time"></strong>.
+</div>
+
+<div id="skipped"></div>
+
+<%= javascript_pack_tag 'projects/map_quiz' %>
