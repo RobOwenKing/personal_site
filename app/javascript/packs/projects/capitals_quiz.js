@@ -10,9 +10,12 @@ const category = document.getElementById('category');
 const prompt = document.getElementById('prompt');
 const answerInput = document.getElementById('answer');
 const skipButton = document.getElementById('skip');
+const gameScore = document.getElementById('game-score');
+const gameTotal = document.getElementById('game-total');
 
 const results = document.getElementById('results');
 const resultsScore = document.getElementById('results-score');
+const resultsTotal = document.getElementById('results-total');
 const timeDisplay = document.getElementById('time');
 const restartButton = document.getElementById('restart');
 
@@ -26,6 +29,7 @@ const newQuestion = () => {
   question = questions.pop();
   prompt.innerHTML = question.prompt;
   answerArray = question.answers;
+  gameScore.innerHTML = score;
 };
 
 // Below based on code from https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
@@ -77,6 +81,8 @@ startButton.addEventListener('click', (event) => {
   intro.style.display = "none";
   questions = capitalsUS;
   questions.sort((a, b) => Math.random() - 0.5);
+  gameTotal.innerHTML = questions.length;
+  resultsTotal.innerHTML = questions.length;
   newQuestion();
   startTime = new Date();
 });
