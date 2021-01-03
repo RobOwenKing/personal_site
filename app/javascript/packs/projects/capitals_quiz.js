@@ -2,17 +2,22 @@
 
 import { capitalsUS } from './data/capitals_data.js';
 
-const start = document.getElementById('start');
+const intro = document.getElementById('intro');
+const startButton = document.getElementById('start');
 
 const game = document.getElementById('game');
 const category = document.getElementById('category');
 const prompt = document.getElementById('prompt');
 const answerInput = document.getElementById('answer');
 const skipButton = document.getElementById('skip');
-const skippedAnswers = document.getElementById('skipped');
+
 const results = document.getElementById('results');
-const scoreDisplay = document.getElementById('score');
+const resultsScore = document.getElementById('results-score');
 const timeDisplay = document.getElementById('time');
+const restartButton = document.getElementById('restart');
+
+const skippedAnswers = document.getElementById('skipped');
+
 let questions, question, answerArray;
 let startTime, endTime;
 let score = 0;
@@ -31,7 +36,7 @@ const formatTime = (millis) => {
 };
 
 const gameOver = () => {
-  scoreDisplay.innerHTML = score;
+  resultsScore.innerHTML = score;
   endTime = new Date();
   const timeInMilliseconds = endTime - startTime;
   timeDisplay.innerHTML = formatTime(timeInMilliseconds);
@@ -43,9 +48,9 @@ const gameOver = () => {
 answerInput.addEventListener('input', (event) => {
   if (answerArray.includes(answerInput.value.toLowerCase())) {
     score += 1;
+    answerInput.value = '';
     if (questions.length > 0) {
       newQuestion();
-      answerInput.value = '';
     } else {
       gameOver();
     }
@@ -67,11 +72,17 @@ skipButton.addEventListener('click', (event) => {
   newQuestion();
 });
 
-start.addEventListener('click', (event) => {
+startButton.addEventListener('click', (event) => {
   game.style.display = "block";
-  start.style.display = "none";
+  intro.style.display = "none";
   questions = capitalsUS;
   questions.sort((a, b) => Math.random() - 0.5);
   newQuestion();
   startTime = new Date();
 });
+
+restartButton.addEventListener('click', (event) => {
+  results.style.display = "none";
+  intro.style.display = "block";
+  skippedAnswers.innerHTML = "";
+})
