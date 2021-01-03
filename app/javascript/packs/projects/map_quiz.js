@@ -59,11 +59,13 @@ const game = document.getElementById('game');
 const category = document.getElementById('category');
 const prompt = document.getElementById('prompt');
 const answerInput = document.getElementById('answer');
-let answerArray;
+const skipButton = document.getElementById('skip');
+const skippedAnswers = document.getElementById('skipped');
+let question, answerArray;
 let score = 0;
 
 const newQuestion = () => {
-  const question = questions.pop();
+  question = questions.pop();
   prompt.innerHTML = question.prompt;
   answerArray = question.answers;
 };
@@ -82,6 +84,21 @@ answerInput.addEventListener('input', (event) => {
       gameOver();
     }
   }
+});
+
+// Below based on code from https://stackoverflow.com/questions/42755664/capitalize-first-letter-of-each-word-in-js
+const capitalise = (str) => {
+  return str
+      .toLowerCase()
+      .split(' ')
+      .map((word) => { return word[0].toUpperCase() + word.substr(1); })
+      .join(' ');
+};
+
+skipButton.addEventListener('click', (event) => {
+  const toInsert = `<p>The capital of <strong>${question.prompt}</strong> is <strong>${capitalise(answerArray[0])}</strong></p>`;
+  skippedAnswers.insertAdjacentHTML('beforeend', toInsert);
+  newQuestion();
 });
 
 start.addEventListener('click', (event) => {
