@@ -51,11 +51,34 @@ const capitalsUS = [
   { prompt: "Wyoming", answers: ['cheyenne'] }
 ];
 
+const capitalsDE = [
+  { prompt: "Baden-Württemberg", answers: ['stuttgart'] },
+  { prompt: "Bavaria (Bayern)", answers: ['munich', 'münchen', 'munchen'] },
+  { prompt: "Berlin", answers: ['berlin'] },
+  { prompt: "Brandenburg", answers: ['potsdam'] },
+  { prompt: "Bremen", answers: ['bremen'] },
+  { prompt: "Hamburg", answers: ['hamburg'] },
+  { prompt: "Hesse (Hessen)", answers: ['wiesbaden'] },
+  { prompt: "Lower Saxony (Niedersachsen)", answers: ['hanover', 'hannover'] },
+  { prompt: "Mecklenburg-Vorpommern", answers: ['schwerin'] },
+  { prompt: "North Rhine-Westphalia (Nordrhein-Westfalen)", answers: ['düsseldorf', 'dusseldorf'] },
+  { prompt: "Rhineland-Palatinate (Rheinland-Pfalz)", answers: ['mainz'] },
+  { prompt: "Saarland", answers: ['saarbrücken', 'saarbrucken'] },
+  { prompt: "Saxony (Sachsen)", answers: ['dresden'] },
+  { prompt: "Saxony-Anhalt (Sachsen-Anhalt)", answers: ['magdeburg'] },
+  { prompt: "Schleswig-Holstein", answers: ['kiel'] },
+  { prompt: "Thuringia (Thüringen)", answers: ['erfurt'] }
+];
 
 export const categories = [
   {
     name: "US State Capitals",
     value: "us",
     questions: capitalsUS
+  },
+  {
+    name: "German Bundesländer Capitals",
+    value: "de",
+    questions: capitalsDE
   }
 ]
