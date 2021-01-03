@@ -1,6 +1,6 @@
 // https://hjnilsson.github.io/country-flags/
 
-import { capitalsUS } from './data/capitals_data.js';
+import { categories } from './data/capitals_data.js';
 
 const intro = document.getElementById('intro');
 const startButton = document.getElementById('start');
@@ -79,7 +79,7 @@ skipButton.addEventListener('click', (event) => {
 startButton.addEventListener('click', (event) => {
   game.style.display = "block";
   intro.style.display = "none";
-  questions = capitalsUS;
+  questions = categories[0]["questions"];
   questions.sort((a, b) => Math.random() - 0.5);
   gameTotal.innerHTML = questions.length;
   resultsTotal.innerHTML = questions.length;

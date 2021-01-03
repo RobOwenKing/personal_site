@@ -1,11 +1,11 @@
-export const capitalsUS = [
+const capitalsUS = [
   { prompt: "Alabama", answers: ['montgomery'] },
   { prompt: "Alaska", answers: ['juneau'] },
   { prompt: "Arizona", answers: ['phoenix'] },
   { prompt: "Arkansas", answers: ['little rock'] },
   { prompt: "California", answers: ['sacramento'] },
   { prompt: "Colorado", answers: ['denver'] },
-/*  { prompt: "Connecticut", answers: ['hartford'] },
+  { prompt: "Connecticut", answers: ['hartford'] },
   { prompt: "Delaware", answers: ['dover'] },
   { prompt: "Florida", answers: ['tallahassee'] },
   { prompt: "Georgia", answers: ['atlanta'] },
@@ -47,6 +47,15 @@ export const capitalsUS = [
   { prompt: "Virginia", answers: ['richmond'] },
   { prompt: "Washington", answers: ['olympia'] },
   { prompt: "West Virginia", answers: ['charleston'] },
-  { prompt: "Wisconsin", answers: ['madison'] },*/
+  { prompt: "Wisconsin", answers: ['madison'] },
   { prompt: "Wyoming", answers: ['cheyenne'] }
 ];
+
+
+export const categories = [
+  {
+    name: "US State Capitals",
+    value: "us",
+    questions: capitalsUS
+  }
+]
