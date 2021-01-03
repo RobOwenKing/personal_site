@@ -1,16 +1,35 @@
+<% content_for :meta_title, "Star Battle Puzzles, by Rob Owen King" %>
+<% content_for :meta_description, "Star Battles are a great puzzle - simple rules leading to fascinating logical consequences. Here are the one's I've made for you." %>
+<% content_for :meta_image, "screenshots/star_battle.jpg" %>
+
 <h1>Star Battles</h1>
 
 <h2>Puzzles</h2>
 
-<ul>
-  <% @puzzles.each do |puzzle| %>
-    <%= link_to(star_battle_path(puzzle.id)) do %>
-      <li class="btn btn-orange"><%= puzzle.name %></li>
-    <% end %>
-  <% end %>
-</ul>
+<p>New to Star Battles? Check out my Intro puzzles below.</p>
+
+<% @puzzles.each do |puzzle| %>
+  <span>
+    <%= link_to puzzle.name, star_battle_path(puzzle.id) %>
+    <%= ' · ' unless puzzle == @puzzles.last %>
+  </span>
+<% end %>
+
+<div class="line-break"></div>
+
+<h2>Intro to Star Battles</h2>
+
+<% @lessons.each do |lesson| %>
+  <span>
+    <%= link_to lesson.name, star_battle_path(lesson.id) %>
+    <%= ' · ' unless lesson == @lessons.last %>
+  </span>
+<% end %>
 
 <div class="line-break"></div>
 
 <h2>Creator and Solver</h2>
-<%= image_tag("screenshots/star_battle.jpg", class: "img-circle", alt: "Screenshot of the Star Battle Creator and Solver") %>
+
+<%= link_to(controller: "puzzles", action: "star_battle", class: "card-project") do %>
+  <%= image_tag("screenshots/star_battle.jpg", class: "img-circle", alt: "Screenshot of the Star Battle Creator and Solver") %>
+<% end %>

@@ -1,8 +1,11 @@
+<% content_for :meta_title, "#{@star_battle.name}, a Star Battle by Rob Owen King" %>
+<% content_for :meta_description, "Star Battles are a great puzzle - simple rules leading to fascinating logical consequences. Here's one I've made for you." %>
+<% content_for :meta_image, "screenshots/star_battle.jpg" %>
+
+
 <h1>Star Battles: <%= @star_battle.name %></h1>
 
-<br>
-
-<%= @star_battle.intro %>
+<%= simple_format(@star_battle.intro) %>
 <p>Stars per row/col/cage: <% @star_battle.stars.times do %><i class="fas fa-star yellow-txt"></i><% end %></p>
 
 <table id="puzzle-grid" draggable="false"
@@ -17,5 +20,19 @@
   <li id="check-grid" class="btn btn-orange">Check answer</li>
   <li id="clear-stars" class="btn btn-blue">Clear grid</li>
 </ul>
+
+<div id="hint-button" class="btn btn-orange">Show hint</div>
+<div id="hint-display" hidden>
+  <br>
+  <%= @star_battle.hint %>
+</div>
+
+<br>
+<br>
+
+<%= link_to 'Back to all puzzles', star_battles_path, class: "btn btn-blue" %>
+<% if @star_battle.next %>
+  <%= link_to 'Next puzzle', star_battle_path(@star_battle.next), class: "btn btn-orange" %>
+<% end %>
 
 <%= javascript_pack_tag 'puzzles/star_battle_show' %>

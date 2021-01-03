@@ -14,6 +14,34 @@
   color: green;
 }
 
+/* Branding Orange */
+.b-orange-txt {
+  color: $orange;
+}
+
+/* Branding Blue */
+.b-blue-txt {
+  color: $dark-blue;
+}
+
 [contenteditable] {
   padding: 0px 4px;
+}
+
+.clock-text {
+  font-size: 1.2rem;
+  font-family: monospace;
+
+  .clock-large {
+    font-size: 1.6rem;
+    padding-right: 2px;
+  }
+}
+
+.large-text {
+  font-size: 1.2rem;
+}
+
+.small-text {
+  font-size: 0.8rem;
 }

@@ -35,8 +35,9 @@ const checkToTimes = icon => {
 
 const checkMatch = (i, match) => {
   if (match === null) { return false; }
+  let target = challenge.strings[0][i].match(challenge.solution);
 
-  return challenge.matches[i].every((string, j) => {return string == match[j]});
+  return target.every((string, j) => {return string == match[j]});
 }
 
 const reMatch = (string, i, re, polarity) => {

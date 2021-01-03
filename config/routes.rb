@@ -6,9 +6,11 @@ Rails.application.routes.draw do
   get 'quedem', to: 'pages#quedem'
 
   get 'circles', to: 'projects#circles'
+  get 'clocks', to: 'projects#clocks'
   get 'colour_translator', to: 'projects#colour_translator'
   get 'euler_spiral', to: 'projects#euler_spiral'
   get 'game_of_life', to: 'projects#game_of_life'
+  get 'gaps', to: 'projects#gaps'
   get 'map_quiz', to: 'projects#map_quiz'
   get 'money', to: 'projects#money'
   get 'regex_challenges', to: 'projects#regex'
@@ -17,7 +19,9 @@ Rails.application.routes.draw do
   get 'sudoku', to: 'projects#sudoku'
   get 'transitions', to: 'projects#transitions'
 
+  get 'akari', to: 'puzzles#akari'
   get 'harki', to: 'puzzles#harki'
+  get 'hip', to: 'puzzles#hip'
   get 'prime_pairs', to: 'puzzles#prime_pairs'
   get 'wahnu', to: 'puzzles#wahnu'
 

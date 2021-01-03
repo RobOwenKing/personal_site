@@ -1,5 +1,16 @@
+<% content_for :meta_title, "Circles, by Rob Owen King" %>
+<% content_for :meta_description, "An art project inspired by John Green. For all those who have suffered in 2020." %>
+<% content_for :meta_image, "screenshots/circles.jpg" %>
+
 <h1>Circles</h1>
 
-<canvas id="circles-canvas" width="250" height="680"></canvas>
+<label for="area-select">Pick one: </label>
+<select name="area" id="area-select"></select>
+
+<p><span id="count">0</span> / <span id="total">320000</span> = <span id="percent"></span>%</p>
+
+<canvas id="circles"></canvas>
+
+<p>Data from <%= link_to "WHO", "https://covid19.who.int/", target: :_blank %>, retrieved 31st Dec 2020.</p>
 
 <%= javascript_pack_tag 'projects/circles' %>

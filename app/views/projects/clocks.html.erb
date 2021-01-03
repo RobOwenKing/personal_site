@@ -1,16 +1,50 @@
+<% content_for :meta_title, "Clocks, by Rob Owen King" %>
+<% content_for :meta_description, "A collection of clocks. They're not useful at all, but I think they're interesting." %>
+<% content_for :meta_image, "screenshots/clocks.jpg" %>
+
 <h1>Clocks</h1>
-<p>When I was teaching English, one hobby of one of my student's dads was building new, creative clocks.</p>
+<p>When I was teaching English, a hobby of one of my student's dads was building new, creative clocks, so the germ of this idea has been rattling around in my head for years. I was also inspired by <%= link_to "one of the great Daniel Shiffman's coding challenges", "https://www.youtube.com/watch?v=E4RyStef-gY" %>.</p>
 
 <div class="line-break"></div>
 
-<h2>Between</h2>
+<h2>The space between</h2>
 
 <canvas id="between"></canvas>
+
+<div class="line-break"></div>
+
+<h2>If the Romans had gone digital</h2>
+
+<div id="roman" class="clock-text"></div>
 
 <div class="line-break"></div>
 
 <h2>Orders of magnitude</h2>
 
 <canvas id="orders"></canvas>
+
+<div class="line-break"></div>
+
+<h2>Even a stopped clock...</h2>
+
+<div id="wrong" class="clock-text"></div>
+
+<div class="line-break"></div>
+
+<h2>Refactoring</h2>
+
+<canvas id="one-hand"></canvas>
+
+<div class="line-break"></div>
+
+<h2>Because computers</h2>
+
+<canvas id="binary"></canvas>
+
+<div class="line-break"></div>
+
+<h2>One thing led to another</h2>
+
+<canvas id="connected"></canvas>
 
 <%= javascript_pack_tag 'projects/clocks' %>

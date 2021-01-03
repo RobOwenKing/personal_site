@@ -1,10 +1,10 @@
 import { VARS, createAnswerBoard, fillBoard, createTableBorders } from './star_battle/setup.js';
 import { editCellBorders } from './star_battle/edit_borders.js';
 import { initClearStars } from './star_battle/clear.js';
-import { initCheckGrid } from './star_battle/check_grid.js';
+import { checkGrid, initCheckGrid } from './star_battle/check_grid.js';
 import { solveModeClick } from './star_battle/clicks.js';
 
-VARS.cagesBoard = JSON.parse(JSON.parse(VARS.board.parentElement.dataset.board));
+VARS.cagesBoard = JSON.parse(JSON.parse(VARS.puzzleData.board));
 VARS.sizeValue = VARS.cagesBoard.length;
 
 initClearStars();
@@ -26,6 +26,7 @@ const activateBoard = () => {
 
     cell.addEventListener('mousedown', (event) => {
       solveModeClick(cell, i, j);
+      if (checkGrid()) { window.alert('Looks good!'); }
     })
   })
 };
@@ -40,3 +41,13 @@ const init = () => {
 };
 
 init();
+
+// Show page code
+
+const hintButton = document.getElementById('hint-button');
+const hintDisplay = document.getElementById('hint-display');
+
+hintButton.addEventListener('click', (event) => {
+  hintButton.style.display = "none";
+  hintDisplay.hidden = false;
+})

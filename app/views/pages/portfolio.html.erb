@@ -38,14 +38,49 @@
     <h3>Tetr-ish</h3>
   <% end %>
 
-  <%= link_to(sudoku_path, class: "card-project") do %>
-    <%= image_tag("screenshots/sudoku.jpg", class: "img-circle", alt: "Screenshot of my Sudoku app having brute-forced the solution to a puzzle.") %>
+  <%= link_to(money_path, class: "card-project") do %>
+    <%= image_tag("screenshots/money.jpg", class: "img-circle", alt: "Screenshot of my Money 'Explaininator' project - converting between currencies and between large numbers and understandable concepts.") %>
+    <h3>Money Explaininator</h3>
+  <% end %>
+
+  <%= link_to(gaps_path, class: "card-project") do %>
+    <%= image_tag("screenshots/gaps.jpg", class: "img-circle", alt: "Screenshot of someone playing Gaps. The pattern is 'something, something, n, s' - they have 708 points so far from the words tons, wins, tins and pans.") %>
+    <h3>G_ps</h3>
+  <% end %>
+
+  <%= link_to(hip_path, class: "card-project") do %>
+    <%= image_tag("screenshots/hip.jpg", class: "img-circle", alt: "Screenshot of the Hip puzzle and/or game in progress.") %>
+    <h3>Hip</h3>
+  <% end %>
+
+  <%= link_to(prime_pairs_path, class: "card-project") do %>
+    <%= image_tag("screenshots/prime_pairs.jpg", class: "img-circle", alt: "Screenshot of Prime Pairs Plus set to order the numbers from 1 to 16 so that every pair adds up to a prime.") %>
+    <h3>Prime Pairs Plus</h3>
+  <% end %>
+
+  <%= link_to(clocks_path, class: "card-project") do %>
+    <%= image_tag("screenshots/clocks.jpg", class: "img-circle", alt: "Screenshot of my Clocks project.") %>
+    <h3>Clocks</h3>
+  <% end %>
+
+  <% link_to(sudoku_path, class: "card-project") do %>
+    <% image_tag("screenshots/sudoku.jpg", class: "img-circle", alt: "Screenshot of my Sudoku app having brute-forced the solution to a puzzle.") %>
     <h3>Sudoku Solver</h3>
+  <% end %>
+
+  <%= link_to(star_battles_path, class: "card-project") do %>
+    <%= image_tag("screenshots/star_battle.jpg", class: "img-circle", alt: "Screenshot of the Star Battle Creator and Solver") %>
+    <h3>Star Battles</h3>
   <% end %>
 
   <%= link_to(roman_calculator_path, class: "card-project") do %>
     <%= image_tag("screenshots/roman_calculator.jpg", class: "img-circle", alt: "Screenshot of the Roman Numerals Calculator displaying answer MDCCXXIX.") %>
     <h3>Roman Numerals Calculator</h3>
+  <% end %>
+
+  <%= link_to(circles_path, class: "card-project") do %>
+    <%= image_tag("screenshots/circles.jpg", class: "img-circle", alt: "Screenshot of a black screen with a random pattern of circles on it in green, brown, grey and blue.") %>
+    <h3>Circles</h3>
   <% end %>
 
   <%= link_to(euler_spiral_path, class: "card-project") do %>
@@ -61,9 +96,14 @@
 
 <div class="line-break"></div>
 
-<h2>Understanding CSS</h2>
+<h2>For Coders</h2>
 
 <div class="flex">
+  <%= link_to(regex_challenges_path, class: "card-project") do %>
+    <%= image_tag("screenshots/regex_challenges.jpg", class: "img-circle", alt: "Screenshot of someone trying to use a regular expression to match some Catalan words with special characters to mixed success.") %>
+    <h3>Regex Challenges</h3>
+  <% end %>
+
   <%= link_to(colour_translator_path, class: "card-project") do %>
     <%= image_tag("screenshots/colour_translator.jpg", class: "img-circle", alt: "Screenshot of the Colour Translator with the RGB and HSL values for a shade of orange.") %>
     <h3>Colour Translator</h3>
