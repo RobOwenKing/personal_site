@@ -61,7 +61,11 @@ const prompt = document.getElementById('prompt');
 const answerInput = document.getElementById('answer');
 const skipButton = document.getElementById('skip');
 const skippedAnswers = document.getElementById('skipped');
+const results = document.getElementById('results');
+const scoreDisplay = document.getElementById('score');
+const timeDisplay = document.getElementById('time');
 let question, answerArray;
+let startTime, endTime;
 let score = 0;
 
 const newQuestion = () => {
@@ -70,8 +74,21 @@ const newQuestion = () => {
   answerArray = question.answers;
 };
 
-const gameOver = () => {
+// Below based on code from https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
+const formatTime = (millis) => {
+  const mins = Math.floor(millis / 60000);
+  const secs = ((millis % 60000) / 1000).toFixed(0);
+  return mins + ":" + (secs < 10 ? '0' : '') + secs;
+};
 
+const gameOver = () => {
+  scoreDisplay.innerHTML = score;
+  endTime = new Date();
+  const timeInMilliseconds = endTime - startTime;
+  timeDisplay.innerHTML = formatTime(timeInMilliseconds);
+
+  game.style.display = "none";
+  results.style.display = "block";
 };
 
 answerInput.addEventListener('input', (event) => {
@@ -106,4 +123,5 @@ start.addEventListener('click', (event) => {
   start.style.display = "none";
   questions.sort((a, b) => Math.random() - 0.5);
   newQuestion();
+  startTime = new Date();
 });
