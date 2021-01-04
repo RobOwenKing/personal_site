@@ -1,6 +1,6 @@
-// https://hjnilsson.github.io/country-flags/
+import { categories } from './data/flags_data.js';
 
-import { categories } from './data/capitals_data.js';
+const title = document.getElementById('title');
 
 const intro = document.getElementById('intro');
 const challengeSelect = document.getElementById('challenge-select');
@@ -28,7 +28,7 @@ let score = 0;
 
 const newQuestion = () => {
   question = questions.pop();
-  prompt.innerHTML = question.prompt;
+  prompt.src = question.prompt;
   answerArray = question.answers;
   gameScore.innerHTML = score;
 };

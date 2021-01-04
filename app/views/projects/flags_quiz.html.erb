@@ -1,4 +1,4 @@
-<h1>Flags Challenges</h1>
+<h1 id="title">Flags Challenges</h1>
 
 <div id="intro">
   <label for="challenge">Pick a challenge: </label>
@@ -9,7 +9,10 @@
 </div>
 
 <div id="game" style="display: none">
-  <div id="question">The <strong id="category">capital</strong> of <strong id="prompt">Alabama</strong> is...</div>
+  <div id="question">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/1/19/Flag_of_Andorra.svg" width="250" id="prompt">
+    <p>is the flag of...</p>
+  </div>
   <br>
   <input type="text" id="answer">
   <br>
@@ -29,4 +32,4 @@
 
 <div id="skipped"></div>
 
-<%= javascript_pack_tag 'projects/capitals_quiz' %>
+<%= javascript_pack_tag 'projects/flags_quiz' %>

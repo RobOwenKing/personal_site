@@ -1,5 +1,7 @@
 import { categories } from './data/capitals_data.js';
 
+const title = document.getElementById('title');
+
 const intro = document.getElementById('intro');
 const challengeSelect = document.getElementById('challenge-select');
 const startButton = document.getElementById('start');
