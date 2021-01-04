@@ -1,3 +1,5 @@
+// https://hjnilsson.github.io/country-flags/
+
 import { categories } from './data/capitals_data.js';
 
 const intro = document.getElementById('intro');

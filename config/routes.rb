@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get 'clocks', to: 'projects#clocks'
   get 'colour_translator', to: 'projects#colour_translator'
   get 'euler_spiral', to: 'projects#euler_spiral'
+  get 'flags_quiz', to: 'projects#flags_quiz'
   get 'game_of_life', to: 'projects#game_of_life'
   get 'gaps', to: 'projects#gaps'
   # get 'map_quiz', to: 'projects#map_quiz'
