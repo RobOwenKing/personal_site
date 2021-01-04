@@ -72,7 +72,7 @@ const capitalise = (str) => {
 };
 
 skipButton.addEventListener('click', (event) => {
-  const toInsert = `<p>The capital of <strong>${question.prompt}</strong> is <strong>${capitalise(answerArray[0])}</strong></p>`;
+  const toInsert = `<p><img src="${question.prompt}" width="32"> is the flag of <strong>${capitalise(answerArray[0])}</strong></p>`;
   skippedAnswers.insertAdjacentHTML('beforeend', toInsert);
   newQuestion();
 });
