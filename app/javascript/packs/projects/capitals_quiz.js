@@ -3,6 +3,7 @@
 import { categories } from './data/capitals_data.js';
 
 const intro = document.getElementById('intro');
+const challengeSelect = document.getElementById('challenge-select');
 const startButton = document.getElementById('start');
 
 const game = document.getElementById('game');
@@ -79,10 +80,12 @@ skipButton.addEventListener('click', (event) => {
 startButton.addEventListener('click', (event) => {
   game.style.display = "block";
   intro.style.display = "none";
-  questions = categories[1]["questions"];
+  const category = categories.find(element => element.value == challengeSelect.value);
+  questions = category["questions"];
   questions.sort((a, b) => Math.random() - 0.5);
   gameTotal.innerHTML = questions.length;
   resultsTotal.innerHTML = questions.length;
+  score = 0;
   newQuestion();
   startTime = new Date();
 });
@@ -92,3 +95,13 @@ restartButton.addEventListener('click', (event) => {
   intro.style.display = "block";
   skippedAnswers.innerHTML = "";
 })
+
+const buildSelect = () => {
+  for (let i = 0; i < categories.length; i += 1) {
+    const value = categories[i].value;
+    const name = categories[i].name;
+    challengeSelect.insertAdjacentHTML('beforeend', `<option value="${value}">${name}</option>`);
+  }
+};
+
+buildSelect();
