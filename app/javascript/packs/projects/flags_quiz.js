@@ -93,7 +93,7 @@ startButton.addEventListener('click', (event) => {
 
 restartButton.addEventListener('click', (event) => {
   results.style.display = "none";
-  title.innerHTML = "Capitals Challenges"
+  title.innerHTML = "Flags Challenges"
   intro.style.display = "block";
   skippedAnswers.innerHTML = "";
 })
