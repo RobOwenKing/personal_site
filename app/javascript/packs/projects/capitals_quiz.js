@@ -83,6 +83,7 @@ startButton.addEventListener('click', (event) => {
   const category = categories.find(element => element.value == challengeSelect.value);
   questions = category["questions"];
   questions.sort((a, b) => Math.random() - 0.5);
+  title.innerHTML = category["name"];
   gameTotal.innerHTML = questions.length;
   resultsTotal.innerHTML = questions.length;
   score = 0;
@@ -92,6 +93,7 @@ startButton.addEventListener('click', (event) => {
 
 restartButton.addEventListener('click', (event) => {
   results.style.display = "none";
+  title.innerHTML = "Capitals Challenges"
   intro.style.display = "block";
   skippedAnswers.innerHTML = "";
 })
