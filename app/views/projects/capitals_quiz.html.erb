@@ -1,0 +1,36 @@
+<% content_for :meta_title, "Capitals Challenges, by Rob Owen King" %>
+<% content_for :meta_description, "How good are you at capitals? Challenge yourself here." %>
+<% content_for :meta_image, "screenshots/capitals_quiz.jpg" %>
+
+<h1 id="title">Capitals Challenges</h1>
+
+<div id="intro">
+  <label for="challenge">Pick a challenge: </label>
+  <select name="challenge" id="challenge-select"></select>
+  <br>
+  <br>
+  <div class="btn btn-orange" id="start">Start</div>
+</div>
+
+<div id="game" style="display: none">
+  <div id="question">The <strong id="category">capital</strong> of <strong id="prompt">Alabama</strong> is...</div>
+  <br>
+  <input type="text" id="answer">
+  <br>
+  <br>
+  <div class="btn btn-blue" id="skip">Don't know</div>
+  <br>
+  <br>
+  You've got <span id="game-score"></span> / <span id="game-total"></span>
+</div>
+
+<div id="results" style="display: none">
+  Well done! You got <strong><span id="results-score"></span> / <span id="results-total"></span></strong> correct in <strong id="time"></strong>.
+  <br>
+  <br>
+  <div class="btn btn-orange" id="restart">Try another challenge</div>
+</div>
+
+<div id="skipped"></div>
+
+<%= javascript_pack_tag 'projects/capitals_quiz' %>

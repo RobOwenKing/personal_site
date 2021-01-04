@@ -1,6 +1,4 @@
-// https://hjnilsson.github.io/country-flags/
-
-let questions = [
+const capitalsUS = [
   { prompt: "Alabama", answers: ['montgomery'] },
   { prompt: "Alaska", answers: ['juneau'] },
   { prompt: "Arizona", answers: ['phoenix'] },
@@ -53,75 +51,34 @@ let questions = [
   { prompt: "Wyoming", answers: ['cheyenne'] }
 ];
 
-const start = document.getElementById('start');
+const capitalsDE = [
+  { prompt: "Baden-Württemberg", answers: ['stuttgart'] },
+  { prompt: "Bavaria (Bayern)", answers: ['munich', 'münchen', 'munchen'] },
+  { prompt: "Berlin", answers: ['berlin'] },
+  { prompt: "Brandenburg", answers: ['potsdam'] },
+  { prompt: "Bremen", answers: ['bremen'] },
+  { prompt: "Hamburg", answers: ['hamburg'] },
+  { prompt: "Hesse (Hessen)", answers: ['wiesbaden'] },
+  { prompt: "Lower Saxony (Niedersachsen)", answers: ['hanover', 'hannover'] },
+  { prompt: "Mecklenburg-Vorpommern", answers: ['schwerin'] },
+  { prompt: "North Rhine-Westphalia (Nordrhein-Westfalen)", answers: ['düsseldorf', 'dusseldorf'] },
+  { prompt: "Rhineland-Palatinate (Rheinland-Pfalz)", answers: ['mainz'] },
+  { prompt: "Saarland", answers: ['saarbrücken', 'saarbrucken'] },
+  { prompt: "Saxony (Sachsen)", answers: ['dresden'] },
+  { prompt: "Saxony-Anhalt (Sachsen-Anhalt)", answers: ['magdeburg'] },
+  { prompt: "Schleswig-Holstein", answers: ['kiel'] },
+  { prompt: "Thuringia (Thüringen)", answers: ['erfurt'] }
+];
 
-const game = document.getElementById('game');
-const category = document.getElementById('category');
-const prompt = document.getElementById('prompt');
-const answerInput = document.getElementById('answer');
-const skipButton = document.getElementById('skip');
-const skippedAnswers = document.getElementById('skipped');
-const results = document.getElementById('results');
-const scoreDisplay = document.getElementById('score');
-const timeDisplay = document.getElementById('time');
-let question, answerArray;
-let startTime, endTime;
-let score = 0;
-
-const newQuestion = () => {
-  question = questions.pop();
-  prompt.innerHTML = question.prompt;
-  answerArray = question.answers;
-};
-
-// Below based on code from https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
-const formatTime = (millis) => {
-  const mins = Math.floor(millis / 60000);
-  const secs = ((millis % 60000) / 1000).toFixed(0);
-  return mins + ":" + (secs < 10 ? '0' : '') + secs;
-};
-
-const gameOver = () => {
-  scoreDisplay.innerHTML = score;
-  endTime = new Date();
-  const timeInMilliseconds = endTime - startTime;
-  timeDisplay.innerHTML = formatTime(timeInMilliseconds);
-
-  game.style.display = "none";
-  results.style.display = "block";
-};
-
-answerInput.addEventListener('input', (event) => {
-  if (answerArray.includes(answerInput.value.toLowerCase())) {
-    score += 1;
-    if (questions.length > 0) {
-      newQuestion();
-      answerInput.value = '';
-    } else {
-      gameOver();
-    }
+export const categories = [
+  {
+    name: "US State Capitals",
+    value: "us",
+    questions: capitalsUS
+  },
+  {
+    name: "German Bundesländer Capitals",
+    value: "de",
+    questions: capitalsDE
   }
-});
-
-// Below based on code from https://stackoverflow.com/questions/42755664/capitalize-first-letter-of-each-word-in-js
-const capitalise = (str) => {
-  return str
-      .toLowerCase()
-      .split(' ')
-      .map((word) => { return word[0].toUpperCase() + word.substr(1); })
-      .join(' ');
-};
-
-skipButton.addEventListener('click', (event) => {
-  const toInsert = `<p>The capital of <strong>${question.prompt}</strong> is <strong>${capitalise(answerArray[0])}</strong></p>`;
-  skippedAnswers.insertAdjacentHTML('beforeend', toInsert);
-  newQuestion();
-});
-
-start.addEventListener('click', (event) => {
-  game.style.display = "block";
-  start.style.display = "none";
-  questions.sort((a, b) => Math.random() - 0.5);
-  newQuestion();
-  startTime = new Date();
-});
+]
