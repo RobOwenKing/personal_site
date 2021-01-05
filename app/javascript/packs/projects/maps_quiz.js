@@ -6,7 +6,11 @@ const mapDisplay = document.getElementById("map");
 const init = () => {
   mapDisplay.innerHTML = svgUS;
   const paths = mapDisplay.querySelectorAll('path');
-  console.log(paths);
+  paths.forEach((path) => {
+    path.addEventListener('click', (event) => {
+      console.log(path.dataset.name);
+    })
+  });
 };
 
 init();
