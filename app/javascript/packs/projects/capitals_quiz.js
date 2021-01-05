@@ -28,6 +28,7 @@ let score = 0;
 
 const newQuestion = () => {
   question = questions.pop();
+  category.innerHTML = question.category || "capital";
   prompt.innerHTML = question.prompt;
   answerArray = question.answers;
   gameScore.innerHTML = score;
