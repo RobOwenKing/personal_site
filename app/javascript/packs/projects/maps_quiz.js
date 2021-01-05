@@ -2,6 +2,9 @@ import { promptsUS, svgUS } from './data/maps_data.js';
 
 const promptDisplay = document.getElementById("prompt");
 const mapDisplay = document.getElementById("map");
+const scoreDisplay = document.getElementById("score");
+const totalDisplay = document.getElementById("total");
+
 let prompt;
 let score = 0;
 let filled = [];
@@ -11,6 +14,7 @@ const handlePathClick = (path) => {
     path.style.fill = '#00FF00';
     filled.push(path);
     score += 1;
+    scoreDisplay.innerHTML = score;
     newQuestion();
   } else {
     path.style.fill = '#FF0000';
@@ -53,6 +57,8 @@ const init = () => {
   mapDisplay.innerHTML = svgUS;
   activatePaths();
   newQuestion();
+  scoreDisplay.innerHTML = 0;
+  totalDisplay.innerHTML = promptsUS.length;
 };
 
 init();
