@@ -6,22 +6,34 @@ let prompt;
 const filled = [];
 
 const handlePathClick = (path) => {
-
+  if (path.dataset.name == prompt) {
+    path.style.fill = '#00FF00';
+    filled.push(path);
+  } else {
+    path.style.fill = '#FF0000';
+    filled.push(path);
+  }
 };
 
 const activatePaths = () => {
   const paths = mapDisplay.querySelectorAll('path');
   paths.forEach((path) => {
     path.addEventListener('click', (event) => {
-      console.log(path.dataset.name);
+      handlePathClick(path);
     })
     path.addEventListener('mouseover', (event) => {
       path.style.strokeWidth = 3;
-      path.style.fill = '#C5DBF5';
+      // Only fill if not already red or green
+      if (!filled.includes(path)) {
+        path.style.fill = '#C5DBF5';
+      }
     })
     path.addEventListener('mouseout', (event) => {
       path.style.strokeWidth = 1;
-      path.style.fill = '#f9f9f9';
+      // Only reset fill if not red or green
+      if (!filled.includes(path)) {
+        path.style.fill = '#f9f9f9';
+      }
     })
   });
 };
