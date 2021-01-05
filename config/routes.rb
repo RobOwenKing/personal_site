@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'flags_quiz', to: 'projects#flags_quiz'
   get 'game_of_life', to: 'projects#game_of_life'
   get 'gaps', to: 'projects#gaps'
-  get 'map_quiz', to: 'projects#map_quiz'
+  get 'maps_quiz', to: 'projects#maps_quiz'
   get 'money', to: 'projects#money'
   get 'regex_challenges', to: 'projects#regex'
   get 'roman_calculator', to: 'projects#roman_calculator'

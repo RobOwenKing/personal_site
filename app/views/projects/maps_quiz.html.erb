@@ -2,7 +2,7 @@
 <% content_for :meta_description, "How good are you at flags? Challenge yourself here." %>
 <% content_for :meta_image, "screenshots/flags_quiz.jpg" %>
 
-<h1 id="title">Flags Challenges</h1>
+<h1 id="title">Maps Challenges</h1>
 
 <!--
 <div id="intro">
@@ -17,8 +17,7 @@
 <div id="game">
   <strong id="prompt"></strong>
   <br>
-  <input type="text" id="answer">
-  <br>
+  <div id="map"></div>
   <br>
   <div class="btn btn-blue" id="skip">Don't know</div>
   <br>
@@ -35,4 +34,4 @@
 
 <div id="skipped"></div>
 
-<%= javascript_pack_tag 'projects/flags_quiz' %>
+<%= javascript_pack_tag 'projects/maps_quiz' %>
