@@ -15,7 +15,7 @@ const handlePathClick = (path) => {
     filled.push(path);
     score += 1;
     scoreDisplay.innerHTML = score;
-    newQuestion();
+    window.setTimeout(newQuestion, 500);
   } else {
     path.style.fill = '#FF0000';
     filled.push(path);
@@ -55,10 +55,10 @@ const newQuestion = () => {
 
 const init = () => {
   mapDisplay.innerHTML = svgUS;
-  activatePaths();
-  newQuestion();
   scoreDisplay.innerHTML = 0;
   totalDisplay.innerHTML = promptsUS.length;
+  activatePaths();
+  newQuestion();
 };
 
 init();
