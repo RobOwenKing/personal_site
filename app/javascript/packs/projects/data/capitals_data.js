@@ -70,6 +70,49 @@ const capitalsDE = [
   { prompt: "Thuringia (Thüringen)", answers: ['erfurt'] }
 ];
 
+const capitalsPL = [
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] },
+  { prompt: '', answers:[''] }
+];
+
+const capitalsES = [
+  { prompt: 'Andalusia (Andalucía)', answers:['seville', 'sevilla'] },
+  { prompt: 'Catalonia (Catalunya / Cataluña)', answers:['barcelona'] },
+  { prompt: 'Community of Madrid (Comunidad de Madrid)', answers:['madrid'] },
+  { prompt: 'Valencian Community (Comunitat Valenciana)', answers:['valencia'] },
+  { prompt: 'Galicia', answers:['santiago de compostela'] },
+  { prompt: 'Castile and León (Castilla y León)', answers:['valladolid'] },
+  { prompt: 'Basque Country (Euskadi / País Vasco)', answers:['vitoria-gasteiz', 'vitoria', 'gasteiz'] },
+  { prompt: 'Castilla-La Mancha', answers:['toledo'] },
+  { prompt: 'Canary Islands (Canarias)', answers:['las palmas de gran canaria and santa cruz de tenerife', 'las palmas and santa cruz'] },
+  { prompt: 'Region of Murcia (Región de Murcia)', answers:['murcia'] },
+  { prompt: 'Aragon (Aragón)', answers:['zaragoza'] },
+  { prompt: 'Extremadura', answers:['mérida', 'merida'] },
+  { prompt: 'Balearic Islands (Islas Baleares)', answers:['palma'] },
+  { prompt: 'Principality of Asturias (Principado de Asturias)', answers:['oviedo'] },
+  { prompt: 'Chartered Community of Navarre (Comunidad Foral de Navarra)', answers:['pamplona'] },
+  { prompt: 'Cantabria', answers:['santander'] },
+  { prompt: 'La Rioja', answers:['logroño', 'logrono'] }
+];
+
 export const categories = [
   {
     name: "US State Capitals",
@@ -80,5 +123,16 @@ export const categories = [
     name: "German Bundesländer Capitals",
     value: "de",
     questions: capitalsDE
+  },
+  {
+    name: "Spanish Autonomous Community Capitals",
+    value: "es",
+    questions: capitalsES
   }
+  /*,
+  {
+    name: "Polish Voivodeship Capitals",
+    value: "pl",
+    questions: capitalsPL
+  }*/
 ]
