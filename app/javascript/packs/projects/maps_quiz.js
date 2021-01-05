@@ -1,10 +1,15 @@
-import { svgUS } from './data/maps_data.js';
+import { promptsUS, svgUS } from './data/maps_data.js';
 
 const promptDisplay = document.getElementById("prompt");
 const mapDisplay = document.getElementById("map");
+let prompt;
+const filled = [];
 
-const init = () => {
-  mapDisplay.innerHTML = svgUS;
+const handlePathClick = (path) => {
+
+};
+
+const activatePaths = () => {
   const paths = mapDisplay.querySelectorAll('path');
   paths.forEach((path) => {
     path.addEventListener('click', (event) => {
@@ -19,6 +24,17 @@ const init = () => {
       path.style.fill = '#f9f9f9';
     })
   });
+};
+
+const newQuestion = () => {
+  prompt = promptsUS.shift();
+  promptDisplay.innerHTML = prompt;
+};
+
+const init = () => {
+  mapDisplay.innerHTML = svgUS;
+  activatePaths();
+  newQuestion();
 };
 
 init();
