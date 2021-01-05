@@ -1,3 +1,5 @@
+export const promptsUS = ["Massachusetts", "Minnesota", "Montana", "North Dakota", "Hawaii", "Idaho", "Washington", "Arizona", "California", "Colorado", "Nevada", "New Mexico", "Oregon", "Utah", "Wyoming", "Arkansas", "Iowa", "Kansas", "Missouri", "Nebraska", "Oklahoma", "South Dakota", "Louisiana", "Texas", "Connecticut", "New Hampshire", "Rhode Island", "Vermont", "Alabama", "Florida", "Georgia", "Mississippi", "South Carolina", "Illinois", "Indiana", "Kentucky", "North Carolina", "Ohio", "Tennessee", "Virginia", "Wisconsin", "West Virginia", "Delaware", "Maryland", "New Jersey", "New York", "Pennsylvania", "Maine", "Michigan", "Alaska"];
+
 export const svgUS = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <!--
 ************* Copyright (c) 2017 Pareto Softare, LLC DBA Simplemaps.com *******************
