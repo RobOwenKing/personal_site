@@ -7,6 +7,9 @@ const totalDisplay = document.getElementById("total");
 
 const playingUI = document.getElementById("playing-ui");
 const results = document.getElementById("results");
+const resultsScore = document.getElementById("results-score");
+const resultsTotal = document.getElementById("results-total");
+const restart = document.getElementById("restart");
 
 let promptsArray, prompt;
 let score = 0;
@@ -48,7 +51,15 @@ const activatePaths = () => {
   });
 };
 
+restart.addEventListener("click", (event) => {
+  init();
+  playingUI.style.display = "block";
+  results.style.display = "none";
+  score = 0;
+})
+
 const gameOver = () => {
+  resultsScore.innerHTML = score;
   playingUI.style.display = "none";
   results.style.display = "block";
 };
@@ -71,6 +82,7 @@ const init = () => {
   mapDisplay.innerHTML = svgUS;
   scoreDisplay.innerHTML = 0;
   totalDisplay.innerHTML = promptsArray.length;
+  resultsTotal.innerHTML = promptsArray.length;
   activatePaths();
   newQuestion();
 };
