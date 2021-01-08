@@ -1,11 +1,14 @@
 import { promptsUS, svgUS } from './data/maps_data.js';
 
+const question = document.getElementById("question");
 const promptDisplay = document.getElementById("prompt");
+
 const mapDisplay = document.getElementById("map");
+
+const playingUI = document.getElementById("playing-ui");
 const scoreDisplay = document.getElementById("score");
 const totalDisplay = document.getElementById("total");
 
-const playingUI = document.getElementById("playing-ui");
 const results = document.getElementById("results");
 const resultsScore = document.getElementById("results-score");
 const resultsTotal = document.getElementById("results-total");
@@ -16,17 +19,48 @@ let promptsArray, prompt;
 let score = 0;
 let filled = [];
 let startTime, endTime;
+let locked = false;
+
+const newQuestion = () => {
+  prompt = promptsArray.shift();
+  promptDisplay.innerHTML = promptsUS[prompt];
+  locked = false;
+};
+
+const gameOver = () => {
+  resultsScore.innerHTML = score;
+  playingUI.style.display = "none";
+  results.style.display = "block";
+
+  endTime = new Date();
+  const timeInMilliseconds = endTime - startTime;
+  timeDisplay.innerHTML = formatTime(timeInMilliseconds);
+};
+
+const next = () => {
+  // Reset colours
+  filled.forEach((path) => { path.style.fill = '#f9f9f9'; });
+  filled = [];
+  if (promptsArray.length > 0) {
+    newQuestion();
+  } else {
+    gameOver();
+  }
+};
 
 const handlePathClick = (path) => {
-  if (path.id == prompt) {
-    path.style.fill = '#00FF00';
-    filled.push(path);
-    score += 1;
-    scoreDisplay.innerHTML = score;
-    window.setTimeout(newQuestion, 500);
-  } else {
-    path.style.fill = '#FF0000';
-    filled.push(path);
+  if (!locked) {
+    if (path.id == prompt) {
+      path.style.fill = '#00FF00';
+      filled.push(path);
+      score += 1;
+      locked = true;
+      scoreDisplay.innerHTML = score;
+      window.setTimeout(next, 500);
+    } else {
+      path.style.fill = '#FF0000';
+      filled.push(path);
+    }
   }
 };
 
@@ -67,28 +101,6 @@ const formatTime = (millis) => {
   return mins + ":" + (secs < 10 ? '0' : '') + secs;
 };
 
-const gameOver = () => {
-  resultsScore.innerHTML = score;
-  playingUI.style.display = "none";
-  results.style.display = "block";
-
-  endTime = new Date();
-  const timeInMilliseconds = endTime - startTime;
-  timeDisplay.innerHTML = formatTime(timeInMilliseconds);
-};
-
-const newQuestion = () => {
-  // Reset colours
-  filled.forEach((path) => { path.style.fill = '#f9f9f9'; });
-  filled = [];
-  if (promptsArray.length > 0) {
-    prompt = promptsArray.shift();
-    promptDisplay.innerHTML = promptsUS[prompt];
-  } else {
-    gameOver();
-  }
-};
-
 const init = () => {
   promptsArray = Object.keys(promptsUS);
   promptsArray.sort((a, b) => Math.random() - 0.5);
@@ -97,6 +109,7 @@ const init = () => {
   totalDisplay.innerHTML = promptsArray.length;
   resultsTotal.innerHTML = promptsArray.length;
   startTime = new Date();
+  locked = false;
   activatePaths();
   newQuestion();
 };
