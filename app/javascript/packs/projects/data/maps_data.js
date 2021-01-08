@@ -3,7 +3,7 @@ export const promptsUS = {
   "MN": "Minnesota",
   "MT": "Montana",
   "ND": "North Dakota",
-  "HI": "Hawaii",
+  "HI": "Hawaii",/*
   "ID": "Idaho",
   "WA": "Washington",
   "AZ": "Arizona",
@@ -47,7 +47,7 @@ export const promptsUS = {
   "NY": "New York",
   "PA": "Pennsylvania",
   "ME": "Maine",
-  "MI": "Michigan",
+  "MI": "Michigan",*/
   "AK": "Alaska"
 };
 

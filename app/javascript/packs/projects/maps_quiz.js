@@ -5,6 +5,9 @@ const mapDisplay = document.getElementById("map");
 const scoreDisplay = document.getElementById("score");
 const totalDisplay = document.getElementById("total");
 
+const playingUI = document.getElementById("playing-ui");
+const results = document.getElementById("results");
+
 let promptsArray, prompt;
 let score = 0;
 let filled = [];
@@ -45,16 +48,26 @@ const activatePaths = () => {
   });
 };
 
+const gameOver = () => {
+  playingUI.style.display = "none";
+  results.style.display = "block";
+};
+
 const newQuestion = () => {
-  prompt = promptsArray.shift();
-  promptDisplay.innerHTML = promptsUS[prompt];
   // Reset colours
   filled.forEach((path) => { path.style.fill = '#f9f9f9'; });
   filled = [];
+  if (promptsArray.length > 0) {
+    prompt = promptsArray.shift();
+    promptDisplay.innerHTML = promptsUS[prompt];
+  } else {
+    gameOver();
+  }
 };
 
 const init = () => {
   promptsArray = Object.keys(promptsUS);
+  promptsArray.sort((a, b) => Math.random() - 0.5);
   mapDisplay.innerHTML = svgUS;
   scoreDisplay.innerHTML = 0;
   totalDisplay.innerHTML = promptsArray.length;
