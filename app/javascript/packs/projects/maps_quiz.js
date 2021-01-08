@@ -5,12 +5,12 @@ const mapDisplay = document.getElementById("map");
 const scoreDisplay = document.getElementById("score");
 const totalDisplay = document.getElementById("total");
 
-let prompt;
+let promptsArray, prompt;
 let score = 0;
 let filled = [];
 
 const handlePathClick = (path) => {
-  if (path.dataset.name == prompt) {
+  if (path.id == prompt) {
     path.style.fill = '#00FF00';
     filled.push(path);
     score += 1;
@@ -46,17 +46,18 @@ const activatePaths = () => {
 };
 
 const newQuestion = () => {
-  prompt = promptsUS.shift();
-  promptDisplay.innerHTML = prompt;
+  prompt = promptsArray.shift();
+  promptDisplay.innerHTML = promptsUS[prompt];
   // Reset colours
   filled.forEach((path) => { path.style.fill = '#f9f9f9'; });
   filled = [];
 };
 
 const init = () => {
+  promptsArray = Object.keys(promptsUS);
   mapDisplay.innerHTML = svgUS;
   scoreDisplay.innerHTML = 0;
-  totalDisplay.innerHTML = promptsUS.length;
+  totalDisplay.innerHTML = promptsArray.length;
   activatePaths();
   newQuestion();
 };
