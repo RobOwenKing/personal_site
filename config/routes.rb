@@ -1,8 +1,4 @@
 Rails.application.routes.draw do
-  get 'map_quizzes/index'
-  get 'map_quizzes/show'
-  get 'map_quizzes/new'
-  get 'map_quizzes/create'
   root to: 'pages#home'
   get 'portfolio', to: 'pages#portfolio'
 
@@ -36,6 +32,8 @@ Rails.application.routes.draw do
 
   resources :star_battles, only: [ :index, :show, :new, :create ]
   get 'star_battle', to: 'puzzles#star_battle'
+
+  resources :map_quizzes, only: [ :index, :show, :new, :create ]
 
   get "/crosswords/:crossword", to: "crosswords#show"
   get "crosswords", to: 'projects#crosswords'
