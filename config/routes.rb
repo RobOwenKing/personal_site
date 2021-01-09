@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'map_quizzes/index'
+  get 'map_quizzes/show'
+  get 'map_quizzes/new'
+  get 'map_quizzes/create'
   root to: 'pages#home'
   get 'portfolio', to: 'pages#portfolio'
 
