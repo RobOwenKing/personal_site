@@ -1,5 +1,5 @@
 class MapQuizzesController < ApplicationController
-  http_basic_authenticate_with name: User.first.name, password: User.first.password, only: :new
+  # http_basic_authenticate_with name: User.first.name, password: User.first.password, only: :new
 
   def index
     map_quizzes = MapQuiz.all
@@ -27,7 +27,7 @@ class MapQuizzesController < ApplicationController
 
   private
 
-  def star_battle_params
-    params.require(:map_quiz).permit(:name, :svg, :prompts, :category)
+  def map_quiz_params
+    params.require(:map_quiz).permit(:name, :map, :prompts, :category)
   end
 end

@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_15_134333) do
+ActiveRecord::Schema.define(version: 2021_01_09_175822) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "map_quizzes", force: :cascade do |t|
+    t.string "name"
+    t.text "map"
+    t.text "prompts"
+    t.string "category"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "star_battles", force: :cascade do |t|
     t.string "name"

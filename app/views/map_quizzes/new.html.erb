@@ -1,2 +1,10 @@
 <h1>MapQuizzes#new</h1>
-<p>Find me in app/views/map_quizzes/new.html.erb</p>
+
+<%= simple_form_for @map_quiz do |f| %>
+  <%= f.input :name %>
+  <%= f.input :map %>
+  <%= f.input :prompts %>
+  <%= f.input :category %>
+
+  <%= f.submit "Submit", class: "btn btn-orange" %>
+<% end %>
