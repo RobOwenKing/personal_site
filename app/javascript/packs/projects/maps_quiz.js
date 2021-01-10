@@ -15,7 +15,7 @@ const resultsTotal = document.getElementById("results-total");
 const timeDisplay = document.getElementById('time');
 const restart = document.getElementById("restart");
 
-let promptsArray, prompt;
+let prompts, promptsArray, prompt;
 let score = 0;
 let filled = [];
 let startTime, endTime;
@@ -23,7 +23,7 @@ let locked = false;
 
 const newQuestion = () => {
   prompt = promptsArray.shift();
-  promptDisplay.innerHTML = promptsUS[prompt];
+  promptDisplay.innerHTML = prompts[prompt];
   locked = false;
 };
 
@@ -102,9 +102,10 @@ const formatTime = (millis) => {
 };
 
 const init = () => {
-  promptsArray = Object.keys(promptsUS);
+  prompts = JSON.parse(question.dataset.prompts);
+  promptsArray = Object.keys(prompts);
   promptsArray.sort((a, b) => Math.random() - 0.5);
-  mapDisplay.innerHTML = svgUS;
+  // mapDisplay.innerHTML = svgUS;
   scoreDisplay.innerHTML = 0;
   totalDisplay.innerHTML = promptsArray.length;
   resultsTotal.innerHTML = promptsArray.length;

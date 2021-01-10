@@ -1,2 +1,29 @@
-<h1>MapQuizzes#show</h1>
-<p>Find me in app/views/map_quizzes/show.html.erb</p>
+<% content_for :meta_title, "Flags Challenges, by Rob Owen King" %>
+<% content_for :meta_description, "How good are you at flags? Challenge yourself here." %>
+<% content_for :meta_image, "screenshots/flags_quiz.jpg" %>
+
+<h1 id="title"><%= @map_quiz.name %></h1>
+
+<div id="question" data-prompts="<%= @map_quiz.prompts %>">Where is <strong id="prompt"></strong>?</div>
+<br>
+<div id="map"><%= @map_quiz.map.html_safe %></div>
+<br>
+<div id="playing-ui">
+  <div class="btn btn-blue" id="skip">Don't know</div>
+  <br>
+  <br>
+  You've got <span id="score"></span> / <span id="total"></span>
+</div>
+
+<div id="results" style="display: none">
+  Well done! You got <strong><span id="results-score"></span> / <span id="results-total"></span></strong> correct in <strong id="time"></strong>.
+  <br>
+  <br>
+  <div class="btn btn-orange" id="restart">Play again</div>
+</div>
+
+<div id="skipped"></div>
+
+<p class="small-text">All maps from <%= link_to "simplemaps.com", "https://simplemaps.com/" %>.</p>
+
+<%= javascript_pack_tag 'projects/maps_quiz' %>
