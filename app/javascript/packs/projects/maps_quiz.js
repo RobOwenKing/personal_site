@@ -1,5 +1,3 @@
-import { promptsUS, svgUS } from './data/maps_data.js';
-
 const question = document.getElementById("question");
 const promptDisplay = document.getElementById("prompt");
 
