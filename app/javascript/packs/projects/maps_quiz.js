@@ -4,35 +4,62 @@ const promptDisplay = document.getElementById("prompt");
 const mapDisplay = document.getElementById("map");
 
 const playingUI = document.getElementById("playing-ui");
+const skip = document.getElementById("skip");
 const scoreDisplay = document.getElementById("score");
 const totalDisplay = document.getElementById("total");
 
 const results = document.getElementById("results");
 const resultsScore = document.getElementById("results-score");
 const resultsTotal = document.getElementById("results-total");
+const skippedDisplay = document.getElementById("skipped");
 const timeDisplay = document.getElementById('time');
 const restart = document.getElementById("restart");
 
 let prompts, promptsArray, prompt;
 let score = 0;
 let filled = [];
+let missed = [];
 let startTime, endTime;
 let locked = false;
 
 const newQuestion = () => {
+  if (score > 2) {gameOver()}
   prompt = promptsArray.shift();
   promptDisplay.innerHTML = prompts[prompt];
   locked = false;
 };
 
+const activateMisseds = () => {
+  const misseds = document.querySelectorAll('.missed');
+  misseds.forEach((missed) => {
+    const path = document.getElementById(missed.dataset.code);
+    missed.addEventListener('mouseenter', (event) => {
+      path.style.fill = '#00FF00';
+    })
+    missed.addEventListener('mouseleave', (event) => {
+      path.style.fill = '#f9f9f9';
+    })
+  })
+};
+
+const fillMissed = () => {
+  missed = missed.map((prompt) => `<span class="missed" data-code="${prompt}">${prompts[prompt]}</span>` );
+  skippedDisplay.innerHTML = `You missed (hover over to check): ${missed.join(', ')}.`;
+  activateMisseds();
+};
+
 const gameOver = () => {
   resultsScore.innerHTML = score;
   playingUI.style.display = "none";
-  results.style.display = "block";
+  question.style.display = "none";
+
+  fillMissed();
 
   endTime = new Date();
   const timeInMilliseconds = endTime - startTime;
   timeDisplay.innerHTML = formatTime(timeInMilliseconds);
+
+  results.style.display = "block";
 };
 
 const next = () => {
@@ -58,6 +85,7 @@ const handlePathClick = (path) => {
     } else {
       path.style.fill = '#FF0000';
       filled.push(path);
+      if (!missed.includes(prompt)) { missed.push(prompt); }
     }
   }
 };
@@ -85,6 +113,11 @@ const activatePaths = () => {
   });
 };
 
+skip.addEventListener("click", (event) => {
+  if (!missed.includes(prompt)) { missed.push(prompt); }
+  newQuestion();
+})
+
 restart.addEventListener("click", (event) => {
   init();
   playingUI.style.display = "block";
@@ -111,6 +144,7 @@ const init = () => {
   locked = false;
   activatePaths();
   newQuestion();
+  question.style.display = "block";
 };
 
 init();
