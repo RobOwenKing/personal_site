@@ -1,0 +1,32 @@
+<h1>Mathematical Rose</h1>
+
+<p>If you're not into Maths, just take the below as a pretty, interactive pattern. If you are, it's a <%= link_to "rose or rhodonea curve", "https://en.wikipedia.org/wiki/Rose_(mathematics)" %>, ie: a curve described by the polar equation r = cos(kθ). In my implementation, k is a rational number defined by a variable numerator and denominator.</p>
+
+<canvas id="canvas-rose"></canvas>
+
+<div>
+  <label for="numerator">Numerator: </label>
+  <input type="range" min="1" max="10" step="1" value="4" class="slider" id="numerator">
+</div>
+<div>
+  <label for="denominator">Denominator: </label>
+  <input type="range" min="1" max="10" step="1" value="1" class="slider" id="denominator">
+</div>
+<div>
+  <label for="range">How much to draw: </label>
+  <input type="range" min="0" max="360" step="1" value="360" class="slider" id="points-to-draw">
+</div>
+<div>
+  <label for="step">Step</label>
+  <input type="range" min="0.25" max="8" value="1" list="steps" class="slider" id="step">
+  <datalist id="steps">
+    <option value="0.25"></option>
+    <option value="0.5"></option>
+    <option value="1"></option>
+    <option value="2"></option>
+    <option value="4"></option>
+    <option value="8"></option>
+  </datalist>
+</div>
+
+<%= javascript_pack_tag 'projects/rose' %>
