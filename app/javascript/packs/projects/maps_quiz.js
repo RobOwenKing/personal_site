@@ -142,6 +142,7 @@ const init = () => {
   resultsTotal.innerHTML = promptsArray.length;
   startTime = new Date();
   locked = false;
+  missed = [];
   activatePaths();
   newQuestion();
   question.style.display = "block";
