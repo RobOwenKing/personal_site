@@ -22,15 +22,7 @@
 </div>
 <div>
   <label for="step">Step</label>
-  <input type="range" min="0.25" max="8" value="1" list="steps" class="slider" id="step">
-  <datalist id="steps">
-    <option value="0.25"></option>
-    <option value="0.5"></option>
-    <option value="1"></option>
-    <option value="2"></option>
-    <option value="4"></option>
-    <option value="8"></option>
-  </datalist>
+  <input type="range" min="0.25" max="4" step="0.25" value="1" class="slider" id="step">
 </div>
 
 <%= javascript_pack_tag 'projects/rose' %>
