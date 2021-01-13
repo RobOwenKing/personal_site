@@ -50,4 +50,8 @@ denominator.addEventListener('input', (event) => {
   draw();
 })
 
+step.addEventListener('input', (event) => {
+  draw();
+})
+
 draw();
