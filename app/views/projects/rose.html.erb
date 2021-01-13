@@ -1,0 +1,28 @@
+<% content_for :meta_title, "Interactive Rose Curve, by Rob Owen King" %>
+<% content_for :meta_description, "If you're into Maths, this is an interactive rose or rhodonea curve of the form r = cos(kθ). If not, it's still a pretty pattern you can play with." %>
+<% content_for :meta_image, "screenshots/rose.jpg" %>
+
+<h1>Interactive Rose Curve</h1>
+
+<p>If you're not into Maths, just take the below as a pretty, interactive pattern. If you are, it's a <%= link_to "rose or rhodonea curve", "https://en.wikipedia.org/wiki/Rose_(mathematics)" %>, ie: a curve described by the polar equation r = cos(kθ). In my implementation, k is a rational number defined by a variable numerator and denominator.</p>
+
+<canvas id="canvas-rose"></canvas>
+
+<div>
+  <label for="numerator">Numerator: </label>
+  <input type="range" min="1" max="10" step="1" value="4" class="slider" id="numerator">
+</div>
+<div>
+  <label for="denominator">Denominator: </label>
+  <input type="range" min="1" max="10" step="1" value="1" class="slider" id="denominator">
+</div>
+<div>
+  <label for="range">Proportion to draw: </label>
+  <input type="range" min="0" max="360" step="1" value="360" class="slider" id="points-to-draw">
+</div>
+<div>
+  <label for="step">Step: </label>
+  <input type="range" min="0.25" max="4" step="0.25" value="1" class="slider" id="step">
+</div>
+
+<%= javascript_pack_tag 'projects/rose' %>

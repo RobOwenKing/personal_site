@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get 'money', to: 'projects#money'
   get 'regex_challenges', to: 'projects#regex'
   get 'roman_calculator', to: 'projects#roman_calculator'
+  get 'rose', to: 'projects#rose'
   # get 'snake', to: 'projects#snake'
   get 'sudoku', to: 'projects#sudoku'
   get 'transitions', to: 'projects#transitions'

@@ -4,6 +4,7 @@ import { drawConnected } from './clocks/connected.js';
 import { drawOneHand } from './clocks/one_hand.js';
 import { drawOrders } from './clocks/orders.js';
 import { updateRomanClock } from './clocks/roman.js';
+import { drawRose } from './clocks/rose.js';
 import { initWrongClock, updateWrongClock } from './clocks/wrong.js';
 
 const state = {};
@@ -43,6 +44,7 @@ const init = () => {
   drawOneHand(state);
   drawBinary(state);
   drawConnected(state);
+  drawRose(state);
 };
 
 const updateClocks = () => {
@@ -57,6 +59,7 @@ const updateClocks = () => {
     updateRomanClock(state);
     updateWrongClock(state);
     drawConnected(state);
+    drawRose(state);
   }
 
   drawOrders(state);
