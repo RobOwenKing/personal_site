@@ -6,6 +6,20 @@ const ctxRose = canvasRose.getContext('2d');
 canvasRose.width = 240;
 canvasRose.height = 180;
 
+const drawLoop = (min, max, step, k, radius) => {
+  for (let i = min; i <= max; i += step) {
+    const theta = (i / 180) * Math.PI;
+    const r = 60 * Math.cos(k * theta);
+    const x = r * Math.cos(theta);
+    const y = r * Math.sin(theta);
+
+    ctxRose.beginPath();
+    ctxRose.fillStyle = `hsl(${i}, 100%, 50%)`;
+    ctxRose.arc(x, y, radius, 0, 2 * Math.PI);
+    ctxRose.fill();
+  }
+};
+
 export const drawRose = (state) => {
   drawBackground(canvasRose, ctxRose);
 
@@ -15,38 +29,16 @@ export const drawRose = (state) => {
   // 60 mins in an hour, 360 degrees in a full circle
   // So stepMins = 360 / 60
   const stepMins = 6;
-  const maxMins = state.mins * stepMins;
+  // We need to subtract 90 to start from the vertical
+  const maxMins = (state.mins * stepMins) - 90;
   // 60 secs in a minute, so stepSecs = stepMins / 60
   const stepSecs = 0.1;
   const maxSecs = maxMins + (state.secs * stepSecs);
 
   ctxRose.translate(canvasRose.width / 2, canvasRose.height / 2);
 
-  // Draw minutes
-  for (let i = 0; i <= maxMins; i += stepMins) {
-    const theta = (i / 180) * Math.PI;
-    const r = 60 * Math.cos(k * theta);
-    const x = r * Math.cos(theta);
-    const y = r * Math.sin(theta);
-
-    ctxRose.beginPath();
-    ctxRose.fillStyle = `hsl(${i}, 100%, 50%)`;
-    ctxRose.arc(x, y, 2, 0, 2 * Math.PI);
-    ctxRose.fill();
-  }
-
-  // Draw seconds
-  for (let i = maxMins; i <= maxSecs; i += stepSecs) {
-    const theta = (i / 180) * Math.PI;
-    const r = 60 * Math.cos(k * theta);
-    const x = r * Math.cos(theta);
-    const y = r * Math.sin(theta);
-
-    ctxRose.beginPath();
-    ctxRose.fillStyle = `hsl(${i}, 100%, 50%)`;
-    ctxRose.arc(x, y, 1, 0, 2 * Math.PI);
-    ctxRose.fill();
-  }
+  drawLoop(-90, maxMins, stepMins, k, 2);
+  drawLoop(maxMins, maxSecs, stepSecs, k, 1);
 
   ctxRose.translate(-(canvasRose.width / 2), -(canvasRose.height / 2));
 };
