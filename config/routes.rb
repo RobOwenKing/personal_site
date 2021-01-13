@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   get 'flags_quiz', to: 'projects#flags_quiz'
   get 'game_of_life', to: 'projects#game_of_life'
   get 'gaps', to: 'projects#gaps'
-  # get 'map_quiz', to: 'projects#map_quiz'
   get 'money', to: 'projects#money'
   get 'regex_challenges', to: 'projects#regex'
   get 'roman_calculator', to: 'projects#roman_calculator'
@@ -33,6 +32,8 @@ Rails.application.routes.draw do
 
   resources :star_battles, only: [ :index, :show, :new, :create ]
   get 'star_battle', to: 'puzzles#star_battle'
+
+  resources :map_quizzes, only: [ :index, :show, :new, :create ]
 
   get "/crosswords/:crossword", to: "crosswords#show"
   get "crosswords", to: 'projects#crosswords'

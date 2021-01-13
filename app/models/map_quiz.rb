@@ -1,0 +1,2 @@
+class MapQuiz < ApplicationRecord
+end

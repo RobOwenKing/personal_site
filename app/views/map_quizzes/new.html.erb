@@ -1,0 +1,10 @@
+<h1>MapQuizzes#new</h1>
+
+<%= simple_form_for @map_quiz do |f| %>
+  <%= f.input :name %>
+  <%= f.input :map %>
+  <%= f.input :prompts %>
+  <%= f.input :category %>
+
+  <%= f.submit "Submit", class: "btn btn-orange" %>
+<% end %>

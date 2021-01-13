@@ -1,0 +1,29 @@
+<% content_for :meta_title, "#{@map_quiz.name} Map Challenge, by Rob Owen King" %>
+<% content_for :meta_description, "Can you find all the #{@map_quiz.name} on a map? Challenge yourself here." %>
+<% content_for :meta_image, "screenshots/maps_quiz.jpg" %>
+
+<h1 id="title"><%= @map_quiz.name %></h1>
+
+<div id="question" data-prompts="<%= @map_quiz.prompts %>">Where is <strong id="prompt"></strong>?</div>
+<br>
+<div id="map"><%= @map_quiz.map.html_safe %></div>
+<br>
+<div id="playing-ui">
+  <div class="btn btn-blue" id="skip">Don't know</div>
+  <br>
+  <br>
+  You've got <span id="score"></span> / <span id="total"></span>
+</div>
+
+<div id="results" style="display: none">
+  Well done! You got <strong><span id="results-score"></span> / <span id="results-total"></span></strong> correct in <strong id="time"></strong>.
+  <br>
+  <div id="skipped"></div>
+  <br>
+  <div class="btn btn-orange" id="restart">Play again</div>
+</div>
+
+
+<p class="small-text">All maps from <%= link_to "simplemaps.com", "https://simplemaps.com/" %>.</p>
+
+<%= javascript_pack_tag 'projects/maps_quiz' %>
