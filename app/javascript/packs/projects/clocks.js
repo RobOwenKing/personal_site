@@ -3,7 +3,7 @@ import { drawBinary } from './clocks/binary.js';
 import { drawConnected } from './clocks/connected.js';
 import { drawOneHand } from './clocks/one_hand.js';
 import { drawOrders } from './clocks/orders.js';
-import { updateRomanClock } from './clocks/roman.js';
+import { updateRomanClock } from './clocks/roman.js';;
 import { initWrongClock, updateWrongClock } from './clocks/wrong.js';
 
 const state = {};
