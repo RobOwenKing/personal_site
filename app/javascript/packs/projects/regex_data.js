@@ -171,11 +171,21 @@ const comments = {
   strings: [
     [
       "// Single-line comment",
-      "/* Multi-line\ncomment */"
+      "/* Multi-line\ncomment */",
+      "const id = 2 // End of line comment"
     ],
-    []
+    [
+      "/regex/",
+      "/* Have you made this typo before too? /*",
+      "/* Multi-line comments\nneed closing..."
+    ]
   ],
-  solution: /\w+/
+  matches: [
+      ["// Single-line comment"],
+      ["/* Multi-line\ncomment */"],
+      ["// End of line comment"]
+    ],
+  solution: /\/(\/[\w\s\-]+|\*[\w\s\-]+\*\/)/
 };
 
 const attributes = {};

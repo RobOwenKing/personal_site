@@ -16,7 +16,8 @@ let challenge = challenges[0];
 const reReplace = (string, i, re, polarity) => {
   const colour = polarity === 'yes' ? 'green' : 'red';
   document.getElementById(`${polarity}-${i}`)
-    .innerHTML = string.replace(re, `<span class="${colour}-txt">$&</span>`);
+    .innerHTML = string.replace(re, `<span class="${colour}-txt">$&</span>`)
+        .replace(new RegExp("\n", "g"), "<br>");
 };
 
 const timesToCheck = icon => {
