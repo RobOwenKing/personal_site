@@ -164,8 +164,20 @@ const titles = {
 
 const snowclones = {};
 
-const comments = {};
+const comments = {
+  name: "Comments",
+  value: "comments",
+  description: "",
+  strings: [
+    [
+      "// Single-line comment",
+      "/* Multi-line\ncomment */"
+    ],
+    []
+  ],
+  solution: /\w+/
+};
 
 const attributes = {};
 
-export const challenges = [helloWorld, ordinals, catalan, titles, roman, regex];
+export const challenges = [helloWorld, ordinals, comments, catalan, titles, roman, regex];

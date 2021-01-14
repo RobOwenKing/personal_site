@@ -110,7 +110,7 @@ const buildHTML = () => {
   testStrings.insertAdjacentHTML('beforeend', "<h3>Match these:</h3>");
 
   challenge.strings[0].forEach((string, i) => {
-    testStrings.insertAdjacentHTML('beforeend', `<div id="yes-${i}" class="left-align">${challenge.strings[0][i]}</div>`);
+    testStrings.insertAdjacentHTML('beforeend', `<div id="yes-${i}" class="left-align">${challenge.strings[0][i].replace(new RegExp("\n", "g"), "<br>")}</div>`);
     yesChecks += `<i id="check-yes-${i}" class="far fa-times-circle red-txt"></i>`;
   });
 
