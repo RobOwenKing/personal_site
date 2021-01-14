@@ -111,8 +111,8 @@ const roman = {
     ["MDCCXXIX"]
   ],
   solution: /\bM{0,3}(C[MD]|D?C{0,3})?(X[CL]|L?X{0,3})?(I[XV]|V?I{0,3})?\b/g
-}
-/*
+};
+
 const regex = {
   name: "Regex-ception",
   value: "regex-ception",
@@ -133,8 +133,8 @@ const regex = {
     ["/colou?r/"],
     ["/\\d+/"]
   ],
-  solution: //
-};*/
+  solution: /\/[\(\\]?[\w\?]+[\)\+]?\//gi
+};
 
 const titles = {
   name: "I'm not great at titles",
@@ -148,7 +148,7 @@ const titles = {
       "Fr. Ted"
     ],
     [
-      "MRI",
+      "Ar.",
       "Mississippi",
       "Drs"
     ],
@@ -164,6 +164,30 @@ const titles = {
 
 const snowclones = {};
 
-const comments = {};
+const comments = {
+  name: "Comments",
+  value: "comments",
+  description: "",
+  strings: [
+    [
+      "// Single-line comment",
+      "/* Multi-line\ncomment */",
+      "const id = 2 // End of line comment"
+    ],
+    [
+      "/regex/",
+      "/* Have you made this typo before too? /*",
+      "/* Multi-line comments\nneed closing..."
+    ]
+  ],
+  matches: [
+      ["// Single-line comment"],
+      ["/* Multi-line\ncomment */"],
+      ["// End of line comment"]
+    ],
+  solution: /\/(\/[\w\s\-]+|\*[\w\s\-]+\*\/)/
+};
 
-export const challenges = [helloWorld, ordinals, catalan, titles, roman];
+const attributes = {};
+
+export const challenges = [helloWorld, ordinals, comments, catalan, titles, roman, regex];

@@ -16,7 +16,8 @@ let challenge = challenges[0];
 const reReplace = (string, i, re, polarity) => {
   const colour = polarity === 'yes' ? 'green' : 'red';
   document.getElementById(`${polarity}-${i}`)
-    .innerHTML = string.replace(re, `<span class="${colour}-txt">$&</span>`);
+    .innerHTML = string.replace(re, `<span class="${colour}-txt">$&</span>`)
+        .replace(new RegExp("\n", "g"), "<br>");
 };
 
 const timesToCheck = icon => {
@@ -110,7 +111,7 @@ const buildHTML = () => {
   testStrings.insertAdjacentHTML('beforeend', "<h3>Match these:</h3>");
 
   challenge.strings[0].forEach((string, i) => {
-    testStrings.insertAdjacentHTML('beforeend', `<div id="yes-${i}" class="left-align">${challenge.strings[0][i]}</div>`);
+    testStrings.insertAdjacentHTML('beforeend', `<div id="yes-${i}" class="left-align">${challenge.strings[0][i].replace(new RegExp("\n", "g"), "<br>")}</div>`);
     yesChecks += `<i id="check-yes-${i}" class="far fa-times-circle red-txt"></i>`;
   });
 
