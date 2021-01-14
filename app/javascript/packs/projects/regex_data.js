@@ -165,7 +165,7 @@ const titles = {
 const snowclones = {};
 
 const comments = {
-  name: "Comments",
+  name: "// Comments",
   value: "comments",
   description: "",
   strings: [
@@ -190,4 +190,4 @@ const comments = {
 
 const attributes = {};
 
-export const challenges = [helloWorld, ordinals, comments, catalan, titles, roman, regex];
+export const challenges = [helloWorld, ordinals, catalan, titles, comments, roman, regex];
