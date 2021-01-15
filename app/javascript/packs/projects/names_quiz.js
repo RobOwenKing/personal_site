@@ -77,7 +77,8 @@ const formatTime = (millis) => {
 };
 
 const correctAnswer = (element) => {
-  return element[1].some(prompt => prompt == input.value);
+  const valueToCheck = input.value.toLowerCase()
+  return element[1].some(prompt => prompt.toLowerCase() == valueToCheck);
 }
 
 input.addEventListener('input', (event) => {
