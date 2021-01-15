@@ -4,8 +4,10 @@
 
 <h1 id="title"><%= @quiz.name %></h1>
 
-<label for="question">Name any of the <%= @quiz.name %></label>
-<input id="question" data-prompts="<%= @quiz.prompts %>" type="text"></input>
+<div id="question">
+  <label for="input">Name any of the <%= @quiz.name %>:</label>
+  <input id="input" data-prompts="<%= @quiz.prompts %>" type="text"></input>
+</div>
 <br>
 <div id="map"><%= @quiz.map.html_safe %></div>
 <br>
