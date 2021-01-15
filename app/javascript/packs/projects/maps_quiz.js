@@ -25,7 +25,7 @@ let locked = false;
 const newQuestion = () => {
   if (score > 2) {gameOver()}
   prompt = promptsArray.shift();
-  promptDisplay.innerHTML = prompts[prompt];
+  promptDisplay.innerHTML = prompts[prompt][0];
   locked = false;
 };
 
@@ -43,7 +43,7 @@ const activateMisseds = () => {
 };
 
 const fillMissed = () => {
-  missed = missed.map((prompt) => `<span class="missed" data-code="${prompt}">${prompts[prompt]}</span>` );
+  missed = missed.map((prompt) => `<span class="missed" data-code="${prompt}">${prompts[prompt][0]}</span>` );
   skippedDisplay.innerHTML = `You missed (hover over to check): ${missed.join(', ')}.`;
   activateMisseds();
 };
