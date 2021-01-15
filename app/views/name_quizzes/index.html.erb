@@ -8,7 +8,7 @@
 
 <% @internationals.each do |international| %>
   <div>
-    <%= link_to international.name, map_quiz_path(international.id) %>
+    <%= link_to international.name, name_quiz_path(international.id) %>
   </div>
 <% end %>
 
@@ -17,7 +17,7 @@
 
 <% @nationals.each do |national| %>
   <div>
-    <%= link_to national.name, map_quiz_path(national.id) %>
+    <%= link_to national.name, name_quiz_path(national.id) %>
   </div>
 <% end %>
 
