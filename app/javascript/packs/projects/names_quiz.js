@@ -15,10 +15,9 @@ const skippedDisplay = document.getElementById("skipped");
 const timeDisplay = document.getElementById('time');
 const restart = document.getElementById("restart");
 
-let prompts;
+let prompts, promptsArray;
 let score = 0;
 let filled = [];
-let skipped = [];
 let startTime, endTime;
 
 const activateMisseds = () => {
@@ -35,7 +34,7 @@ const activateMisseds = () => {
 };
 
 const fillMissed = () => {
-  missed = missed.map((prompt) => `<span class="missed" data-code="${prompt}">${prompts[prompt][0]}</span>` );
+  const missed = promptsArray.map((prompt) => `<span class="missed" data-code="${prompt[0]}">${prompt[1][0]}</span>` );
   skippedDisplay.innerHTML = `You missed (hover over to check): ${missed.join(', ')}.`;
   activateMisseds();
 };
@@ -77,12 +76,30 @@ const formatTime = (millis) => {
   return mins + ":" + (secs < 10 ? '0' : '') + secs;
 };
 
+const correctAnswer = (element) => {
+  return element[1].some(prompt => prompt == input.value);
+}
+
+input.addEventListener('input', (event) => {
+  const index = promptsArray.findIndex(correctAnswer);
+  if (index >= 0) {
+    const path = document.getElementById(promptsArray[index][0]);
+    promptsArray.splice(index, 1);
+    path.style.fill = "#00FF00";
+    input.value = "";
+    score += 1;
+    scoreDisplay.innerHTML = score;
+    if (promptsArray.length == 0) { gameOver(); }
+  }
+})
+
 const init = () => {
   prompts = JSON.parse(input.dataset.prompts);
+  promptsArray = Object.entries(prompts);
 
   scoreDisplay.innerHTML = 0;
-  totalDisplay.innerHTML = prompts.length;
-  resultsTotal.innerHTML = prompts.length;
+  totalDisplay.innerHTML = promptsArray.length;
+  resultsTotal.innerHTML = promptsArray.length;
 
   startTime = new Date();
   question.style.display = "block";
