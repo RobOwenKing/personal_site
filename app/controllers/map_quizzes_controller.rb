@@ -1,10 +1,10 @@
 class MapQuizzesController < ApplicationController
-  # http_basic_authenticate_with name: User.first.name, password: User.first.password, only: :new
+  http_basic_authenticate_with name: User.first.name, password: User.first.password, only: :new
 
   def index
-    map_quizzes = MapQuiz.all
-    @internationals = map_quizzes.filter { |quiz| quiz.category == 'int' }
-    @nationals = map_quizzes.filter { |quiz| quiz.category == 'nat' }
+    quizzes = MapQuiz.all
+    @internationals = quizzes.filter { |quiz| quiz.category == 'int' }
+    @nationals = quizzes.filter { |quiz| quiz.category == 'nat' }
   end
 
   def show

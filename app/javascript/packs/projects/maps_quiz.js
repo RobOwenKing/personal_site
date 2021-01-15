@@ -23,7 +23,7 @@ let startTime, endTime;
 let locked = false;
 
 const newQuestion = () => {
-  if (score > 2) {gameOver()}
+  if (promptsArray.length == 0) { gameOver() }
   prompt = promptsArray.shift();
   promptDisplay.innerHTML = prompts[prompt][0];
   locked = false;
