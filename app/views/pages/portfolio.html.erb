@@ -109,6 +109,11 @@
     <h3>Map Challenges</h3>
   <% end %>
 
+  <%= link_to(name_quizzes_path, class: "card-project") do %>
+    <%= image_tag("screenshots/names_quiz.jpg", class: "img-circle", alt: "Screenshot of someone trying to name all the US states. They've got a few - highlighted in green on a map - and are currently trying to spell 'Mississippi'.") %>
+    <h3>Name Challenges</h3>
+  <% end %>
+
   <%= link_to(flags_quiz_path, class: "card-project") do %>
     <%= image_tag("screenshots/flags_quiz.jpg", class: "img-circle", alt: "Screenshot of the flag of Armenia with a space below to guess which country it's from.") %>
     <h3>Flag Challenges</h3>

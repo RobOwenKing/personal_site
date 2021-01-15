@@ -1,0 +1,23 @@
+<% content_for :meta_title, "Name Challenges, by Rob Owen King" %>
+<% content_for :meta_description, "Can you name all the countries of Europe on a map? How about US states? Challenge yourself here." %>
+<% content_for :meta_image, "screenshots/names_quiz.jpg" %>
+
+<h1>Name Challenges</h1>
+
+<h2>International</h2>
+
+<% @internationals.each do |international| %>
+  <div>
+    <%= link_to international.name, name_quiz_path(international.id) %>
+  </div>
+<% end %>
+
+
+<h2>National</h2>
+
+<% @nationals.each do |national| %>
+  <div>
+    <%= link_to national.name, name_quiz_path(national.id) %>
+  </div>
+<% end %>
+

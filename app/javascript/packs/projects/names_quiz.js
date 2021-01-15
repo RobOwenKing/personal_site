@@ -1,10 +1,10 @@
 const question = document.getElementById("question");
-const promptDisplay = document.getElementById("prompt");
+const input = document.getElementById("input");
 
 const mapDisplay = document.getElementById("map");
 
 const playingUI = document.getElementById("playing-ui");
-const skip = document.getElementById("skip");
+const giveUp = document.getElementById("give-up");
 const scoreDisplay = document.getElementById("score");
 const totalDisplay = document.getElementById("total");
 
@@ -15,26 +15,17 @@ const skippedDisplay = document.getElementById("skipped");
 const timeDisplay = document.getElementById('time');
 const restart = document.getElementById("restart");
 
-let prompts, promptsArray, prompt;
+let prompts, promptsArray;
 let score = 0;
 let filled = [];
-let missed = [];
 let startTime, endTime;
-let locked = false;
-
-const newQuestion = () => {
-  if (promptsArray.length == 0) { gameOver() }
-  prompt = promptsArray.shift();
-  promptDisplay.innerHTML = prompts[prompt][0];
-  locked = false;
-};
 
 const activateMisseds = () => {
   const misseds = document.querySelectorAll('.missed');
   misseds.forEach((missed) => {
     const path = document.getElementById(missed.dataset.code);
     missed.addEventListener('mouseenter', (event) => {
-      path.style.fill = '#00FF00';
+      path.style.fill = '#FF0000';
     })
     missed.addEventListener('mouseleave', (event) => {
       path.style.fill = '#f9f9f9';
@@ -43,7 +34,7 @@ const activateMisseds = () => {
 };
 
 const fillMissed = () => {
-  missed = missed.map((prompt) => `<span class="missed" data-code="${prompt}">${prompts[prompt][0]}</span>` );
+  const missed = promptsArray.map((prompt) => `<span class="missed" data-code="${prompt[0]}">${prompt[1][0]}</span>` );
   skippedDisplay.innerHTML = `You missed (hover over to check): ${missed.join(', ')}.`;
   activateMisseds();
 };
@@ -62,60 +53,8 @@ const gameOver = () => {
   results.style.display = "block";
 };
 
-const next = () => {
-  // Reset colours
-  filled.forEach((path) => { path.style.fill = '#f9f9f9'; });
-  filled = [];
-  if (promptsArray.length > 0) {
-    newQuestion();
-  } else {
-    gameOver();
-  }
-};
-
-const handlePathClick = (path) => {
-  if (!locked) {
-    if (path.id == prompt) {
-      path.style.fill = '#00FF00';
-      filled.push(path);
-      score += 1;
-      locked = true;
-      scoreDisplay.innerHTML = score;
-      window.setTimeout(next, 500);
-    } else {
-      path.style.fill = '#FF0000';
-      filled.push(path);
-      if (!missed.includes(prompt)) { missed.push(prompt); }
-    }
-  }
-};
-
-const activatePaths = () => {
-  const paths = mapDisplay.querySelectorAll('path');
-  paths.forEach((path) => {
-    path.addEventListener('click', (event) => {
-      handlePathClick(path);
-    })
-    path.addEventListener('mouseover', (event) => {
-      path.style.strokeWidth = 3;
-      // Only fill if not already red or green
-      if (!filled.includes(path)) {
-        path.style.fill = '#C5DBF5';
-      }
-    })
-    path.addEventListener('mouseout', (event) => {
-      path.style.strokeWidth = 1;
-      // Only reset fill if not red or green
-      if (!filled.includes(path)) {
-        path.style.fill = '#f9f9f9';
-      }
-    })
-  });
-};
-
-skip.addEventListener("click", (event) => {
-  if (!missed.includes(prompt)) { missed.push(prompt); }
-  newQuestion();
+giveUp.addEventListener("click", (event) => {
+  gameOver();
 })
 
 restart.addEventListener("click", (event) => {
@@ -123,6 +62,11 @@ restart.addEventListener("click", (event) => {
   playingUI.style.display = "block";
   results.style.display = "none";
   score = 0;
+
+  filleds.forEach((filled) => {
+    const path = document.getElementById(filled.dataset.code);
+    path.style.fill = '#f9f9f9';
+  })
 })
 
 // Below based on code from https://stackoverflow.com/questions/21294302/converting-milliseconds-to-minutes-and-seconds-with-javascript
@@ -132,19 +76,33 @@ const formatTime = (millis) => {
   return mins + ":" + (secs < 10 ? '0' : '') + secs;
 };
 
+const correctAnswer = (element) => {
+  const valueToCheck = input.value.toLowerCase()
+  return element[1].some(prompt => prompt.toLowerCase() == valueToCheck);
+}
+
+input.addEventListener('input', (event) => {
+  const index = promptsArray.findIndex(correctAnswer);
+  if (index >= 0) {
+    const path = document.getElementById(promptsArray[index][0]);
+    promptsArray.splice(index, 1);
+    path.style.fill = "#00FF00";
+    input.value = "";
+    score += 1;
+    scoreDisplay.innerHTML = score;
+    if (promptsArray.length == 0) { gameOver(); }
+  }
+})
+
 const init = () => {
-  prompts = JSON.parse(question.dataset.prompts);
-  promptsArray = Object.keys(prompts);
-  promptsArray.sort((a, b) => Math.random() - 0.5);
-  // mapDisplay.innerHTML = svgUS;
+  prompts = JSON.parse(input.dataset.prompts);
+  promptsArray = Object.entries(prompts);
+
   scoreDisplay.innerHTML = 0;
   totalDisplay.innerHTML = promptsArray.length;
   resultsTotal.innerHTML = promptsArray.length;
+
   startTime = new Date();
-  locked = false;
-  missed = [];
-  activatePaths();
-  newQuestion();
   question.style.display = "block";
 };
 

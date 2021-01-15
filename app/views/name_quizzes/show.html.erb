@@ -1,0 +1,32 @@
+<% content_for :meta_title, "#{@quiz.name} Names Challenge, by Rob Owen King" %>
+<% content_for :meta_description, "Can you name all the #{@quiz.name}? Challenge yourself here." %>
+<% content_for :meta_image, "screenshots/names_quiz.jpg" %>
+
+<h1 id="title"><%= @quiz.name %></h1>
+
+<div id="question">
+  <label for="input">Name any of the <%= @quiz.name %>:</label>
+  <input id="input" data-prompts="<%= @quiz.prompts %>" type="text"></input>
+</div>
+<br>
+<div id="map"><%= @quiz.map.html_safe %></div>
+<br>
+<div id="playing-ui">
+  <div class="btn btn-blue" id="give-up">Give up</div>
+  <br>
+  <br>
+  You've got <span id="score"></span> / <span id="total"></span>
+</div>
+
+<div id="results" style="display: none">
+  Well done! You got <strong><span id="results-score"></span> / <span id="results-total"></span></strong> in <strong id="time"></strong>.
+  <br>
+  <div id="skipped"></div>
+  <br>
+  <div class="btn btn-orange" id="restart">Play again</div>
+</div>
+
+
+<p class="small-text">All maps from <%= link_to "simplemaps.com", "https://simplemaps.com/" %>.</p>
+
+<%= javascript_pack_tag 'projects/names_quiz' %>

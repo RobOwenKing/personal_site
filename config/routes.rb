@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   get 'star_battle', to: 'puzzles#star_battle'
 
   resources :map_quizzes, only: [ :index, :show, :new, :create ]
+  resources :name_quizzes, only: [ :index, :show ]
 
   get "/crosswords/:crossword", to: "crosswords#show"
   get "crosswords", to: 'projects#crosswords'
