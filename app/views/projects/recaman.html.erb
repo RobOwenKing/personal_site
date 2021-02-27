@@ -7,10 +7,6 @@
 <div id="animate" class="btn btn-orange">Animate</div>
 
 <br>
-
-<label for="terms">Number of terms: </label>
-<input type="range" min="10" max="100" step="1" value="25" class="slider" id="terms">
-
 <br>
 
 <label for="sequence-input">Base sequence:</label>
@@ -22,5 +18,16 @@
     <option value="recamans">Normal Recamán sequence</option>
     <option value="fibonacci">Fibonacci numbers</option>
 </select>
+
+<br>
+
+<label for="terms">Number of terms: </label>
+<input type="range" min="10" max="100" step="1" value="25" class="slider" id="terms">
+
+<br>
+
+<label for="speed">Animation speed: </label>
+<input type="range" min="1" max="10" step="0.1" value="4" class="slider" id="speed">
+
 
 <%= javascript_pack_tag 'projects/recaman' %>

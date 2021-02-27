@@ -4,6 +4,7 @@ const ctx = canvas.getContext('2d');
 const animateButton = document.getElementById('animate');
 const termsInput = document.getElementById('terms');
 const sequenceInput = document.getElementById('sequence-input');
+const speedInput = document.getElementById('speed');
 
 canvas.width = 320;
 canvas.height = 240;
@@ -156,6 +157,10 @@ termsInput.addEventListener('input', (event) => {
 
 sequenceInput.addEventListener('input', (event) => {
   updateDrawAll();
+})
+
+speedInput.addEventListener('input', (event) => {
+  duration = 1000 / parseInt(event.target.value);
 })
 
 updateDrawAll();
