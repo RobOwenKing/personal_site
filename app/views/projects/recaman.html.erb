@@ -1,0 +1,26 @@
+<h1>Recamán's Sequence</h1>
+
+<canvas id="canvas"></canvas>
+
+<br>
+
+<div id="animate" class="btn btn-orange">Animate</div>
+
+<br>
+
+<label for="terms">Number of terms: </label>
+<input type="range" min="10" max="100" step="1" value="25" class="slider" id="terms">
+
+<br>
+
+<label for="sequence-input">Base sequence:</label>
+<select name="sequences" id="sequence-input">
+    <option value="integers">Integers</option>
+    <option value="primes">Prime numbers</option>
+    <option value="squares">Square numbers</option>
+    <option value="triangles">Triangle numbers</option>
+    <option value="recamans">Normal Recamán sequence</option>
+    <option value="fibonacci">Fibonacci numbers</option>
+</select>
+
+<%= javascript_pack_tag 'projects/recaman' %>

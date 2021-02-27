@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'game_of_life', to: 'projects#game_of_life'
   get 'gaps', to: 'projects#gaps'
   get 'money', to: 'projects#money'
+  get 'recamans', to: 'projects#recaman'
   get 'regex_challenges', to: 'projects#regex'
   get 'roman_calculator', to: 'projects#roman_calculator'
   get 'rose', to: 'projects#rose'
