@@ -7,6 +7,7 @@ const animateButton = document.getElementById('animate');
 const termsInput = document.getElementById('terms');
 const sequenceInput = document.getElementById('sequence-input');
 const speedInput = document.getElementById('speed');
+const resultsDisplay = document.getElementById('results');
 
 canvas.width = 320;
 canvas.height = 240;
@@ -139,6 +140,7 @@ animateButton.addEventListener('click', (event) => {
 const updateDrawAll = () => {
   sequence = buildRecamansSequence(sequenceInput.value, parseInt(termsInput.value));
   drawAll();
+  resultsDisplay.innerHTML = sequence.join(', ') + '...';
 }
 
 termsInput.addEventListener('input', (event) => {
