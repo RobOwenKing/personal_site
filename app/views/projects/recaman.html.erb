@@ -1,5 +1,7 @@
 <h1>Recamán's Sequence</h1>
 
+<p>A visualisation of <%= link_to "Recamán's sequence", "https://en.wikipedia.org/wiki/Recam%C3%A1n%27s_sequence" %>, with the option to apply the same process to starting sequences other than the integers. Inspired by a Numberphile video (see below).</p>
+
 <label for="sequence-input">Base sequence:</label>
 <select name="sequences" id="sequence-input">
     <option value="integers">Integers</option>
@@ -33,5 +35,13 @@
 <br>
 
 <div id="results"></div>
+
+<div class="line-break"></div>
+
+<div class="iframe-container">
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/FGC5TdIiT9U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+<p>Note: I use a slightly different visualisation approach. Instead of the arcs alternating above and below the horizontal, I have them above for terms where the sequence is increasing, and below when decreasing.</p>
 
 <%= javascript_pack_tag 'projects/recaman' %>
