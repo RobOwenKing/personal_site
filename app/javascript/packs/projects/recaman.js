@@ -62,9 +62,9 @@ const buildRecamansSequence = (sequence, noOfTerms) => {
   return recamans;
 };
 
-const drawArc = (x1, x2, fraction, scale) => {
+const drawArc = (x1, x2, fraction, scale, hue) => {
   ctx.beginPath();
-  ctx.strokeStyle = 'white';
+  ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
   const x = (x1 + x2) / 2;
   const r = Math.abs(x2 - x);
   let startAngle, endAngle;
@@ -99,7 +99,8 @@ const drawAll = () => {
 
   ctx.translate(8, canvas.height/2);
   for (let i = 0; i < sequence.length; i += 1) {
-    drawArc(sequence[i], sequence[i+1], 1, finalScale);
+    const hue = (i / sequence.length) * 300;
+    drawArc(sequence[i], sequence[i+1], 1, finalScale, hue);
   }
   ctx.translate(-8, -canvas.height/2);
 };
@@ -119,11 +120,13 @@ const drawPartial = (timestamp) => {
   if (scale != targetScale) { setScale(elapsedSteps); }
 
   for (let i = 0; i < maxTerm; i += 1) {
-    drawArc(sequence[i], sequence[i+1], 1, scale);
+    const hue = (i / sequence.length) * 300;
+    drawArc(sequence[i], sequence[i+1], 1, scale, hue);
   }
 
   if (maxTerm < sequence.length) {
-    drawArc(sequence[maxTerm], sequence[maxTerm+1], elapsedSteps - maxTerm, scale);
+    const hue = (maxTerm / sequence.length) * 300;
+    drawArc(sequence[maxTerm], sequence[maxTerm+1], elapsedSteps - maxTerm, scale, hue);
   }
   ctx.translate(-8, -canvas.height/2);
   if (maxTerm <= sequence.length) { requestAnimationFrame(drawPartial); }
@@ -148,6 +151,12 @@ termsInput.addEventListener('input', (event) => {
 })
 
 sequenceInput.addEventListener('input', (event) => {
+  if (event.target.value == 'fibonacci') {
+    termsInput.max = 63;
+    if (termsInput.value > 63) { termsInput.value = 63; }
+  } else {
+    termsInput.max = 255;
+  }
   updateDrawAll();
 })
 
