@@ -73,6 +73,11 @@
     <h3>Star Battles</h3>
   <% end %>
 
+  <%= link_to(recamans_path, class: "card-project") do %>
+    <%= image_tag("screenshots/recaman.jpg", class: "img-circle", alt: "Screenshot of my Recamán's sequence visualisation tool - a curve swirling back and forth representing the first few dozen terms.") %>
+    <h3>Recamán's Sequence</h3>
+  <% end %>
+
   <%= link_to(rose_path, class: "card-project") do %>
     <%= image_tag("screenshots/rose.jpg", class: "img-circle", alt: "Screenshot of a Rose curve, a symmetrical, spiralling colourful pattern, above a set of sliders to define its properties.") %>
     <h3>Interactive Rose Curve</h3>
