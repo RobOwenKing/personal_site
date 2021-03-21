@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'movida', to: 'pages#movida'
   get 'quedem', to: 'pages#quedem'
 
+  get 'up_to_speed_korean', to: 'pages#react_korean'
+
   get 'capitals_quiz', to: 'projects#capitals_quiz'
   get 'circles', to: 'projects#circles'
   get 'clocks', to: 'projects#clocks'
