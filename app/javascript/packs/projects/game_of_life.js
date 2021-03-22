@@ -17,6 +17,7 @@ let iterate = false;
 const clear = document.getElementById('clear');
 const random = document.getElementById('random');
 
+const patternSelect = document.getElementById('pattern-select');
 let adding = 'dot';
 
 const resolution = 4;
@@ -169,6 +170,9 @@ for (let i = 0; i < patternButtons.length; i++) {
     }
   });
 };
+patternSelect.addEventListener('input', (event) => {
+  adding = event.target.value;
+})
 
 light.addEventListener('click', (event) => {
   darkToLight();
