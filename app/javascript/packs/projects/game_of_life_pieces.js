@@ -1,26 +1,3 @@
-const dotButton = document.getElementById('dot');
-const deleteButton = document.getElementById('delete');
-const rPentominoButton = document.getElementById('r-pentomino');
-const bHeptominoButton = document.getElementById('b-heptomino');
-const piHeptominoButton = document.getElementById('pi-heptomino');
-const gliderButton = document.getElementById('glider');
-const acornButton = document.getElementById('acorn');
-const lidkaButton = document.getElementById('lidka');
-const diehardButton = document.getElementById('diehard');
-const bunniesButton = document.getElementById('bunnies');
-const pentadecathlonButton = document.getElementById('pentadecathlon');
-const lwssButton = document.getElementById('lwss');
-const mwssButton = document.getElementById('mwss');
-const hwssButton = document.getElementById('hwss');
-const loaferButton = document.getElementById('loafer');
-const copperheadButton = document.getElementById('copperhead');
-const noahsArkButton = document.getElementById('noahsArk');
-const queenBeeLoopButton = document.getElementById('queenBeeLoop');
-const gliderGunButton = document.getElementById('gliderGun');
-
-const patternButtons = [deleteButton, dotButton, rPentominoButton, bHeptominoButton, piHeptominoButton, gliderButton, acornButton, diehardButton, lidkaButton, bunniesButton, pentadecathlonButton, lwssButton, mwssButton, hwssButton, loaferButton, copperheadButton, noahsArkButton, queenBeeLoopButton, gliderGunButton];
-
-
 const patterns = new Map([
   ['dot', [[0,0]]],
   ['r-pentomino', [[1,0],[2,0],[1,1],[0,1],[1,2]]],
@@ -42,4 +19,4 @@ const patterns = new Map([
   ['gliderGun', [[0,4],[1,4],[0,5],[1,5],[10,4],[10,5],[10,6],[11,3],[11,7],[12,2],[12,8],[13,2],[13,8],[14,5],[15,3],[15,7],[16,4],[16,5],[16,6],[17,5],[20,4],[20,3],[20,2],[21,4],[21,3],[21,2],[22,1],[22,5],[24,0],[24,1],[24,5],[24,6],[34,2],[35,2],[34,3],[35,3]]]
 ]);
 
-export { patterns, patternButtons };
+export { patterns };

@@ -1,5 +1,5 @@
 import { light, dark, mode, lightToDark, darkToLight } from '../shared/modes.js';
-import { patterns, patternButtons } from './game_of_life_pieces.js'
+import { patterns } from './game_of_life_pieces.js'
 
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
@@ -17,6 +17,7 @@ let iterate = false;
 const clear = document.getElementById('clear');
 const random = document.getElementById('random');
 
+const patternSelect = document.getElementById('pattern-select');
 let adding = 'dot';
 
 const resolution = 4;
@@ -155,20 +156,9 @@ clear.addEventListener('click', (event) => {
   draw();
 });
 
-for (let i = 0; i < patternButtons.length; i++) {
-  patternButtons[i].addEventListener('click', (event) => {
-    if (patternButtons[i].classList.contains('btn-active')) {
-      patternButtons[i].classList.remove('btn-active');
-      adding = 'dot';
-    } else {
-      for (let j = 0; j < patternButtons.length; j++) {
-        patternButtons[j].classList.remove('btn-active');
-      };
-      patternButtons[i].classList.add('btn-active');
-      adding = patternButtons[i].id;
-    }
-  });
-};
+patternSelect.addEventListener('input', (event) => {
+  adding = event.target.value;
+})
 
 light.addEventListener('click', (event) => {
   darkToLight();
