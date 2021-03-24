@@ -5,9 +5,9 @@ const showQuestion = (puzzle) => {
   const active = document.activeElement;
 
   if (direction) {
-    question.innerText = puzzle.aQs[parseInt(active.dataset.a)][1];
+    question.innerHTML = puzzle.aQs[parseInt(active.dataset.a)][1];
   } else {
-    question.innerText = puzzle.dQs[parseInt(active.dataset.d)][1];
+    question.innerHTML = puzzle.dQs[parseInt(active.dataset.d)][1];
   }
 };
 

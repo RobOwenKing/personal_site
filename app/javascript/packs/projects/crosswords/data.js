@@ -75,12 +75,12 @@ const tribute = {
   aQs: [
     ["FUN", "What this puzzle is (hopefully)", 1, 5],
     ["BIDEN", "Ice-cream fan from Scranton, PA", 2, 4],
-    ["TREETOP", "???", 3, 3],
-    ["PIAF", "???", 4, 2],
+    ["TREETOP", "Part of a canopy", 3, 3],
+    ["PIAF", "'La Vie En Rose' singer", 4, 2],
     ["SELF", "???", 4, 7],
     ["ARTS", "???", 5, 1],
     ["SAID", "???", 5, 8],
-    ["IDEA", "???", 6, 0],
+    ["IDEA", "<i class='far fa-lightbulb'></i>", 6, 0],
     ["GRID", "???", 6, 9],
     ["SYNC", "???", 7, 1],
     ["MUSE", "???", 7, 8],
@@ -97,10 +97,10 @@ const tribute = {
     ["BRAS", "", 2, 4],
     ["NOES", "", 2, 8],
     ["TITANIC", "", 3, 3],
-    ["PLAGUES", "", 3, 9],
-    ["PREYS", "", 4, 2],
+    ["PLAGUES", "Hounds", 3, 9],
+    ["PREYS", "Hounds", 4, 2],
     ["FIRST", "Cliched Youtube comment", 4, 10],
-    ["ADS", "", 5, 1],
+    ["ADS", "Spots", 5, 1],
     ["DIE", "", 5, 11],
     ["CLAW", "A talon", 7, 4],
     ["MORE", "", 7, 8],
@@ -110,4 +110,4 @@ const tribute = {
   ]
 };
 
-export const puzzles = [first];
+export const puzzles = [first, tribute];
