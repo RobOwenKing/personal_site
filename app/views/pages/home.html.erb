@@ -1,7 +1,14 @@
-<div>
+<div class="home-container">
   <div class="home-div-l">
-    <h1 id="greeting" class="margin-v-0">Hi!</h1>
-    <h1 class="margin-v-0">I'm Rob Owen King</h1>
+    <h1><span id="greeting" class="left-bar left-bar-orange">Hi!</span></h1>
+    <h1><span class="left-bar left-bar-orange">
+      <span class="dark-grey">I'm</span> Rob Owen King
+    </span></h1>
+  </div>
+  <div class="home-div-l">
+    <h2><span class="left-bar left-bar-blue">Programmer</span></h2>
+    <h2><span class="left-bar left-bar-blue">Polyglot</span></h2>
+    <h2><span class="left-bar left-bar-blue">Puzzle Fan</span></h2>
   </div>
   <div class="home-div-r">
     <%= image_tag("profile_pic_jamesnic_cropped.jpg", class: "img-circle", alt: "Rob Owen King profile picture") %>
@@ -21,11 +28,8 @@
       </li>
     </ul>
   </div>
-  <div class="home-div-l">
-    <h2><span class="left-bar left-bar-blue">Programmer</span></h2>
-    <h2><span class="left-bar left-bar-blue">Polyglot</span></h2>
-    <h2><span class="left-bar left-bar-blue">Puzzle Fan</span></h2>
-  </div>
+</div>
+
 
 
   <h3>Programmer · Polyglot · Puzzle Fan</h3>
@@ -35,8 +39,6 @@
   <%= mail_to "contact@robowenking.com" do %>
     <p class="btn btn-blue">Email me</p>
   <% end %>
-</div>
-
 <div class="line-break"></div>
 
 <div class="card">

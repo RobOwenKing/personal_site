@@ -1,1 +1,62 @@
 // Specific CSS for your home-page
+.home-container {
+  width: 90%;
+  margin: auto;
+}
+
+.home-div-l {
+  text-align: left;
+  margin-top: 25vh;
+}
+
+.home-div-l h1 {
+  color: black;
+  font-size: 4rem;
+  line-height: 4rem;
+  margin-top: 2rem;
+  margin-bottom: 0;
+}
+
+.home-div-l h2 {
+  color: #152128;
+  font-size: 3rem;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.home-div-l .dark-grey {
+  color: #152128;
+}
+
+.home-div-l .left-bar {
+  position: relative;
+}
+
+.home-div-l .left-bar:before {
+  content: '';
+  position: absolute;
+  top: 9px;
+  left: -16px;
+
+  border-left-width: 12px;
+  border-left-style: solid;
+}
+
+h1 .left-bar:before {
+  height: 4rem;
+}
+
+h2 .left-bar:before {
+  height: 3rem;
+}
+
+.home-div-l .left-bar-orange:before {
+  border-left-color: $orange;
+}
+
+.home-div-l .left-bar-blue:before {
+  border-left-color: $dark-blue;
+}
+
+.home-div-r {
+}

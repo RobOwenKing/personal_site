@@ -46,7 +46,7 @@
       <%= render 'shared/navbar' %>
     <% end %>
 
-    <% if current_page?(roman_calculator_path) %>
+    <% if current_page?(roman_calculator_path) || current_page?(root_path) %>
       <%= yield %>
     <% else %>
       <div class="container">
