@@ -1,19 +1,32 @@
 <div>
-  <%= image_tag("profile_pic_jamesnic_cropped.jpg", class: "img-circle", alt: "Rob Owen King profile picture") %>
-  <h1 id="greeting" class="margin-v-0">Hi!</h1>
-  <h1 class="margin-v-0">I'm Rob Owen King</h1>
+  <div class="home-div-l">
+    <h1 id="greeting" class="margin-v-0">Hi!</h1>
+    <h1 class="margin-v-0">I'm Rob Owen King</h1>
+  </div>
+  <div class="home-div-r">
+    <%= image_tag("profile_pic_jamesnic_cropped.jpg", class: "img-circle", alt: "Rob Owen King profile picture") %>
 
-  <ul class="list-inline">
-    <li>
-      <a href="https://github.com/RobOwenKing" target="_blank" class="no-dec"><i class="fab fa-github-square i-link"></i></a>
-    </li>
-    <li>
-      <a href="https://www.linkedin.com/in/robert-king-49240672/" target="_blank" class="no-dec"><i class="fab fa-linkedin i-link"></i></a>
-    </li>
-    <li>
-      <a href="https://twitter.com/RobOwenKing" target="_blank" class="no-dec"><i class="fab fa-twitter-square i-link"></i></a>
-    </li>
-  </ul>
+    <ul class="list-inline">
+      <li>
+        <a href="https://github.com/RobOwenKing" target="_blank" class="no-dec"><i class="fab fa-github-square i-link"></i></a>
+      </li>
+      <li>
+        <a href="https://www.linkedin.com/in/robert-king-49240672/" target="_blank" class="no-dec"><i class="fab fa-linkedin i-link"></i></a>
+      </li>
+      <li>
+        <a href="https://twitter.com/RobOwenKing" target="_blank" class="no-dec"><i class="fab fa-twitter-square i-link"></i></a>
+      </li>
+      <li>
+        <%= mail_to "contact@robowenking.com", class: "no-dec" do %><i class="fas fa-envelope-square i-link"></i><% end %>
+      </li>
+    </ul>
+  </div>
+  <div class="home-div-l">
+    <h2><span class="left-bar left-bar-blue">Programmer</span></h2>
+    <h2><span class="left-bar left-bar-blue">Polyglot</span></h2>
+    <h2><span class="left-bar left-bar-blue">Puzzle Fan</span></h2>
+  </div>
+
 
   <h3>Programmer · Polyglot · Puzzle Fan</h3>
   <p>Maths grad > English teacher > Translator > Full-stack web dev<br>It's been a ride</p>
