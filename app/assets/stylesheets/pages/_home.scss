@@ -1,1 +1,6 @@
 // Specific CSS for your home-page
+
+#greeting {
+  // Fixes issue with Chinese text
+  line-height: 1.5em;
+}
