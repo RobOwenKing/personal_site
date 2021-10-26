@@ -3,13 +3,13 @@
 
 <div>
   <h1>My portfolio</h1>
-
   <p>Here is a selection of my favourite coding projects from before, during and after my bootcamp. Click on any of them for more details and to try them out, or head to <a href="https://github.com/RobOwenKing" target="_blank" class="link-dec">my GitHub page</a> to find the source code.</p>
+  <p>Jump to: <%= link_to "Full-stack web apps", "#full-stack" %>; <%= link_to "React apps", "#react" %>; <%= link_to "For coders", "#coders" %>; <%= link_to "Games, recreational maths and more", "#toys" %>; <%= link_to "Geography Challenges", "#geography" %>.</p>
 </div>
 
 <div class="line-break"></div>
 
-<h2>Full-stack web apps</h2>
+<h2 id="full-stack">Full-stack web apps</h2>
 
 <div class="flex">
   <%= link_to(quedem_path, class: "card-project") do %>
@@ -25,7 +25,7 @@
 
 <div class="line-break"></div>
 
-<h2>React apps</h2>
+<h2 id="react">React apps</h2>
 
 <div class="flex">
   <%= link_to(up_to_speed_korean_path, class: "card-project") do %>
@@ -36,7 +36,7 @@
 
 <div class="line-break"></div>
 
-<h2>For Coders</h2>
+<h2 id="coders">For Coders</h2>
 
 <div class="flex">
   <%= link_to(regex_challenges_path, class: "card-project") do %>
@@ -62,7 +62,7 @@
 
 <div class="line-break"></div>
 
-<h2>Toys and tools</h2>
+<h2 id="toys">Games, recreational maths and more</h2>
 
 <div class="flex">
   <%= link_to(game_of_life_path, class: "card-project") do %>
@@ -133,7 +133,7 @@
 
 <div class="line-break"></div>
 
-<h2>Geography Challenges</h2>
+<h2 id="geography">Geography Challenges</h2>
 
 <div class="flex">
   <%= link_to(map_quizzes_path, class: "card-project") do %>
