@@ -47,10 +47,9 @@
 <br>
 
 <ul>
-  <li id="random" class="btn btn-orange">Random pattern</li>
+  <li id="random" class="btn btn-orange">Random setup</li>
   <li id="clear" class="btn btn-blue">Clear grid</li>
 </ul>
-
 
 <div class="line-break"></div>
 
@@ -61,7 +60,7 @@
 
 <div class="card-1-2">
   <h4>The idea</h4>
-  <p><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life</a> is a cellular automaton, a grid of cells with a limited number of states (two in this case) and predictable rules for changing between those states. In the Game of Life, any live cell (in colour above) where two or three of its eight immediate neighbours are also alive stays alive, else it dies; any dead cell with precisely three live neighbours comes alive.</p>
+  <p><a href="https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life" target="_blank">Conway's Game of Life</a> is a cellular automaton, a grid of cells, each with a limited number of states (two in this case) and predictable rules for changing between those states. In the Game of Life, any live cell (in colour above) where two or three of its eight immediate neighbours are also alive stays alive, else it dies; any dead cell with precisely three live neighbours comes alive.</p>
 </div>
 
 <div class="card-1-2">
@@ -71,7 +70,7 @@
 
 <div class="card-1-2">
   <h4>Methuselahs and Spaceships and what now?</h4>
-  <p>Over the years, many different initial configurations of live cells have been studied and explored in Game of Life. The buttons above allow you to place what I consider to be some of the most interesting of these in the grid. Methuselahs are patterns with a small number of initial live cells which take an unexpectedly long time to stabilise. Spaceships are patterns which move across the grid over time.</p>
+  <p>Over the years, many different initial configurations of live cells have been studied and explored in Game of Life. The dropdown above allow you to place what I consider to be some of the most interesting of these in the grid as a whole, instead of cell by cell. Methuselahs are patterns with a small number of initial live cells which take an unexpectedly long time to stabilise. Spaceships are patterns which move across the grid over time.</p>
 </div>
 
 <%= javascript_pack_tag 'projects/game_of_life' %>
