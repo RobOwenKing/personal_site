@@ -2,15 +2,6 @@
 @import "cards/card-img-txt";
 @import "cards/card-project";
 
-.card {
-  opacity: 0.8;
-  transition: opacity 0.2s;
-}
-
-.card:hover {
-  opacity: 1;
-}
-
 .line-break {
   margin: 30px auto 20px auto;
   height: 1px;

@@ -16,7 +16,7 @@
   </ul>
 
   <h3>Programmer · Polyglot · Puzzle Fan</h3>
-  <p>Maths grad > English teacher > Translator > Full-stack web dev<br>It's been a ride</p>
+  <p>Maths at Oxford > Teacher and translator in Spain > Full-stack web dev<br>It's been a ride</p>
   <%= link_to "Things I've made", portfolio_path, class: "btn btn-orange btn-home" %>
   <br>
   <%= mail_to "contact@robowenking.com" do %>
@@ -27,20 +27,17 @@
 <div class="line-break"></div>
 
 <div class="card">
-  <h2>Coding</h2>
-  <i class="fas fa-laptop-code i-img"></i>
-  <p>I've loved dabbling in coding for years in my spare time: HTML and CSS as a kid, Game Maker as a teen, Matlab at uni. Now I want to make it my career. If you're hiring a Junior Web Dev -especially in Munich, but anywhere in Europe is fine- please contact me. You can find my email and LinkedIn above.</p>
-  <p>I graduated from <%= link_to "Le Wagon", "https://www.lewagon.com/", target: "_blank" %>'s full-stack bootcamp in Barcelona. Beyond that, I've completed a number of courses on <%= link_to "CodeCademy", "https://www.codecademy.com/profiles/teraWhiz35198", target: "_blank" %> and am rank 5 kyu on <%= link_to "Code Wars", "https://www.codewars.com/users/RobOwenKing", target: "_blank" %>.</p>
-  <p>I use:</p>
+  <h2>Programmer</h2>
+  <i class="fas fa-coffee i-img"></i>
+  <p>I've been dabbling in coding since I was about 10: HTML and CSS as a kid, Game Maker as a teen, Matlab at uni. Then in 2019 I found a way to make it my career. I graduated from <%= link_to "Le Wagon", "https://www.lewagon.com/", target: "_blank" %>'s full-stack bootcamp in Barcelona just as the pandemic hit.</p>
+  <p>Since then, I've taught myself React, completed a number of courses on <%= link_to "CodeCademy", "https://www.codecademy.com/profiles/teraWhiz35198", target: "_blank" %> and built loads of <%= link_to "projects practicing a wide range of skills", portfolio_path, target: "_blank" %> to prepare to enter the industry. If you're hiring a junior dev near Birmingham, do <%= mail_to "contact@robowenking.com", 'get in touch' %>.</p>
+  <p>I love:</p>
   <ul class="list-inline">
     <li><i class="devicon-html5-plain-wordmark colored i-large"></i></li>
     <li><i class="devicon-css3-plain-wordmark colored i-large"></i></li>
     <li><i class="devicon-javascript-plain colored i-large"></i></li>
     <li><i class="devicon-ruby-plain-wordmark colored i-large"></i></li>
     <li><i class="devicon-rails-plain-wordmark colored i-large"></i></li>
-  </ul>
-  <p>I'm learning:</p>
-  <ul class="list-inline">
     <li><i class="devicon-react-original-wordmark colored i-large"></i></li>
   </ul>
 </div>
@@ -48,9 +45,11 @@
 <div class="line-break"></div>
 
 <div class="card">
-  <h2>Languages</h2>
+  <h2>Polyglot</h2>
   <i class="fas fa-globe-europe i-img"></i>
-  <p>Programming languages aren't the only kind of language I love. Over the years I've studied a bunch, taught one to non-natives and worked as a professional translator.</p>
+  <p>Besides coding, I also love everything about languages, from 'dry' grammar to understanding different peoples and cultures. Over the years, I've studied a bunch to different levels, worked as an English teacher and translated professionally (mostly Catalan and Spanish to English).</p>
+  <p>Check out <%= link_to "my articles introducing aspects of Catalonia", "https://www.elnacional.cat/en/tag/catalonia-guide", target:"_blank" %> to tourists and my fellow foreigners or <%= link_to "my English learners' quizzes", "https://www.elnacional.cat/en/tag/english-tests", target:"_blank" %> for the same online newspaper, all signed Rob King.</p>
+  <p>I speak (best to worst!):</p>
   <%= image_tag("flags/iconfinder_gb_4627.png", class: "img-small", alt: "Flag of the UK", title: "English - native") %>
   <%= image_tag("flags/iconfinder_catalonia_4585.png", class: "img-small", alt: "Flag of Catalonia", title:"Catalan - advanced") %>
   <%= image_tag("flags/iconfinder_es_4616.png", class: "img-small", alt: "Flag of Spain", title: "Spanish - advanced") %>
@@ -63,9 +62,13 @@
 <div class="line-break"></div>
 
 <div class="card">
-  <h2>About Me</h2>
-  <i class="fas fa-hiking i-img"></i>
-  <p>Born in the UK, I grew up in the town of Walsall before studying Maths at Oxford University. Since graduating in 2014, I've lived abroad in Spain, another young person fascinated by travel and exploring different cultures. Beyond that I can get overly excited about the guitar, comedy, history, puzzles and current affairs.</p>
+  <h2>Puzzle Fan</h2>
+  <i class="fas fa-user-edit i-img"></i>
+  <p>To be honest, maybe puzzles should have come first here as my lifelong love of them is at the heart of many of my other interests, including coding. Recently, I've been most into solving Sudoku and related puzzles, and trying my hand at <%= link_to "setting some", "https://logic-masters.de/Raetselportal/Benutzer/eingestellt.php?name=RobK" %>.</p>
+  <p>A couple have even been featured by Youtube channel Cracking the Cryptic to their 400k+ subscribers. "Gorgeous, absolutely gorgeous", "good grief, this is really clever", "such a pleasure to solve" - see what the presenter was talking about with these comments in the video below:</p>
+  <div class="iframe-container">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/_0YUlMPmD0w?t=2m14s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  </div>
 </div>
 
 <%= javascript_pack_tag 'pages/home' %>

@@ -3,13 +3,13 @@
 
 <div>
   <h1>My portfolio</h1>
-
   <p>Here is a selection of my favourite coding projects from before, during and after my bootcamp. Click on any of them for more details and to try them out, or head to <a href="https://github.com/RobOwenKing" target="_blank" class="link-dec">my GitHub page</a> to find the source code.</p>
+  <p>Jump to: <%= link_to "Full-stack web apps", "#full-stack" %>; <%= link_to "React apps", "#react" %>; <%= link_to "For coders", "#coders" %>; <%= link_to "Games, recreational maths and more", "#toys" %>; <%= link_to "Geography challenges", "#geography" %>.</p>
 </div>
 
 <div class="line-break"></div>
 
-<h2>Full-stack web apps</h2>
+<h2 id="full-stack">Full-stack web apps</h2>
 
 <div class="flex">
   <%= link_to(quedem_path, class: "card-project") do %>
@@ -25,7 +25,7 @@
 
 <div class="line-break"></div>
 
-<h2>React apps</h2>
+<h2 id="react">React apps</h2>
 
 <div class="flex">
   <%= link_to(up_to_speed_korean_path, class: "card-project") do %>
@@ -36,7 +36,33 @@
 
 <div class="line-break"></div>
 
-<h2>Toys and tools</h2>
+<h2 id="coders">For Coders</h2>
+
+<div class="flex">
+  <%= link_to(regex_challenges_path, class: "card-project") do %>
+    <%= image_tag("screenshots/regex_challenges.jpg", class: "img-circle", alt: "Screenshot of someone trying to use a regular expression to match some Catalan words with special characters to mixed success.") %>
+    <h3>Regex Challenges</h3>
+  <% end %>
+
+  <%= link_to(colour_translator_path, class: "card-project") do %>
+    <%= image_tag("screenshots/colour_translator.jpg", class: "img-circle", alt: "Screenshot of the Colour Translator with the RGB and HSL values for a shade of orange.") %>
+    <h3>Colour Translator</h3>
+  <% end %>
+
+  <%= link_to("https://github.com/RobOwenKing/code_kata", class: "card-project") do %>
+    <%= image_tag("screenshots/code_kata.jpg", class: "img-circle", alt: "Screenshot of the code for a Linked List class in Ruby.") %>
+    <h3>Code Kata</h3>
+  <% end %>
+
+  <%= link_to(transitions_path, class: "card-project") do %>
+    <%= image_tag("screenshots/transition.jpg", class: "img-circle", alt: "Screenshot of my Transitions experiment with examples mid-change.") %>
+    <h3>Transitions</h3>
+  <% end %>
+</div>
+
+<div class="line-break"></div>
+
+<h2 id="toys">Games, recreational maths and more</h2>
 
 <div class="flex">
   <%= link_to(game_of_life_path, class: "card-project") do %>
@@ -49,9 +75,9 @@
     <h3>Tetr-ish</h3>
   <% end %>
 
-  <%= link_to(money_path, class: "card-project") do %>
-    <%= image_tag("screenshots/money.jpg", class: "img-circle", alt: "Screenshot of my Money 'Explaininator' project - converting between currencies and between large numbers and understandable concepts.") %>
-    <h3>Money Explaininator</h3>
+  <%= link_to(prime_pairs_path, class: "card-project") do %>
+    <%= image_tag("screenshots/prime_pairs.jpg", class: "img-circle", alt: "Screenshot of Prime Pairs Plus set to order the numbers from 1 to 16 so that every pair adds up to a prime.") %>
+    <h3>Prime Pairs Plus</h3>
   <% end %>
 
   <%= link_to(gaps_path, class: "card-project") do %>
@@ -62,11 +88,6 @@
   <%= link_to(hip_path, class: "card-project") do %>
     <%= image_tag("screenshots/hip.jpg", class: "img-circle", alt: "Screenshot of the Hip puzzle and/or game in progress.") %>
     <h3>Hip</h3>
-  <% end %>
-
-  <%= link_to(prime_pairs_path, class: "card-project") do %>
-    <%= image_tag("screenshots/prime_pairs.jpg", class: "img-circle", alt: "Screenshot of Prime Pairs Plus set to order the numbers from 1 to 16 so that every pair adds up to a prime.") %>
-    <h3>Prime Pairs Plus</h3>
   <% end %>
 
   <%= link_to(clocks_path, class: "card-project") do %>
@@ -108,16 +129,11 @@
     <%= image_tag("screenshots/euler_spiral.jpg", class: "img-circle", alt: "Screenshot of the Euler Spiral implementation, a multi-coloured spiral above sliders to alter its defining properties.") %>
     <h3>Euler Spiral</h3>
   <% end %>
-
-  <%= link_to("https://github.com/RobOwenKing/code_kata", class: "card-project") do %>
-    <%= image_tag("screenshots/code_kata.jpg", class: "img-circle", alt: "Screenshot of the code for a Linked List class in Ruby.") %>
-    <h3>Code Kata</h3>
-  <% end %>
 </div>
 
 <div class="line-break"></div>
 
-<h2>Geography Challenges</h2>
+<h2 id="geography">Geography Challenges</h2>
 
 <div class="flex">
   <%= link_to(map_quizzes_path, class: "card-project") do %>
@@ -141,23 +157,9 @@
   <% end %>
 </div>
 
-<div class="line-break"></div>
 
-<h2>For Coders</h2>
 
-<div class="flex">
-  <%= link_to(regex_challenges_path, class: "card-project") do %>
-    <%= image_tag("screenshots/regex_challenges.jpg", class: "img-circle", alt: "Screenshot of someone trying to use a regular expression to match some Catalan words with special characters to mixed success.") %>
-    <h3>Regex Challenges</h3>
+  <% link_to(money_path, class: "card-project") do %>
+    <%= image_tag("screenshots/money.jpg", class: "img-circle", alt: "Screenshot of my Money 'Explaininator' project - converting between currencies and between large numbers and understandable concepts.") %>
+    <h3>Money Explaininator</h3>
   <% end %>
-
-  <%= link_to(colour_translator_path, class: "card-project") do %>
-    <%= image_tag("screenshots/colour_translator.jpg", class: "img-circle", alt: "Screenshot of the Colour Translator with the RGB and HSL values for a shade of orange.") %>
-    <h3>Colour Translator</h3>
-  <% end %>
-
-  <%= link_to(transitions_path, class: "card-project") do %>
-    <%= image_tag("screenshots/transition.jpg", class: "img-circle", alt: "Screenshot of my Transitions experiment with examples mid-change.") %>
-    <h3>Transitions</h3>
-  <% end %>
-</div>
