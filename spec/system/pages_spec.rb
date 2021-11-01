@@ -13,9 +13,9 @@ RSpec.describe "Pages", type: :system do
   end
   describe 'Movida' do
     before { visit '/movida' }
-    it 'should have a title' do
-      expect(page).to have_content('Movida-19')
-    end
+    # it 'should have a title' do
+    #   expect(page).to have_content('Movida-19')
+    # end
     it 'should have a link to the code on Github' do
       click_on 'View on Github'
       expect(page).to have_content('RobOwenKing')
@@ -24,9 +24,9 @@ RSpec.describe "Pages", type: :system do
   end
   describe 'Quedem' do
     before { visit '/quedem' }
-    it 'should have a title' do
-      expect(page).to have_content('Quedem')
-    end
+    # it 'should have a title' do
+    #   expect(page).to have_content('Quedem')
+    # end
     it 'should have a link to the code on Github' do
       click_on 'View on Github'
       expect(page).to have_content('RobOwenKing')
@@ -35,9 +35,9 @@ RSpec.describe "Pages", type: :system do
   end
   describe 'Patterns in the Hanzi' do
     before { visit '/hanzi_patterns' }
-    it 'should have a title' do
-      expect(page).to have_content('Patterns in the Hanzi')
-    end
+    # it 'should have a title' do
+    #   expect(page).to have_content('Patterns in the Hanzi')
+    # end
     it 'should have a link to the app' do
       # Just testing for a link to avoid waiting for the app to load
       expect(page).to have_link('Go to app', href: 'https://robowenking.github.io/react_hanzi_patterns/')
@@ -50,9 +50,9 @@ RSpec.describe "Pages", type: :system do
   end
   describe 'Up to Speed: Korean Alphabet' do
     before { visit '/up_to_speed_korean' }
-    it 'should have a title' do
-      expect(page).to have_content('Up to Speed: Korean Alphabet')
-    end
+    # it 'should have a title' do
+    #   expect(page).to have_content('Up to Speed: Korean Alphabet')
+    # end
     it 'should have a link to the app' do
       click_on 'Go to app'
       expect(page).to have_content('Show answer')
@@ -81,6 +81,18 @@ RSpec.describe "Pages", type: :system do
       click_on "Up to Speed: Korean Alphabet"
       expect(page).to have_content('Up to Speed: Korean Alphabet')
     end
+    it 'should have a link to projects#regex_challenges' do
+      click_on "Regex Challenges"
+      expect(page).to have_content('Regex Challenges')
+    end
+    it 'should have a link to projects#colour_translator' do
+      click_on "Colour Translator"
+      expect(page).to have_content('Colour Translator')
+    end
+    it 'should have a link to Code Kata on Github' do
+      click_on "Code Kata"
+      expect(page).to have_content('code_kata')
+    end
     it 'should have a link to projects#game_of_life' do
       click_on "Game of Life"
       expect(page).to have_content('Game of Life')
@@ -92,14 +104,6 @@ RSpec.describe "Pages", type: :system do
     it 'should have a link to projects#roman_calculator' do
       click_on "Roman Numerals"
       expect(page).to have_content('Roman Numeral Calculator')
-    end
-    it 'should have a link to Code Kata on Github' do
-      click_on "Code Kata"
-      expect(page).to have_content('code_kata')
-    end
-    it 'should have a link to projects#colour_translator' do
-      click_on "Colour Translator"
-      expect(page).to have_content('Colour Translator')
     end
   end
 end
