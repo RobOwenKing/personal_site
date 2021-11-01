@@ -33,6 +33,36 @@ RSpec.describe "Pages", type: :system do
       expect(page).to have_content('quedem')
     end
   end
+  describe 'Patterns in the Hanzi' do
+    before { visit '/hanzi_patterns' }
+    it 'should have a title' do
+      expect(page).to have_content('Patterns in the Hanzi')
+    end
+    it 'should have a link to the app' do
+      # Just testing for a link to avoid waiting for the app to load
+      expect(page).to have_link('Go to app', href: 'https://robowenking.github.io/react_hanzi_patterns/')
+    end
+    it 'should have a link to the code on Github' do
+      click_on 'View code'
+      expect(page).to have_content('RobOwenKing')
+      expect(page).to have_content('react_hanzi_patterns')
+    end
+  end
+  describe 'Up to Speed: Korean Alphabet' do
+    before { visit '/up_to_speed_korean' }
+    it 'should have a title' do
+      expect(page).to have_content('Up to Speed: Korean Alphabet')
+    end
+    it 'should have a link to the app' do
+      click_on 'Go to app'
+      expect(page).to have_content('Show answer')
+    end
+    it 'should have a link to the code on Github' do
+      click_on 'View code'
+      expect(page).to have_content('RobOwenKing')
+      expect(page).to have_content('react_read_it')
+    end
+  end
   describe 'Portfolio' do
     before { visit '/portfolio' }
     it 'should have a link to pages#movida' do
@@ -42,6 +72,14 @@ RSpec.describe "Pages", type: :system do
     it 'should have a link to pages#quedem' do
       click_on "Quedem"
       expect(page).to have_content('Quedem')
+    end
+    it 'should have a link to pages#hanzi_patterns' do
+      click_on "Patterns in the Hanzi"
+      expect(page).to have_content('Patterns in the Hanzi')
+    end
+    it 'should have a link to pages#react_korean' do
+      click_on "Up to Speed: Korean Alphabet"
+      expect(page).to have_content('Up to Speed: Korean Alphabet')
     end
     it 'should have a link to projects#game_of_life' do
       click_on "Game of Life"
