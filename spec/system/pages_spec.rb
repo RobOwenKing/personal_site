@@ -7,7 +7,7 @@ RSpec.describe "Pages", type: :system do
       expect(page).to have_content('Rob Owen King')
     end
     it 'should have a link to my portfolio' do
-      click_on 'Check out my portfolio'
+      click_on 'Things I\'ve made'
       expect(page).to have_content('My portfolio')
     end
   end
@@ -16,8 +16,10 @@ RSpec.describe "Pages", type: :system do
     it 'should have a title' do
       expect(page).to have_content('Movida-19')
     end
-    it 'should have a link to the website' do
-      expect(page).to have_link(href: /movida-19.com/)
+    it 'should have a link to the code on Github' do
+      click_on 'View on Github'
+      expect(page).to have_content('RobOwenKing')
+      expect(page).to have_content('movida-19')
     end
   end
   describe 'Quedem' do
@@ -25,8 +27,10 @@ RSpec.describe "Pages", type: :system do
     it 'should have a title' do
       expect(page).to have_content('Quedem')
     end
-    it 'should have a link to the website' do
-      expect(page).to have_link(href: /goquedem.com/)
+    it 'should have a link to the code on Github' do
+      click_on 'View on Github'
+      expect(page).to have_content('RobOwenKing')
+      expect(page).to have_content('quedem')
     end
   end
   describe 'Portfolio' do

@@ -4,7 +4,7 @@ RSpec.describe "Projects", type: :system do
   describe '_navbar' do
     before { visit game_of_life_path }
     it 'should link to home page' do
-      click_on 'About Me'
+      click_on 'Home'
       expect(page).to have_current_path(root_path)
     end
     it 'should link to portfolio' do
