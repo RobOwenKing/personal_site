@@ -3,8 +3,15 @@ require 'rails_helper'
 RSpec.describe "Projects", type: :system do
   describe 'Regex Challenges' do
     before { visit regex_challenges_path }
-    it 'should update everything from RGB sliders' do
-      true
+    it 'should load with a challenge' do
+      expect(page).to have_content('Hello World!')
+    end
+    it 'should accept a correct solution' do
+      find('#regex').send_keys([:control, 'a'], :backspace)
+      find('#regex').send_keys('hello,? world(!|\?)')
+      find('#flags').send_keys([:control, 'a'], :backspace)
+      find('#flags').send_keys('i')
+      expect(page).to have_selector('#check-yes-0.green-txt')
     end
   end
   describe 'Roman Numerals Calculator' do
