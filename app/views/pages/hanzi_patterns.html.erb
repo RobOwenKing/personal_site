@@ -1,0 +1,23 @@
+<% content_for :meta_title, "Patterns in the Hanzi, by Rob Owen King" %>
+<% content_for :meta_description, "Open-source Hanzi (Chinese character) data including etymology, translations and more. A ReactJS app by Rob Owen King." %>
+
+<h1>Patterns in the Hanzi</h1>
+
+<div>
+  <%= image_tag("screenshots/react_hanzi_patterns.jpg", class: "img-circle-lg", alt: "Screenshot of the app - a character displayed in different calligraphy styles with its definition, frequency and more.") %>
+</div>
+
+<br>
+
+<%= link_to "Go to app", "https://robowenking.github.io/react_hanzi_patterns/", class: "btn btn-orange", target: "_blank" %>
+
+<%= link_to("https://github.com/RobOwenKing/react_hanzi_patterns", class: "btn btn-blue", target: "_blank") do %>
+  View code <i class="fab fa-github"></i>
+<% end %>
+
+<div class="line-break"></div>
+
+<div class="card-1-2">
+  <h4>The idea</h4>
+  <p>I'm always looking for opportunities to bring together my various interests and eclectic skills. On the one hand, I wanted a new project to practice React, preferably something linking in with open-source packages. On the other hand, I was getting ever more interested in the origins of Chinese characters, different calligraphy styles, and the patterns in their current forms, particularly what are known as <%= link_to "phonosemantic compounds", "https://en.wikipedia.org/wiki/Chinese_characters#Phono-semantic_compounds", target: "_blank" %>.</p>
+</div>
