@@ -28,6 +28,11 @@
 <h2 id="react">React apps</h2>
 
 <div class="flex">
+  <%= link_to(hanzi_patterns_path, class: "card-project") do %>
+    <%= image_tag("screenshots/react_hanzi_patterns.jpg", class: "img-circle", alt: "Screenshot of the app - a character displayed in different calligraphy styles with its definition, frequency and more.") %>
+    <h3>Patterns in the Hanzi</h3>
+  <% end %>
+
   <%= link_to(up_to_speed_korean_path, class: "card-project") do %>
     <%= image_tag("screenshots/react_korean.jpg", class: "img-circle", alt: "Screenshot of the app. A user is filling in the romanisation of a given Korean word, previous answers listed below.") %>
     <h3>Up to Speed: Korean Alphabet</h3>
