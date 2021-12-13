@@ -15,3 +15,7 @@ It's Tetris with a couple of minor tweaks using the HTML5 Canvas. There's also a
 [**Game of Life**](http://www.robowenking.com/game_of_life) - [game_of_life.js](https://github.com/RobOwenKing/personal_site/blob/master/app/javascript/packs/projects/game_of_life.js), [game_of_life_pieces.js](https://github.com/RobOwenKing/personal_site/blob/master/app/javascript/packs/projects/game_of_life_pieces.js), [game_of_life.html.erb](https://github.com/RobOwenKing/personal_site/blob/master/app/views/projects/game_of_life.html.erb)
 
 Yet another HTML5 Canvas implementation of Conway's Game of Life. I use colour to represent the age of cells and provide a whole bunch of built-in patterns for users to place in the grid.
+
+##Tests
+
+Tests are in /test (not /spec). They can be run with  `rake spec`.
