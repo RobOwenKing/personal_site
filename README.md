@@ -6,7 +6,7 @@ This website is built with a Rails backend and a PostgreSQL database (when I've 
 
 ## What's on the site
 
-There's a whole load of browser-based toys and tools. Below are links to some of them, plus their main code.
+There's a whole load of browser-based toys and tools, plus links to projects I have hosted elsewhere. Below are a few highlights, plus links to the most important code on GitHub.
 
 [**Patterns in the Hanzi**](http://www.robowenking.com/hanzi_patterns) - [code](https://github.com/RobOwenKing/react_hanzi_patterns)
 
@@ -28,6 +28,6 @@ It's Tetris with a couple of minor tweaks using the HTML5 Canvas. There's also a
 
 Yet another HTML5 Canvas implementation of Conway's Game of Life. I use colour to represent the age of cells and provide a whole bunch of built-in patterns for users to place in the grid.
 
-##Tests
+## Tests
 
-Tests are in /test (not /spec). They can be run with  `rake spec`.
+Tests are found in /test (not /spec). They can be run with `rake spec`.
