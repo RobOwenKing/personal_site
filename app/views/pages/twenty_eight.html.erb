@@ -1,0 +1,24 @@
+<% content_for :meta_title, "Twenty-Eight, by Rob Owen King" %>
+<% content_for :meta_description, "A simple daily numbers game about a strange calculator." %>
+<% content_for :meta_image, "screenshots/twenty-eight_2.jpg" %>
+
+<h1>Twenty-Eight</h1>
+
+<div>
+  <%= image_tag("screenshots/twenty-eight_2.jpg", class: "img-circle-lg", alt: "Screenshot of the app. The user has just made the number 28 by doing (4-2)*11+6.") %>
+</div>
+
+<br>
+
+<%= link_to "Go to app", "http://twenty-eight.robowenking.com/", class: "btn btn-orange" %>
+
+<%= link_to("https://github.com/RobOwenKing/twenty-eight", class: "btn btn-blue") do %>
+  View code <i class="fab fa-github"></i>
+<% end %>
+
+<div class="line-break"></div>
+
+<div class="card-1-2">
+  <h4>The idea</h4>
+  <p>Wordle had just taken over the internet and, like every coder, I was thinking of making my own version and wondering what twist I could put on it. A lot of iterative design later, this is what I came up with.</p>
+</div>

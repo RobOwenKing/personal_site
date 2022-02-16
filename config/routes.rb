@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'quedem', to: 'pages#quedem'
 
   get 'hanzi_patterns', to: 'pages#hanzi_patterns'
+  get 'twenty_eight', to: 'pages#twenty_eight'
   get 'up_to_speed_korean', to: 'pages#react_korean'
 
   get 'capitals_quiz', to: 'projects#capitals_quiz'
