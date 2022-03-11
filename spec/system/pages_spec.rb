@@ -33,6 +33,19 @@ RSpec.describe "Pages", type: :system do
       expect(page).to have_content('quedem')
     end
   end
+  describe 'Twenty-Eight' do
+    before { visit '/twenty-eight' }
+    it 'should have a link to the app' do
+      click_on 'Go to app'
+      expect(page).to have_content('How to Play')
+      expect(page).to have_content('My Results')
+    end
+    it 'should have a link to the code on Github' do
+      click_on 'View code'
+      expect(page).to have_content('RobOwenKing')
+      expect(page).to have_content('twenty-eight')
+    end
+  end
   describe 'Patterns in the Hanzi' do
     before { visit '/hanzi_patterns' }
     # it 'should have a title' do
@@ -72,6 +85,11 @@ RSpec.describe "Pages", type: :system do
     it 'should have a link to pages#quedem' do
       click_on "Quedem"
       expect(page).to have_content('Quedem')
+    end
+    it 'should have a link to pages#twenty-eight' do
+      click_on "Twenty-Eight"
+      expect(page).to have_content('Twenty-Eight')
+      expect(page).to have_content('Go to app')
     end
     it 'should have a link to pages#hanzi_patterns' do
       click_on "Patterns in the Hanzi"

@@ -29,6 +29,11 @@
 <h2 id="react">React apps</h2>
 
 <div class="flex">
+  <%= link_to(twenty_eight_path, class: "card-project") do %>
+    <%= image_tag("screenshots/twenty-eight_2.jpg", class: "img-circle", alt: "Screenshot of the app. The user has just made the number 28 by doing (4-2)*11+6.") %>
+    <h3>Twenty-Eight</h3>
+  <% end %>
+
   <%= link_to(hanzi_patterns_path, class: "card-project") do %>
     <%= image_tag("screenshots/react_hanzi_patterns.jpg", class: "img-circle", alt: "Screenshot of the app - a character displayed in different calligraphy styles with its definition, frequency and more.") %>
     <h3>Patterns in the Hanzi</h3>
