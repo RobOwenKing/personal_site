@@ -35,8 +35,8 @@ Rails.application.routes.draw do
   get 'tetris', to: 'projects#tetris'
   resources :tetris_scores, only: [ :index, :new, :create ]
 
+  get 'star_battle_solver', to: 'puzzles#star_battle'
   resources :star_battles, only: [ :index, :show, :new, :create ]
-  get 'star_battle', to: 'puzzles#star_battle'
 
   resources :map_quizzes, only: [ :index, :show, :new, :create ]
   resources :name_quizzes, only: [ :index, :show ]
