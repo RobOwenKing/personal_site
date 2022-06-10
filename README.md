@@ -35,7 +35,7 @@ Current requirements: Ruby 2.6.6 and Rails 5.2.6.3
 To run a local version of the site (for testing or development):
 
 1. Clone this repo: `gh repo clone RobOwenKing/personal_site`
-2. Run `bundle install` to install all dependencies
+2. Run `bundle install` and `yarn install` to install all dependencies
 3. Setup the database with `rake db:create` and `rake db:migrate`
 
 
