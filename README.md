@@ -8,6 +8,10 @@ This website is built with a Rails backend and a PostgreSQL database (when I've 
 
 There's a whole load of browser-based toys and tools, plus links to projects I have hosted elsewhere. Below are a few highlights, plus links to the most important code on GitHub.
 
+[**Twenty-Eight**](http://twenty-eight.robowenking.com/) - [code](https://github.com/RobOwenKing/twenty-eight)
+
+A daily numbers game, distantly inspired by the Wordle craze. Built with React.
+
 [**Patterns in the Hanzi**](http://www.robowenking.com/hanzi_patterns) - [code](https://github.com/RobOwenKing/react_hanzi_patterns)
 
 One of my first React apps, it allows users to explore a wide range of data relating to Hanzi (Chinese characters).
