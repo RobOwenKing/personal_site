@@ -14,7 +14,7 @@ One of my first React apps, it allows users to explore a wide range of data rela
 
 [**Colour Translator**](http://www.robowenking.com/colour_translator) - [js](https://github.com/RobOwenKing/personal_site/tree/master/app/javascript/packs/projects/colour_translator), [colour_translator.html.erb](https://github.com/RobOwenKing/personal_site/blob/master/app/views/projects/colour_translator.html.erb)
 
-Convert between RGB, HSL and Hex colours. Explore the colour space and see how they change in relation to each other.
+Convert between RGB, HSL and Hex colours. Explore the colour space and see how the different formats relate to each other.
 
 [**Roman Numerals Calculator**](http://www.robowenking.com/roman_calculator) - [roman_calculator.js](https://github.com/RobOwenKing/personal_site/blob/master/app/javascript/packs/projects/roman_calculator.js), [roman_calculator.html.erb](https://github.com/RobOwenKing/personal_site/blob/master/app/views/projects/roman_calculator.html.erb)
 
@@ -27,6 +27,15 @@ It's Tetris with a couple of minor tweaks using the HTML5 Canvas. There's also a
 [**Game of Life**](http://www.robowenking.com/game_of_life) - [game_of_life.js](https://github.com/RobOwenKing/personal_site/blob/master/app/javascript/packs/projects/game_of_life.js), [game_of_life_pieces.js](https://github.com/RobOwenKing/personal_site/blob/master/app/javascript/packs/projects/game_of_life_pieces.js), [game_of_life.html.erb](https://github.com/RobOwenKing/personal_site/blob/master/app/views/projects/game_of_life.html.erb)
 
 Yet another HTML5 Canvas implementation of Conway's Game of Life. I use colour to represent the age of cells and provide a whole bunch of built-in patterns for users to place in the grid.
+
+## Setup
+
+To run a local version of the site (for testing or development):
+
+1. Clone this repo: `gh repo clone RobOwenKing/personal_site`
+2. Run `bundle install` to install all dependencies
+3. Setup the database with `rake db:create` and `rake db:migrate`
+
 
 ## Tests
 
