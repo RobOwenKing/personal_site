@@ -1,4 +1,4 @@
- Welcome to the Github repo for my personal website! Check out the site itself at [robowenking.com](http://www.robowenking.com).
+ Welcome to the Github repo for my personal website! Check the site itself out at [robowenking.com](http://www.robowenking.com).
 
 ## My Stack
 
@@ -38,7 +38,8 @@ To run a local version of the site (for testing or development):
 2. Run `bundle install` and `yarn install` to install all dependencies
 3. Setup the database with `rake db:create` and `rake db:migrate`
 
+## Testing
 
-## Tests
+Tests are found in /spec (not /test). Requirements: Chrome (used as headless browser for system tests)
 
-Tests are found in /test (not /spec). They can be run with `rake spec`.
+Run all with `rake spec`
