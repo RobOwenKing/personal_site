@@ -1,4 +1,4 @@
- Welcome to the Github repo for my personal website! Check out the site itself at [robowenking.com](http://www.robowenking.com).
+ Welcome to the Github repo for my personal website! Check the site itself out at [robowenking.com](http://www.robowenking.com).
 
 ## My Stack
 
@@ -7,6 +7,10 @@ This website is built with a Rails backend and a PostgreSQL database (when I've 
 ## What's on the site
 
 There's a whole load of browser-based toys and tools, plus links to projects I have hosted elsewhere. Below are a few highlights, plus links to the most important code on GitHub.
+
+[**Twenty-Eight**](http://twenty-eight.robowenking.com/) - [code](https://github.com/RobOwenKing/twenty-eight)
+
+A daily numbers game, distantly inspired by the Wordle craze. Built with React.
 
 [**Patterns in the Hanzi**](http://www.robowenking.com/hanzi_patterns) - [code](https://github.com/RobOwenKing/react_hanzi_patterns)
 
@@ -35,10 +39,11 @@ Current requirements: Ruby 2.6.6 and Rails 5.2.6.3
 To run a local version of the site (for testing or development):
 
 1. Clone this repo: `gh repo clone RobOwenKing/personal_site`
-2. Run `bundle install` to install all dependencies
+2. Run `bundle install` and `yarn install` to install all dependencies
 3. Setup the database with `rake db:create` and `rake db:migrate`
 
+## Testing
 
-## Tests
+Tests are found in /spec (not /test). Requirements: Chrome (used as headless browser for system tests)
 
-Tests are found in /test (not /spec). They can be run with `rake spec`.
+Run all with `rake spec`

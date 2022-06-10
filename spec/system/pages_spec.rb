@@ -11,6 +11,7 @@ RSpec.describe "Pages", type: :system do
       expect(page).to have_content('My portfolio')
     end
   end
+
   describe 'Movida' do
     before { visit '/movida' }
     # it 'should have a title' do
@@ -22,6 +23,7 @@ RSpec.describe "Pages", type: :system do
       expect(page).to have_content('movida-19')
     end
   end
+
   describe 'Quedem' do
     before { visit '/quedem' }
     # it 'should have a title' do
@@ -33,6 +35,7 @@ RSpec.describe "Pages", type: :system do
       expect(page).to have_content('quedem')
     end
   end
+
   describe 'Twenty-Eight' do
     before { visit '/twenty-eight' }
     it 'should have a link to the app' do
@@ -46,6 +49,7 @@ RSpec.describe "Pages", type: :system do
       expect(page).to have_content('twenty-eight')
     end
   end
+
   describe 'Patterns in the Hanzi' do
     before { visit '/hanzi_patterns' }
     # it 'should have a title' do
@@ -61,6 +65,7 @@ RSpec.describe "Pages", type: :system do
       expect(page).to have_content('react_hanzi_patterns')
     end
   end
+
   describe 'Up to Speed: Korean Alphabet' do
     before { visit '/up_to_speed_korean' }
     # it 'should have a title' do
@@ -76,6 +81,7 @@ RSpec.describe "Pages", type: :system do
       expect(page).to have_content('react_read_it')
     end
   end
+  
   describe 'Portfolio' do
     before { visit '/portfolio' }
     it 'should have a link to pages#movida' do

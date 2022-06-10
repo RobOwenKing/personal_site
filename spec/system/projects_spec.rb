@@ -14,6 +14,7 @@ RSpec.describe "Projects", type: :system do
       expect(page).to have_selector('#check-yes-0.green-txt')
     end
   end
+
   describe 'Roman Numerals Calculator' do
     before { visit roman_calculator_path }
     it 'should add correctly' do
@@ -58,6 +59,7 @@ RSpec.describe "Projects", type: :system do
       expect(page).to have_content('XLII')
     end
   end
+  
   describe 'Colour Translator' do
     before { visit colour_translator_path }
     it 'should update everything from RGB sliders' do
